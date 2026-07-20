@@ -1,0 +1,13 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/fincura-openapi-original.yml
+summary:
+  types:
+  - http
+schemes:
+- name: API_Key
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/fincura-openapi-original.yml
