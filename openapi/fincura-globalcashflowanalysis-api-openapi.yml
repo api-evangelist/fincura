@@ -1,0 +1,1212 @@
+openapi: 3.0.2
+info:
+  title: Automated Spreading and Analysis Api-Key GlobalCashflowAnalysis API
+  version: 1.3.1
+  description: "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****"
+  x-logo:
+    url: https://manual-public-web-static-resources.s3.amazonaws.com/public-api/Moodys-icon.svg
+  contact:
+    name: Moody's Automated Spreading Customer Support
+    email: MA_NMR_Support@moodys.com
+security:
+- API_Key: []
+tags:
+- name: GlobalCashflowAnalysis
+paths:
+  /v1/analysis/global-cashflow:
+    get:
+      operationId: listGlobalCashflowAnalyses
+      description: List Global Cashflow analyses
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GlobalCashflowAnalysis'
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: List all Global Cashflows
+    post:
+      operationId: createGlobalCashflowAnalysis
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlobalCashflowAnalysisCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GlobalCashflowAnalysisCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GlobalCashflowAnalysisCreate'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalCashflowAnalysisCreate'
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: Create a new Global Cashflow
+  /v1/analysis/global-cashflow/{uuid}:
+    get:
+      operationId: retrieveGlobalCashflowAnalysis
+      description: Retrieve Global Cashflow analysis record
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalCashflowAnalysisRetrieve'
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: Retrieve a Global Cashflow
+    delete:
+      operationId: destroyGlobalCashflowAnalysis
+      description: Remove an existing Global Cashflow analysis record
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: Delete a Global Cashflow
+  /v1/analysis/global-cashflow/{uuid}/download_excel:
+    get:
+      operationId: downloadExcelGlobalCashflowAnalysis
+      description: Download the Global Cashflow analysis as an Excel file
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                $ref: '#/components/schemas/GlobalCashflowAnalysis'
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: Download an excel for a Global Cashflow
+  /v1/analysis/global-cashflow/{uuid}/download_pdf:
+    get:
+      operationId: downloadPdfGlobalCashflowAnalysis
+      description: Download the Global Cashflow analysis as a PDF file
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/GlobalCashflowAnalysis'
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: Download a PDF for a Global Cashflow
+  /v1/analysis/global-cashflow/{uuid}/retrieve-with-entity-detail:
+    get:
+      operationId: retrieveV2GlobalCashflowAnalysis
+      description: Retrieve Global Cashflow analysis record
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalCashflowAnalysisRetrieveV2'
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: Retrieve a Global Cashflow with extra borrower details
+components:
+  schemas:
+    GlobalCashflowAnalysisRetrieve:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+        proposed_debts:
+          type: array
+          items:
+            type: object
+            properties:
+              debt_name:
+                type: string
+              principal:
+                type: integer
+              term_months:
+                type: integer
+              interest_rate:
+                type: number
+                multipleOf: 0.0001
+                maximum: 100000000000
+                minimum: -100000000000
+              amortization_method:
+                enum:
+                - PRINCIPAL_AND_INTEREST
+                - PRINCIPAL_PLUS_INTEREST
+                - IO_PERIOD
+                type: string
+              amortization_overrides:
+                type: object
+                properties:
+                  monthly_payment:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000000000000
+                    minimum: -10000000000000
+                    description: Override for monthly payment for amortization
+                  basis:
+                    type: string
+                    description: number of days in year to use in amortization. Choices are '360' or '365'
+                  days_in_month:
+                    type: string
+                    description: 'Number of days in month to use in amortization. Choices are: ''actual'' or ''30'''
+                  payment_day:
+                    type: integer
+                    description: Used to determine what day of the month payments are made on for amortization
+                  last_day_for_next_payment:
+                    type: integer
+                    description: Last day in the month that the next month's payment can be made
+                required:
+                - monthly_payment
+            required:
+            - debt_name
+            - principal
+            - term_months
+            - interest_rate
+            - amortization_method
+        data_view_columns:
+          type: object
+          properties:
+            primary_entity:
+              type: array
+              items:
+                type: object
+                properties:
+                  label:
+                    type: string
+                  statement_date:
+                    type: string
+                    format: date-time
+                  reporting_interval:
+                    type: string
+                  preparation_type:
+                    type: string
+                  prepared_by:
+                    type: string
+                  months_in_interval:
+                    type: integer
+                  scenario:
+                    type: string
+                  cells:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        calculated_value:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                              multipleOf: 0.01
+                            error:
+                              type: string
+                            error_message:
+                              type: string
+                            line_item:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                label:
+                                  type: string
+                                ref:
+                                  type: string
+                              required:
+                              - id
+                              - label
+                              - ref
+                          required:
+                          - value
+                          - error
+                          - error_message
+                          - line_item
+                      required:
+                      - calculated_value
+                  source_comments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        comment:
+                          type: string
+                        created_by:
+                          type: string
+                          nullable: true
+                        created_date:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        changed_by:
+                          type: string
+                          nullable: true
+                        changed_date:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        stmt_name:
+                          type: string
+                          nullable: true
+                        line_item_label:
+                          type: string
+                          nullable: true
+                      required:
+                      - comment
+                required:
+                - label
+                - statement_date
+                - reporting_interval
+                - preparation_type
+                - prepared_by
+                - months_in_interval
+                - scenario
+                - cells
+            linked_entities:
+              type: array
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    statement_date:
+                      type: string
+                      format: date-time
+                    reporting_interval:
+                      type: string
+                    preparation_type:
+                      type: string
+                    prepared_by:
+                      type: string
+                    months_in_interval:
+                      type: integer
+                    scenario:
+                      type: string
+                    cells:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          calculated_value:
+                            type: object
+                            properties:
+                              value:
+                                type: number
+                                multipleOf: 0.01
+                              error:
+                                type: string
+                              error_message:
+                                type: string
+                              line_item:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                  label:
+                                    type: string
+                                  ref:
+                                    type: string
+                                required:
+                                - id
+                                - label
+                                - ref
+                            required:
+                            - value
+                            - error
+                            - error_message
+                            - line_item
+                        required:
+                        - calculated_value
+                    source_comments:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          comment:
+                            type: string
+                          created_by:
+                            type: string
+                            nullable: true
+                          created_date:
+                            type: string
+                            format: date-time
+                            nullable: true
+                          changed_by:
+                            type: string
+                            nullable: true
+                          changed_date:
+                            type: string
+                            format: date-time
+                            nullable: true
+                          stmt_name:
+                            type: string
+                            nullable: true
+                          line_item_label:
+                            type: string
+                            nullable: true
+                        required:
+                        - comment
+                  required:
+                  - label
+                  - statement_date
+                  - reporting_interval
+                  - preparation_type
+                  - prepared_by
+                  - months_in_interval
+                  - scenario
+                  - cells
+          required:
+          - primary_entity
+          - linked_entities
+          readOnly: true
+        commentary:
+          type: string
+          readOnly: true
+          nullable: true
+      required:
+      - analysis_name
+      - borrower_uuid
+    GlobalCashflowAnalysisRetrieveV2:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+        proposed_debts:
+          type: array
+          items:
+            type: object
+            properties:
+              debt_name:
+                type: string
+              principal:
+                type: integer
+              term_months:
+                type: integer
+              interest_rate:
+                type: number
+                multipleOf: 0.0001
+                maximum: 100000000000
+                minimum: -100000000000
+              amortization_method:
+                enum:
+                - PRINCIPAL_AND_INTEREST
+                - PRINCIPAL_PLUS_INTEREST
+                - IO_PERIOD
+                type: string
+              amortization_overrides:
+                type: object
+                properties:
+                  monthly_payment:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000000000000
+                    minimum: -10000000000000
+                    description: Override for monthly payment for amortization
+                  basis:
+                    type: string
+                    description: number of days in year to use in amortization. Choices are '360' or '365'
+                  days_in_month:
+                    type: string
+                    description: 'Number of days in month to use in amortization. Choices are: ''actual'' or ''30'''
+                  payment_day:
+                    type: integer
+                    description: Used to determine what day of the month payments are made on for amortization
+                  last_day_for_next_payment:
+                    type: integer
+                    description: Last day in the month that the next month's payment can be made
+                required:
+                - monthly_payment
+            required:
+            - debt_name
+            - principal
+            - term_months
+            - interest_rate
+            - amortization_method
+        data_view_columns:
+          type: object
+          properties:
+            primary_entity:
+              type: object
+              properties:
+                entity_uuid:
+                  type: string
+                  format: uuid
+                entity_name:
+                  type: string
+                columns:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      label:
+                        type: string
+                      statement_date:
+                        type: string
+                        format: date-time
+                      reporting_interval:
+                        type: string
+                      preparation_type:
+                        type: string
+                      prepared_by:
+                        type: string
+                      months_in_interval:
+                        type: integer
+                      scenario:
+                        type: string
+                      cells:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            calculated_value:
+                              type: object
+                              properties:
+                                value:
+                                  type: number
+                                  multipleOf: 0.01
+                                error:
+                                  type: string
+                                error_message:
+                                  type: string
+                                line_item:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    label:
+                                      type: string
+                                    ref:
+                                      type: string
+                                  required:
+                                  - id
+                                  - label
+                                  - ref
+                              required:
+                              - value
+                              - error
+                              - error_message
+                              - line_item
+                          required:
+                          - calculated_value
+                      source_comments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            comment:
+                              type: string
+                            created_by:
+                              type: string
+                              nullable: true
+                            created_date:
+                              type: string
+                              format: date-time
+                              nullable: true
+                            changed_by:
+                              type: string
+                              nullable: true
+                            changed_date:
+                              type: string
+                              format: date-time
+                              nullable: true
+                            stmt_name:
+                              type: string
+                              nullable: true
+                            line_item_label:
+                              type: string
+                              nullable: true
+                          required:
+                          - comment
+                    required:
+                    - label
+                    - statement_date
+                    - reporting_interval
+                    - preparation_type
+                    - prepared_by
+                    - months_in_interval
+                    - scenario
+                    - cells
+              required:
+              - entity_uuid
+              - entity_name
+              - columns
+            linked_entities:
+              type: array
+              items:
+                type: object
+                properties:
+                  entity_uuid:
+                    type: string
+                    format: uuid
+                  entity_name:
+                    type: string
+                  columns:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        label:
+                          type: string
+                        statement_date:
+                          type: string
+                          format: date-time
+                        reporting_interval:
+                          type: string
+                        preparation_type:
+                          type: string
+                        prepared_by:
+                          type: string
+                        months_in_interval:
+                          type: integer
+                        scenario:
+                          type: string
+                        cells:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              calculated_value:
+                                type: object
+                                properties:
+                                  value:
+                                    type: number
+                                    multipleOf: 0.01
+                                  error:
+                                    type: string
+                                  error_message:
+                                    type: string
+                                  line_item:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                      label:
+                                        type: string
+                                      ref:
+                                        type: string
+                                    required:
+                                    - id
+                                    - label
+                                    - ref
+                                required:
+                                - value
+                                - error
+                                - error_message
+                                - line_item
+                            required:
+                            - calculated_value
+                        source_comments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              comment:
+                                type: string
+                              created_by:
+                                type: string
+                                nullable: true
+                              created_date:
+                                type: string
+                                format: date-time
+                                nullable: true
+                              changed_by:
+                                type: string
+                                nullable: true
+                              changed_date:
+                                type: string
+                                format: date-time
+                                nullable: true
+                              stmt_name:
+                                type: string
+                                nullable: true
+                              line_item_label:
+                                type: string
+                                nullable: true
+                            required:
+                            - comment
+                      required:
+                      - label
+                      - statement_date
+                      - reporting_interval
+                      - preparation_type
+                      - prepared_by
+                      - months_in_interval
+                      - scenario
+                      - cells
+                required:
+                - entity_uuid
+                - entity_name
+                - columns
+          required:
+          - primary_entity
+          - linked_entities
+          readOnly: true
+        commentary:
+          type: string
+          readOnly: true
+          nullable: true
+      required:
+      - analysis_name
+      - borrower_uuid
+    GlobalCashflowAnalysisCreate:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+        proposed_debts:
+          type: array
+          items:
+            type: object
+            properties:
+              debt_name:
+                type: string
+              principal:
+                type: integer
+              term_months:
+                type: integer
+              interest_rate:
+                type: number
+                multipleOf: 0.0001
+                maximum: 100000000000
+                minimum: -100000000000
+              amortization_method:
+                enum:
+                - PRINCIPAL_AND_INTEREST
+                - PRINCIPAL_PLUS_INTEREST
+                - IO_PERIOD
+                type: string
+              amortization_overrides:
+                type: object
+                properties:
+                  monthly_payment:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000000000000
+                    minimum: -10000000000000
+                    description: Override for monthly payment for amortization
+                  basis:
+                    type: string
+                    description: number of days in year to use in amortization. Choices are '360' or '365'
+                  days_in_month:
+                    type: string
+                    description: 'Number of days in month to use in amortization. Choices are: ''actual'' or ''30'''
+                  payment_day:
+                    type: integer
+                    description: Used to determine what day of the month payments are made on for amortization
+                  last_day_for_next_payment:
+                    type: integer
+                    description: Last day in the month that the next month's payment can be made
+                required:
+                - monthly_payment
+            required:
+            - debt_name
+            - principal
+            - term_months
+            - interest_rate
+            - amortization_method
+          default: []
+        data_view_columns:
+          type: object
+          properties:
+            primary_entity:
+              type: array
+              items:
+                type: object
+                properties:
+                  label:
+                    type: string
+                  statement_date:
+                    type: string
+                    format: date-time
+                  reporting_interval:
+                    type: string
+                  preparation_type:
+                    type: string
+                  prepared_by:
+                    type: string
+                  months_in_interval:
+                    type: integer
+                  scenario:
+                    type: string
+                  cells:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        calculated_value:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                              multipleOf: 0.01
+                            error:
+                              type: string
+                            error_message:
+                              type: string
+                            line_item:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                label:
+                                  type: string
+                                ref:
+                                  type: string
+                              required:
+                              - id
+                              - label
+                              - ref
+                          required:
+                          - value
+                          - error
+                          - error_message
+                          - line_item
+                      required:
+                      - calculated_value
+                  source_comments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        comment:
+                          type: string
+                        created_by:
+                          type: string
+                          nullable: true
+                        created_date:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        changed_by:
+                          type: string
+                          nullable: true
+                        changed_date:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        stmt_name:
+                          type: string
+                          nullable: true
+                        line_item_label:
+                          type: string
+                          nullable: true
+                      required:
+                      - comment
+                required:
+                - label
+                - statement_date
+                - reporting_interval
+                - preparation_type
+                - prepared_by
+                - months_in_interval
+                - scenario
+                - cells
+            linked_entities:
+              type: array
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    statement_date:
+                      type: string
+                      format: date-time
+                    reporting_interval:
+                      type: string
+                    preparation_type:
+                      type: string
+                    prepared_by:
+                      type: string
+                    months_in_interval:
+                      type: integer
+                    scenario:
+                      type: string
+                    cells:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          calculated_value:
+                            type: object
+                            properties:
+                              value:
+                                type: number
+                                multipleOf: 0.01
+                              error:
+                                type: string
+                              error_message:
+                                type: string
+                              line_item:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                  label:
+                                    type: string
+                                  ref:
+                                    type: string
+                                required:
+                                - id
+                                - label
+                                - ref
+                            required:
+                            - value
+                            - error
+                            - error_message
+                            - line_item
+                        required:
+                        - calculated_value
+                    source_comments:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          comment:
+                            type: string
+                          created_by:
+                            type: string
+                            nullable: true
+                          created_date:
+                            type: string
+                            format: date-time
+                            nullable: true
+                          changed_by:
+                            type: string
+                            nullable: true
+                          changed_date:
+                            type: string
+                            format: date-time
+                            nullable: true
+                          stmt_name:
+                            type: string
+                            nullable: true
+                          line_item_label:
+                            type: string
+                            nullable: true
+                        required:
+                        - comment
+                  required:
+                  - label
+                  - statement_date
+                  - reporting_interval
+                  - preparation_type
+                  - prepared_by
+                  - months_in_interval
+                  - scenario
+                  - cells
+          required:
+          - primary_entity
+          - linked_entities
+          readOnly: true
+        entities_to_include:
+          type: array
+          items:
+            type: object
+            properties:
+              borrower_uuid:
+                type: string
+                format: uuid
+                description: UUID of the Borrower the metadata belongs to
+              is_primary:
+                type: boolean
+                default: false
+                description: Used to designate the entity as the primary entity of the analysis
+              is_blank_entity:
+                type: boolean
+                default: false
+                description: Set to true if you wish to include the borrower in the analysis without adding any spread periods for the borrower
+              periods_to_include:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                    label:
+                      type: string
+                    interval:
+                      type: string
+                    year:
+                      type: integer
+                    interval_index:
+                      type: integer
+                    preparation_type:
+                      type: string
+                    fiscal_year_end:
+                      type: string
+                    scenario:
+                      type: string
+                    projection_name:
+                      type: string
+                    period_key_uuid:
+                      type: string
+                    currency_format:
+                      type: string
+                  required:
+                  - value
+                  - label
+                  - interval
+                  - year
+                  - interval_index
+                  - preparation_type
+                  - fiscal_year_end
+                  - scenario
+                default: []
+              open_tradelines:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    display_name:
+                      type: string
+                      description: The name to be displayed for the tradeline
+                    tradeline_type:
+                      type: string
+                      description: The category of the tradeline
+                    revolving_or_installment:
+                      enum:
+                      - revolving
+                      - installment
+                      type: string
+                      description: The type of the tradeline. Can either be revolving or an installment
+                    tradeline_installment_monthly_amount:
+                      type: integer
+                      nullable: true
+                      description: for installment payments, the monthly installment amount
+                    tradeline_revolving_amount:
+                      type: integer
+                      nullable: true
+                      description: for revolving type tradelines, the total available amount or outstanding balance
+                  required:
+                  - display_name
+                  - tradeline_type
+                  - revolving_or_installment
+                default: []
+            required:
+            - borrower_uuid
+        commentary:
+          type: string
+          readOnly: true
+          nullable: true
+          description: The commentary associated with a given GCF Analysis. This will will be `null` if not commentary exists
+        external_user_id:
+          type: string
+          writeOnly: true
+        external_user_label:
+          type: string
+          writeOnly: true
+      required:
+      - analysis_name
+      - borrower_uuid
+      - entities_to_include
+    GlobalCashflowAnalysis:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+      required:
+      - analysis_name
+      - borrower_uuid
+  securitySchemes:
+    API_Key:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-tagGroups:
+- name: Tenant
+  tags:
+  - Api-Key
+  - TenantSettings
+- name: Templates
+  tags:
+  - SpreadingTemplate
+  - DscrTemplate
+  - GlobalCashflowTemplate
+- name: Borrower
+  tags:
+  - Borrowers
+  - Files
+  - Loans
+  - Requirements
+  - Portfolios
+- name: Normalized Data
+  tags:
+  - DataViews
+  - Templates
+- name: Analysis
+  tags:
+  - DscrAnalysis
+  - GlobalCashflowAnalysis
+- name: Events
+  tags:
+  - Webhooks
+- name: Embedded UI
+  tags:
+  - EmbeddedDocument
+  - EmbeddedFinancials
+  - EmbeddedDscrAnalysis
+  - EmbeddedGlobalCashflowAnalysis

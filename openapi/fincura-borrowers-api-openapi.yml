@@ -1,0 +1,427 @@
+openapi: 3.0.2
+info:
+  title: Automated Spreading and Analysis Api-Key Borrowers API
+  version: 1.3.1
+  description: "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****"
+  x-logo:
+    url: https://manual-public-web-static-resources.s3.amazonaws.com/public-api/Moodys-icon.svg
+  contact:
+    name: Moody's Automated Spreading Customer Support
+    email: MA_NMR_Support@moodys.com
+security:
+- API_Key: []
+tags:
+- name: Borrowers
+  description: A record in our system to link financials and analyses to.
+paths:
+  /v1/borrower:
+    get:
+      operationId: listBorrowers
+      description: List Borrower records
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Borrower'
+          description: ''
+      tags:
+      - Borrowers
+      summary: List Borrowers
+    post:
+      operationId: createBorrower
+      description: Create a new Borrower record
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Borrower'
+          description: ''
+      tags:
+      - Borrowers
+      summary: Create a new Borrower
+  /v1/borrower/{uuid}:
+    get:
+      operationId: retrieveBorrower
+      description: Retrieve a Borrower
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Borrower'
+          description: ''
+      tags:
+      - Borrowers
+      summary: Retrieve a Borrower
+    patch:
+      operationId: partialUpdateBorrower
+      description: ''
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Borrower'
+          description: ''
+      tags:
+      - Borrowers
+      summary: Update a Borrower
+  /v1/borrower/{uuid}/link_entity:
+    post:
+      operationId: linkEntityBorrower
+      description: Creates a link between a primary entity and a secondary entity
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BorrowerEntityLink'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BorrowerEntityLink'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BorrowerEntityLink'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BorrowerEntityLink'
+          description: ''
+      tags:
+      - Borrowers
+      summary: Link a secondary borrower to the Borrower
+  /v1/borrower/{uuid}/portal_link:
+    post:
+      operationId: portalLinkBorrower
+      description: ''
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortalLink'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PortalLink'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PortalLink'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortalLink'
+          description: ''
+      tags:
+      - Borrowers
+      summary: Generate a Borrower portal link
+components:
+  schemas:
+    BorrowerEntityLink:
+      type: object
+      properties:
+        primary_entity_uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        linked_entity_uuid:
+          type: string
+          format: uuid
+          description: UUID of the borrower for this DataView. (see [Borrowers](#tag/Borrowers))
+      required:
+      - linked_entity_uuid
+    Borrower:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Name of the Borrower. Must be unique across Borrower records
+          maxLength: 500
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        portfolio_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Portfolio for this Borrower. (see [Portfolios](#tag/Portfolios))
+        spreading_template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the SpreadingTemplate for this Borrower
+        external_id:
+          type: string
+          nullable: true
+          description: External ID is used to uniquely identify a record from your system in our system. Must be unique across records.
+          maxLength: 250
+        contact_email:
+          type: string
+          format: email
+          description: Borrower contact email
+        contact_person:
+          type: string
+          nullable: true
+          description: Borrower contact Full Name
+          maxLength: 100
+        contact_phone:
+          type: string
+          nullable: true
+          description: Borrower contact Phone Number
+          maxLength: 100
+        sic_code:
+          type: string
+          nullable: true
+          maxLength: 4
+        naics_code:
+          type: string
+          nullable: true
+          maxLength: 6
+        sic_industry:
+          enum:
+          - UNKNOWN
+          - AGRICULTURE_FORESTRY_FISHING
+          - CONSTRUCTION
+          - MINING
+          - TRANSPORTATION_AND_PUBLIC_UTILITIES
+          - WHOLESALE_TRADE
+          - RETAIL_TRADE
+          - MANUFACTURING
+          - FINANCE_INSURANCE_REAL_ESTATE
+          - SERVICES
+          - PUBLIC_ADMINISTRATION
+          type: string
+        custom_attributes:
+          type: object
+        is_individual:
+          type: boolean
+          default: false
+          description: If borrower is a person or individual, pass 'True'
+        region:
+          type: string
+          nullable: true
+          description: Region of this Borrower
+          maxLength: 75
+        country:
+          type: string
+          nullable: true
+          description: Country of this Borrower
+          maxLength: 75
+        default_spreading_template_subtype:
+          type: string
+          nullable: true
+          maxLength: 50
+      required:
+      - name
+    PortalLink:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        reporting_interval:
+          enum:
+          - MONTHLY
+          - QUARTERLY
+          - SEMI_ANNUALLY
+          - ANNUALLY
+          - FISCAL_YTD
+          - TTM
+          type: string
+          writeOnly: true
+          default: MONTHLY
+        from_date:
+          type: string
+          format: date
+          writeOnly: true
+          description: Request statements from date
+        to_date:
+          type: string
+          format: date
+          writeOnly: true
+          description: Request statements to date
+        statement_types:
+          type: array
+          items:
+            type: object
+            properties:
+              form_type:
+                enum:
+                - INCOME_STATEMENT
+                - BALANCE_SHEET
+                - CASH_FLOW_STATEMENT
+                - '1065'
+                - '1040'
+                - '1120'
+                - 1120S
+                - Puerto Rico Corporate
+                - Puerto Rico Individual
+                - Puerto Rico Schedule M Individual
+                - Puerto Rico Schedule CO Individual
+                - Puerto Rico Schedule D Individual
+                - Puerto Rico Schedule F Individual
+                - Puerto Rico Schedule H Individual
+                - Puerto Rico Schedule IE Individual
+                - Puerto Rico Schedule J Individual
+                - Puerto Rico Schedule K Individual
+                - Puerto Rico Schedule L Individual
+                - Puerto Rico Schedule N Individual
+                - Puerto Rico Schedule R1 Individual
+                type: string
+                default: INCOME_STATEMENT
+          writeOnly: true
+        portal_url:
+          type: string
+          format: uri
+          readOnly: true
+          maxLength: 2500
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z¡-\uFFFF0-9](?:[a-z¡-\uFFFF0-9-]{0,61}[a-z¡-\uFFFF0-9])?(?:\\.(?!-)[a-z¡-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z¡-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
+  securitySchemes:
+    API_Key:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-tagGroups:
+- name: Tenant
+  tags:
+  - Api-Key
+  - TenantSettings
+- name: Templates
+  tags:
+  - SpreadingTemplate
+  - DscrTemplate
+  - GlobalCashflowTemplate
+- name: Borrower
+  tags:
+  - Borrowers
+  - Files
+  - Loans
+  - Requirements
+  - Portfolios
+- name: Normalized Data
+  tags:
+  - DataViews
+  - Templates
+- name: Analysis
+  tags:
+  - DscrAnalysis
+  - GlobalCashflowAnalysis
+- name: Events
+  tags:
+  - Webhooks
+- name: Embedded UI
+  tags:
+  - EmbeddedDocument
+  - EmbeddedFinancials
+  - EmbeddedDscrAnalysis
+  - EmbeddedGlobalCashflowAnalysis

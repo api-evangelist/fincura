@@ -1,0 +1,662 @@
+openapi: 3.0.2
+info:
+  title: Automated Spreading and Analysis Api-Key DataViews API
+  version: 1.3.1
+  description: "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****"
+  x-logo:
+    url: https://manual-public-web-static-resources.s3.amazonaws.com/public-api/Moodys-icon.svg
+  contact:
+    name: Moody's Automated Spreading Customer Support
+    email: MA_NMR_Support@moodys.com
+security:
+- API_Key: []
+tags:
+- name: DataViews
+paths:
+  /v1/data-view/from_document_file/{document_file_uuid}:
+    get:
+      operationId: retrieveDataViewFromDocumentFile
+      description: Retrieve a DataView from the standardized output of a DocumentFile submitted to Fincura
+      parameters:
+      - name: document_file_uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataView'
+          description: ''
+      tags:
+      - DataViews
+      summary: Get DataView from a DocumentFile
+  /v1/data-view/from_document_file/{document_file_uuid}/creditlens:
+    get:
+      operationId: creditlensDataViewFromDocumentFile
+      description: Retrieve a DataView from the standardized output of a DocumentFile submitted to Fincura in CreditLens format
+      parameters:
+      - name: document_file_uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataView'
+          description: ''
+      tags:
+      - DataViews
+      summary: Get DataView from a DocumentFile in CreditLens format
+  /v1/data-view/most_recent/{borrower_uuid}:
+    get:
+      operationId: retrieveMostRecentDataView
+      description: Retrieve a DataView from the most recent standardized data for a borrower
+      parameters:
+      - name: borrower_uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: reporting_interval
+        required: false
+        in: query
+        description: Reporting Interval of the financial data
+        schema:
+          type: string
+          enum:
+          - MONTHLY
+          - QUARTERLY
+          - SEMI_ANNUALLY
+          - ANNUALLY
+          - FISCAL_YTD
+          - TTM
+      - name: preparation_type
+        required: false
+        in: query
+        description: Preparation Type of the finanical data
+        schema:
+          type: string
+          enum:
+          - UNQUALIFIED
+          - QUALIFIED
+          - TAX_RETURN
+          - REVIEWED
+          - CPA_PREP
+          - NTR
+          - MANAGEMENT
+          - COMBINED
+          - UNKNOWN
+          - CALCULATED
+          - ANALYST
+          - UNQUALIFIED_IMPORT
+          - QUALIFIED_IMPORT
+          - TAX_RETURN_IMPORT
+          - REVIEWED_IMPORT
+          - CPA_PREP_IMPORT
+          - NTR_IMPORT
+          - MANAGEMENT_IMPORT
+          - ANALYST_IMPORT
+          - IMPORTED
+          - FORECASTED
+          - ANNUALIZED
+      - name: column_limit
+        required: false
+        in: query
+        description: Number of columns of dataview data to return. Defaults to 1 if not provided
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataView'
+          description: ''
+      tags:
+      - DataViews
+      summary: Get the most recent period of data for a Borrower
+  /v1/data-view/all/{uuid_or_labeled_key}:
+    get:
+      operationId: retrieveAllDataViews
+      description: 'Retrieve DataViews for all standardized data for a borrower, by primary or secondary key
+
+
+        The path variable `uuid_or_labeled_key`, can either be a uuid or a label:key (label=key is also accepted).
+
+        The labels `borrower_uuid` and `external_id` are supported.
+
+
+        examples of path variables:
+
+        1. 2dfefa9c-c91e-4cc1-b783-363659e596f5
+
+        2. borrower_uuid:2dfefa9c-c91e-4cc1-b783-363659e596f5
+
+        3. borrower_uuid=2dfefa9c-c91e-4cc1-b783-363659e596f5
+
+        4. external_id=1000882211
+
+
+        values 1..3 are equivalent, and if the DataView has that external_id, so is 4.'
+      parameters:
+      - name: uuid_or_labeled_key
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: reporting_interval
+        required: false
+        in: query
+        description: Reporting Interval of the financial data
+        schema:
+          type: string
+          enum:
+          - MONTHLY
+          - QUARTERLY
+          - SEMI_ANNUALLY
+          - ANNUALLY
+          - FISCAL_YTD
+          - TTM
+      - name: preparation_type
+        required: false
+        in: query
+        description: Preparation Type of the finanical data
+        schema:
+          type: string
+          enum:
+          - UNQUALIFIED
+          - QUALIFIED
+          - TAX_RETURN
+          - REVIEWED
+          - CPA_PREP
+          - NTR
+          - MANAGEMENT
+          - COMBINED
+          - UNKNOWN
+          - CALCULATED
+          - ANALYST
+          - UNQUALIFIED_IMPORT
+          - QUALIFIED_IMPORT
+          - TAX_RETURN_IMPORT
+          - REVIEWED_IMPORT
+          - CPA_PREP_IMPORT
+          - NTR_IMPORT
+          - MANAGEMENT_IMPORT
+          - ANALYST_IMPORT
+          - IMPORTED
+          - FORECASTED
+          - ANNUALIZED
+      - name: period_key_uuid
+        required: false
+        in: query
+        description: Period in a dataview to return.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataView'
+          description: ''
+      tags:
+      - DataViews
+      summary: Get all dataviews for a specific borrower, using a primary or secondary key
+  /v1/data-view/all/{uuid_or_labeled_key}/download_pdf:
+    get:
+      operationId: downloadPdfAllDataViews
+      description: 'Download a PDF overview summarizing all standardized data for a borrower, by primary or secondary key
+
+
+        This supports the same label:key scheme as the method above.'
+      parameters:
+      - name: uuid_or_labeled_key
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/DataView'
+          description: ''
+      tags:
+      - DataViews
+      summary: Get a PDF for all dataviews for a specific borrower, using a primary or secondary key
+  /v1/data-view/metadata/{borrower_uuid}/periods:
+    get:
+      operationId: periodsDataViewMetadata
+      description: Retrieve the metadata for all periods for a borrower
+      parameters:
+      - name: borrower_uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllPeriodsList'
+          description: ''
+      tags:
+      - DataViews
+      summary: Get a list of metadata for all dataview periods for a specific borrower
+  /v1/data-view/create-dataview-from-orbis:
+    post:
+      operationId: createDataViewFromOrbis
+      description: "Create a DataView by fetching financial data from Orbis API.\n\nAccepts an Orbis company ID and returns annual financial statements \nin standardized DataView format.\n\n**Request Parameters:**\n\n- **orbis_id** (required): The Orbis company identifier to fetch financial data for.\n\n- **spreading_template_uuid** (optional): UUID of the spreading template to use for calculations.\n  If not provided, the borrower's default template is used.\n\n- **num_periods** (optional, default=1): Number of annual periods to return (1-100). \n  Each period becomes a column in the DataView. Orbis returns all available periods \n  up to this number.\n\n- **lookback_window** (optional, default=12): Data freshness check in months (1-120). \n  If the most recent Orbis financial data is older than this window, an error is \n  returned. For example, with a 12-month lookback, data dated before 12 months ago \n  will be rejected.\n\n- **refs_to_exclude** (optional): List of REF names to exclude from calculations.\n\n**Response:**\n\n- **dataview**: Full DataView structure with calculated values and multiple columns \n  (one per period requested)\n- **metadata**: Orbis company information, fiscal period details, currency, etc.\n- **statistics**: Completeness metrics showing data coverage\n- **warnings**: Any validation warnings (optional)\n\n**Error Responses:**\n\n- **OrbisCompanyNotFoundError**: The Orbis ID does not exist or has no data\n- **OrbisDataTooStaleError**: Most recent data is older than the lookback window\n- **OrbisAPIKeyError**: API key is missing or invalid\n- **OrbisAPIConnectionError**: Unable to connect to Orbis API\n\nThis is an ephemeral operation - no data is persisted to the database.\nThe spreading calculations are performed in real-time using the Orbis data."
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrbisDataViewRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrbisDataViewRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrbisDataViewRequest'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrbisDataViewRequest'
+          description: ''
+      tags:
+      - DataViews
+      summary: Create DataView from Orbis company data
+components:
+  schemas:
+    OrbisDataViewRequest:
+      type: object
+      properties:
+        orbis_id:
+          type: string
+          description: Orbis company identifier
+        spreading_template_uuid:
+          type: string
+          format: uuid
+          nullable: true
+          description: 'Optional: UUID of the spreading template to use. If not provided, uses the borrower''s default template.'
+        num_periods:
+          type: integer
+          maximum: 100
+          minimum: 1
+          default: 1
+          description: Number of annual periods to fetch (1-100). Defaults to 1. Orbis returns all available periods up to this number.
+        lookback_window:
+          type: integer
+          maximum: 120
+          minimum: 1
+          default: 12
+          description: Lookback window in months (1-120). Defaults to 12. If the most recent Orbis financial data is older than this window, an error is returned.
+        refs_to_exclude:
+          type: array
+          items:
+            type: string
+          description: 'Optional: List of REF names to exclude from calculations'
+        is_ephemeral:
+          type: boolean
+          default: true
+          description: When true (default), returns an ephemeral DataView without persisting data. When false, translates Orbis data into a financial statement submission and pushes it through the spreading pipeline to completion. Requires external_company_id.
+        external_company_id:
+          type: string
+          nullable: true
+          description: Required when is_ephemeral=false. The borrower external identifier to attach the submission to.
+        preparation_type:
+          enum:
+          - UNQUALIFIED
+          - QUALIFIED
+          - TAX_RETURN
+          - REVIEWED
+          - CPA_PREP
+          - NTR
+          - MANAGEMENT
+          - COMBINED
+          - UNKNOWN
+          - CALCULATED
+          - ANALYST
+          - UNQUALIFIED_IMPORT
+          - QUALIFIED_IMPORT
+          - TAX_RETURN_IMPORT
+          - REVIEWED_IMPORT
+          - CPA_PREP_IMPORT
+          - NTR_IMPORT
+          - MANAGEMENT_IMPORT
+          - ANALYST_IMPORT
+          - IMPORTED
+          - FORECASTED
+          - ANNUALIZED
+          type: string
+          default: UNQUALIFIED
+          description: Financial statement preparation type for the submission. Only used when is_ephemeral=false. Defaults to UNQUALIFIED.
+      required:
+      - orbis_id
+    AllPeriodsList:
+      type: object
+      properties:
+        borrower_uuid:
+          type: string
+          format: uuid
+        periods:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              label:
+                type: string
+              interval:
+                type: string
+              year:
+                type: integer
+              interval_index:
+                type: integer
+              preparation_type:
+                type: string
+              fiscal_year_end:
+                type: string
+              scenario:
+                type: string
+              projection_name:
+                type: string
+              period_key_uuid:
+                type: string
+              currency_format:
+                type: string
+            required:
+            - value
+            - label
+            - interval
+            - year
+            - interval_index
+            - preparation_type
+            - fiscal_year_end
+            - scenario
+      required:
+      - borrower_uuid
+      - periods
+    DataView:
+      type: object
+      properties:
+        title:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the borrower for this DataView. (see [Borrowers](#tag/Borrowers))
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template used for spreading for the given company.
+        columns:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              statement_date:
+                type: string
+                format: date-time
+              reporting_interval:
+                type: string
+              preparation_type:
+                type: string
+              prepared_by:
+                type: string
+              months_in_interval:
+                type: integer
+              scenario:
+                type: string
+              scenario_label:
+                type: string
+              fiscal_year_end:
+                type: string
+              currency_format:
+                type: string
+              modified_date:
+                type: string
+                format: date
+              modified_by:
+                type: string
+              cells:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    calculated_value:
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                          multipleOf: 0.01
+                        error:
+                          type: string
+                        error_message:
+                          type: string
+                        line_item:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            label:
+                              type: string
+                            ref:
+                              type: string
+                            standardized_name:
+                              type: string
+                          required:
+                          - id
+                          - label
+                          - ref
+                          - standardized_name
+                        source_items:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              label:
+                                type: string
+                              value:
+                                type: integer
+                            required:
+                            - label
+                            - value
+                        source_comments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              comment:
+                                type: string
+                              created_by:
+                                type: string
+                                nullable: true
+                              created_date:
+                                type: string
+                                format: date-time
+                                nullable: true
+                              changed_by:
+                                type: string
+                                nullable: true
+                              changed_date:
+                                type: string
+                                format: date-time
+                                nullable: true
+                              stmt_name:
+                                type: string
+                                nullable: true
+                              line_item_label:
+                                type: string
+                                nullable: true
+                            required:
+                            - comment
+                      required:
+                      - value
+                      - error
+                      - error_message
+                      - line_item
+                      - source_items
+                  required:
+                  - calculated_value
+              source_comments:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    comment:
+                      type: string
+                    created_by:
+                      type: string
+                      nullable: true
+                    created_date:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    changed_by:
+                      type: string
+                      nullable: true
+                    changed_date:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    stmt_name:
+                      type: string
+                      nullable: true
+                    line_item_label:
+                      type: string
+                      nullable: true
+                  required:
+                  - comment
+            required:
+            - label
+            - statement_date
+            - reporting_interval
+            - preparation_type
+            - prepared_by
+            - months_in_interval
+            - scenario
+            - scenario_label
+            - fiscal_year_end
+            - currency_format
+            - cells
+        rows:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              line_item:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  label:
+                    type: string
+                  ref:
+                    type: string
+                required:
+                - id
+                - label
+                - ref
+              indentation:
+                type: integer
+              row_format:
+                type: object
+                properties:
+                  header:
+                    type: boolean
+                  bold:
+                    type: boolean
+                  is_parent:
+                    type: boolean
+                required:
+                - header
+                - bold
+                - is_parent
+              cell_format:
+                type: object
+                properties:
+                  text_format:
+                    enum:
+                    - PERCENT
+                    - CURRENCY
+                    - RATIO
+                    - DAYS
+                    type: string
+                required:
+                - text_format
+              excludeFromRoundingAndMultiplication:
+                type: boolean
+                default: false
+            required:
+            - label
+            - line_item
+            - indentation
+            - row_format
+            - cell_format
+      required:
+      - title
+      - borrower_uuid
+      - columns
+      - rows
+  securitySchemes:
+    API_Key:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-tagGroups:
+- name: Tenant
+  tags:
+  - Api-Key
+  - TenantSettings
+- name: Templates
+  tags:
+  - SpreadingTemplate
+  - DscrTemplate
+  - GlobalCashflowTemplate
+- name: Borrower
+  tags:
+  - Borrowers
+  - Files
+  - Loans
+  - Requirements
+  - Portfolios
+- name: Normalized Data
+  tags:
+  - DataViews
+  - Templates
+- name: Analysis
+  tags:
+  - DscrAnalysis
+  - GlobalCashflowAnalysis
+- name: Events
+  tags:
+  - Webhooks
+- name: Embedded UI
+  tags:
+  - EmbeddedDocument
+  - EmbeddedFinancials
+  - EmbeddedDscrAnalysis
+  - EmbeddedGlobalCashflowAnalysis

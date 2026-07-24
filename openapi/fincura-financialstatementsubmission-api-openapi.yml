@@ -1,0 +1,171 @@
+openapi: 3.0.2
+info:
+  title: Automated Spreading and Analysis Api-Key FinancialStatementSubmission API
+  version: 1.3.1
+  description: "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****"
+  x-logo:
+    url: https://manual-public-web-static-resources.s3.amazonaws.com/public-api/Moodys-icon.svg
+  contact:
+    name: Moody's Automated Spreading Customer Support
+    email: MA_NMR_Support@moodys.com
+security:
+- API_Key: []
+tags:
+- name: FinancialStatementSubmission
+paths:
+  /v1/financial-statement-submission:
+    post:
+      operationId: createFinancialStatementSubmission
+      description: Submit structured financial statement data (JSON body); file is stored in S3 and processing is queued.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinancialStatementSubmission'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FinancialStatementSubmission'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FinancialStatementSubmission'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancialStatementSubmission'
+          description: ''
+      tags:
+      - FinancialStatementSubmission
+      summary: Submit structured financial statements (JSON)
+components:
+  schemas:
+    FinancialStatementSubmission:
+      type: object
+      properties:
+        schema_version:
+          type: string
+        company_id:
+          type: integer
+          nullable: true
+        company_uuid:
+          type: string
+          format: uuid
+          nullable: true
+        external_company_id:
+          type: string
+          description: External ID is used to uniquely identify a record from your system in our system. Must be unique across records.
+          maxLength: 255
+        currency:
+          type: string
+          default: USD
+        multiply_by_factor:
+          type: object
+          nullable: true
+        spreading_template_id:
+          type: integer
+          nullable: true
+        original_document_name:
+          type: string
+          nullable: true
+        push_to_completion:
+          type: boolean
+          default: false
+        statements:
+          type: array
+          items:
+            type: object
+            properties:
+              statement_type:
+                enum:
+                - INCOME_STATEMENT
+                - BALANCE_SHEET
+                - CASH_FLOW_STATEMENT
+                type: string
+              columns:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    statement_date:
+                      type: string
+                    reporting_interval:
+                      type: string
+                    scenario_type:
+                      type: string
+                    preparation_type:
+                      type: string
+                    prepared_by:
+                      type: string
+                      default: ''
+                  required:
+                  - statement_date
+                  - reporting_interval
+                  - scenario_type
+                  - preparation_type
+              rows:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    values:
+                      type: array
+                      items:
+                        type: object
+                    spreading_template_line_item_id:
+                      type: integer
+                      nullable: true
+                    spreading_template_line_item_ref:
+                      type: string
+                      nullable: true
+                  required:
+                  - label
+                  - values
+            required:
+            - statement_type
+            - columns
+            - rows
+      required:
+      - statements
+  securitySchemes:
+    API_Key:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-tagGroups:
+- name: Tenant
+  tags:
+  - Api-Key
+  - TenantSettings
+- name: Templates
+  tags:
+  - SpreadingTemplate
+  - DscrTemplate
+  - GlobalCashflowTemplate
+- name: Borrower
+  tags:
+  - Borrowers
+  - Files
+  - Loans
+  - Requirements
+  - Portfolios
+- name: Normalized Data
+  tags:
+  - DataViews
+  - Templates
+- name: Analysis
+  tags:
+  - DscrAnalysis
+  - GlobalCashflowAnalysis
+- name: Events
+  tags:
+  - Webhooks
+- name: Embedded UI
+  tags:
+  - EmbeddedDocument
+  - EmbeddedFinancials
+  - EmbeddedDscrAnalysis
+  - EmbeddedGlobalCashflowAnalysis

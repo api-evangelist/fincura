@@ -1,0 +1,469 @@
+openapi: 3.0.2
+info:
+  title: Automated Spreading and Analysis Api-Key DscrAnalysis API
+  version: 1.3.1
+  description: "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****"
+  x-logo:
+    url: https://manual-public-web-static-resources.s3.amazonaws.com/public-api/Moodys-icon.svg
+  contact:
+    name: Moody's Automated Spreading Customer Support
+    email: MA_NMR_Support@moodys.com
+security:
+- API_Key: []
+tags:
+- name: DscrAnalysis
+paths:
+  /v1/analysis/dscr:
+    get:
+      operationId: listDscrAnalyses
+      description: List DSCR Analysis
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DSCRAnalysis'
+          description: ''
+      tags:
+      - DscrAnalysis
+    post:
+      operationId: createDscrAnalysis
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DSCRAnalysisDetails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DSCRAnalysisDetails'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DSCRAnalysisDetails'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DSCRAnalysisDetails'
+          description: ''
+      tags:
+      - DscrAnalysis
+      summary: Create a new DSCR Analysis
+  /v1/analysis/dscr/{uuid}:
+    get:
+      operationId: retrieveDscrAnalysis
+      description: Retrieve DSCR analysis record
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DSCRAnalysisDetails'
+          description: ''
+      tags:
+      - DscrAnalysis
+    delete:
+      operationId: destroyDscrAnalysis
+      description: Remove an existing DSCR analysis record
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - DscrAnalysis
+      summary: Remove an existing DSCR Analysis
+  /v1/analysis/dscr/{uuid}/download_excel:
+    get:
+      operationId: downloadExcelDscrAnalysis
+      description: Download the DSCR analysis as an Excel file
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                $ref: '#/components/schemas/DSCRAnalysis'
+          description: ''
+      tags:
+      - DscrAnalysis
+  /v1/analysis/dscr/{uuid}/download_pdf:
+    get:
+      operationId: downloadPdfDscrAnalysis
+      description: Download the DSCR analysis as a PDF file
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/DSCRAnalysis'
+          description: ''
+      tags:
+      - DscrAnalysis
+components:
+  schemas:
+    DSCRAnalysisDetails:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+        proposed_debts:
+          type: array
+          items:
+            type: object
+            properties:
+              debt_name:
+                type: string
+              principal:
+                type: integer
+              term_months:
+                type: integer
+              interest_rate:
+                type: number
+                multipleOf: 0.0001
+                maximum: 100000000000
+                minimum: -100000000000
+              amortization_method:
+                enum:
+                - PRINCIPAL_AND_INTEREST
+                - PRINCIPAL_PLUS_INTEREST
+                - IO_PERIOD
+                type: string
+              amortization_overrides:
+                type: object
+                properties:
+                  monthly_payment:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000000000000
+                    minimum: -10000000000000
+                    description: Override for monthly payment for amortization
+                  basis:
+                    type: string
+                    description: number of days in year to use in amortization. Choices are '360' or '365'
+                  days_in_month:
+                    type: string
+                    description: 'Number of days in month to use in amortization. Choices are: ''actual'' or ''30'''
+                  payment_day:
+                    type: integer
+                    description: Used to determine what day of the month payments are made on for amortization
+                  last_day_for_next_payment:
+                    type: integer
+                    description: Last day in the month that the next month's payment can be made
+                required:
+                - monthly_payment
+            required:
+            - debt_name
+            - principal
+            - term_months
+            - interest_rate
+            - amortization_method
+        columns:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              statement_date:
+                type: string
+                format: date-time
+              reporting_interval:
+                type: string
+              preparation_type:
+                type: string
+              prepared_by:
+                type: string
+              months_in_interval:
+                type: integer
+              scenario:
+                type: string
+              cells:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    calculated_value:
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                          multipleOf: 0.01
+                        error:
+                          type: string
+                        error_message:
+                          type: string
+                        line_item:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            label:
+                              type: string
+                            ref:
+                              type: string
+                          required:
+                          - id
+                          - label
+                          - ref
+                      required:
+                      - value
+                      - error
+                      - error_message
+                      - line_item
+                  required:
+                  - calculated_value
+              source_comments:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    comment:
+                      type: string
+                    created_by:
+                      type: string
+                      nullable: true
+                    created_date:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    changed_by:
+                      type: string
+                      nullable: true
+                    changed_date:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    stmt_name:
+                      type: string
+                      nullable: true
+                    line_item_label:
+                      type: string
+                      nullable: true
+                  required:
+                  - comment
+            required:
+            - label
+            - statement_date
+            - reporting_interval
+            - preparation_type
+            - prepared_by
+            - months_in_interval
+            - scenario
+            - cells
+          readOnly: true
+        periods_to_include:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              label:
+                type: string
+              interval:
+                type: string
+              year:
+                type: integer
+              interval_index:
+                type: integer
+              preparation_type:
+                type: string
+              fiscal_year_end:
+                type: string
+              scenario:
+                type: string
+              projection_name:
+                type: string
+              period_key_uuid:
+                type: string
+              currency_format:
+                type: string
+            required:
+            - value
+            - label
+            - interval
+            - year
+            - interval_index
+            - preparation_type
+            - fiscal_year_end
+            - scenario
+          default: []
+        commentary:
+          type: string
+          readOnly: true
+          nullable: true
+          description: The commentary associated with a given DSCR Analysis. This will will be `null` if not commentary exists
+        external_user_id:
+          type: string
+          writeOnly: true
+        external_user_label:
+          type: string
+          writeOnly: true
+      required:
+      - analysis_name
+      - borrower_uuid
+    DSCRAnalysis:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+        external_user_id:
+          type: string
+          writeOnly: true
+        external_user_label:
+          type: string
+          writeOnly: true
+      required:
+      - analysis_name
+      - borrower_uuid
+  securitySchemes:
+    API_Key:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-tagGroups:
+- name: Tenant
+  tags:
+  - Api-Key
+  - TenantSettings
+- name: Templates
+  tags:
+  - SpreadingTemplate
+  - DscrTemplate
+  - GlobalCashflowTemplate
+- name: Borrower
+  tags:
+  - Borrowers
+  - Files
+  - Loans
+  - Requirements
+  - Portfolios
+- name: Normalized Data
+  tags:
+  - DataViews
+  - Templates
+- name: Analysis
+  tags:
+  - DscrAnalysis
+  - GlobalCashflowAnalysis
+- name: Events
+  tags:
+  - Webhooks
+- name: Embedded UI
+  tags:
+  - EmbeddedDocument
+  - EmbeddedFinancials
+  - EmbeddedDscrAnalysis
+  - EmbeddedGlobalCashflowAnalysis
