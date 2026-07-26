@@ -1,25 +1,386 @@
 aid: fincura
 name: Fincura
-description: Fincura is a company surfaced as a portfolio company of techstars and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Fincura (now part of Abrigo) provides automated financial statement spreading and
+  credit analysis for banks, credit unions, and other lenders. Its Automated Spreading
+  and Analysis API ingests borrower financial documents (PDF, Excel, and images),
+  spreads them into normalized data views, and runs debt-service-coverage-ratio (DSCR)
+  and global cashflow analyses. The REST API (v1) covers borrowers, loans, portfolios,
+  document files, data views, spreading/DSCR/global-cashflow templates, financial
+  requirements, custom attributes, embeddable workflow UIs, and HMAC-signed webhooks.
+  Authentication is a bearer JWT API key issued per Fincura user account. Originally a
+  Techstars-backed startup, Fincura was acquired by Abrigo.
 url: https://raw.githubusercontent.com/api-evangelist/fincura/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - techstars
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: live-openapi-harvested
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://avatars.githubusercontent.com/u/71975225?v=4
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
+- Financial Services
+- Lending
+- Credit Analysis
+- Financial Spreading
+- Banking
+- Fintech
+- Underwriting
 - Company
-apis: []
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: fincura:fincura-api-key-api
+  name: Fincura Api-Key API
+  description: The Api-Key API from Fincura — 1 operation(s) for api-key.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - Api-Key
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-api-key-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-borrowers-api
+  name: Fincura Borrowers API
+  description: A record in our system to link financials and analyses to.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - Borrowers
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-borrowers-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-customattributes-api
+  name: Fincura CustomAttributes API
+  description: The CustomAttributes API from Fincura — 2 operation(s) for customattributes.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - CustomAttributes
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-customattributes-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-dataviews-api
+  name: Fincura DataViews API
+  description: The DataViews API from Fincura — 7 operation(s) for dataviews.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - DataViews
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-dataviews-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-dscranalysis-api
+  name: Fincura DscrAnalysis API
+  description: The DscrAnalysis API from Fincura — 4 operation(s) for dscranalysis.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - DscrAnalysis
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-dscranalysis-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-dscrtemplate-api
+  name: Fincura DscrTemplate API
+  description: DSCR Templates
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - DscrTemplate
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-dscrtemplate-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-embeddeddocument-api
+  name: Fincura EmbeddedDocument API
+  description: >-
+    Embedded Document Workflows enable a 3rd party user to use the Fincura UI to complete a portion of
+    our document parsing pipeline and then return to the 3rd parties website.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - EmbeddedDocument
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-embeddeddocument-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-embeddeddscranalysis-api
+  name: Fincura EmbeddedDscrAnalysis API
+  description: >-
+    Embedded DSCR Analysis allows an API user to authenticate and embedded previously created DSCR analysis
+    into a 3rd party workflow.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - EmbeddedDscrAnalysis
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-embeddeddscranalysis-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-embeddedfinancials-api
+  name: Fincura EmbeddedFinancials API
+  description: >-
+    Embedded Financials allows an API user to authenticate and embedded borrower financials into a 3rd
+    party workflow.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - EmbeddedFinancials
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-embeddedfinancials-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-embeddedglobalcashflowanalysis-api
+  name: Fincura EmbeddedGlobalCashflowAnalysis API
+  description: >-
+    Embedded Global Cashflow Analysis allows an API user to authenticate and embed                                   previously
+    created Global Cashflow analyses into a 3rd party applications.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - EmbeddedGlobalCashflowAnalysis
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-embeddedglobalcashflowanalysis-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-files-api
+  name: Fincura Files API
+  description: >-
+    Files serve as the source input data for our insights engine. They are represented by a `DocumentFile`
+    record.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-files-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-financialstatementsubmission-api
+  name: Fincura FinancialStatementSubmission API
+  description: >-
+    The FinancialStatementSubmission API from Fincura — 1 operation(s) for financialstatementsubmission.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - FinancialStatementSubmission
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-financialstatementsubmission-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-globalcashflowanalysis-api
+  name: Fincura GlobalCashflowAnalysis API
+  description: The GlobalCashflowAnalysis API from Fincura — 5 operation(s) for globalcashflowanalysis.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - GlobalCashflowAnalysis
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-globalcashflowanalysis-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-globalcashflowtemplate-api
+  name: Fincura GlobalCashflowTemplate API
+  description: The GlobalCashflowTemplate API from Fincura — 1 operation(s) for globalcashflowtemplate.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - GlobalCashflowTemplate
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-globalcashflowtemplate-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-loans-api
+  name: Fincura Loans API
+  description: A Borrower loan record in our system.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - Loans
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-loans-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-portfolios-api
+  name: Fincura Portfolios API
+  description: Portfolios allow for grouping Borrowers.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - Portfolios
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-portfolios-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-requirements-api
+  name: Fincura Requirements API
+  description: Set rules/covenants for your borrowers
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - Requirements
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-requirements-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-spreadingtemplate-api
+  name: Fincura SpreadingTemplate API
+  description: Spreading Templates
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - SpreadingTemplate
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-spreadingtemplate-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-tenantsettings-api
+  name: Fincura TenantSettings API
+  description: The TenantSettings API from Fincura — 1 operation(s) for tenantsettings.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - TenantSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-tenantsettings-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-webhooks-api
+  name: Fincura Webhooks API
+  description: "## Supported Events\n\nThe following are events you can listen to via webhooks.\n\n| Event&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
+    \ | Description     | \n| --------------------------------------------- | --------------------------\
+    \ |\n| GlobalCashflow.Saved | A global cashflow analysis has been saved by the user | \n| Analysis.Saved\
+    \ | An analysis has been saved by the user | \n| DocumentFile.Received | File saved/received to the\
+    \ Fincura Platform | \n| DocumentFile.Processing | File is being processed by the Fincura Pipeline\
+    \ | \n| DocumentFile.HumanRequired | Human Intervention is required for file | \n| DocumentFile.SpreadComplete\
+    \ | File data spread to a template (data now normalized/standardized) | \n| DocumentFile.Error | Error\
+    \ processing DocumentFile | \n| BulkFile.Received | Bulk File saved/received to the Fincura Platform\
+    \ | \n| BulkFile.Processing | Bulk File is being processed by the Fincura Pipeline | \n| BulkFile.Processed\
+    \ | Bulk File has completed processing | \n| BulkFile.Error | Error processing BulkFile | \n| * |\
+    \ Wildcard for all events | \n| Template.Changed | A change was detected in a template for spreading,\
+    \ global cashflow, or DSCR analysis | \n| Borrower.CreatedFromImport | A Borrower was created from\
+    \ processing a file import | \n| CalculatedStatement.Update | A calculated statement has been updated\
+    \ by the user | \n| ForecastedStatement.Update | A forecasted statement has been updated by the user\
+    \ | \n| AnnualizedStatement.Update | An annualized statement has been updated by the user | \n\n\n\
+    ## Webhook Request Body\n\nThe webhook POST request body will contain the following json parameters:\n\
+    \n- `event` the event that triggered the callback (e.g. `DocumentFile.Received`)\n- `transaction_id`\
+    \ a unique UUID representing the event\n- `payload` additional event specific parameters\n\n## Webhook\
+    \ Signatures\n\nAll of our outgoing webhook requests contain a `X-Fincura-Signature` header which\
+    \ has been signed by a tenant specific key. This allows a 3rd party to validate requests are from\
+    \ Fincura's servers.\n\nThe header contains a list of comma seperated key value pairs:\n\n- `t` -\
+    \ UTC timestamp of the request\n- `uuid` - the UUID of the webhook record\n- `v1` - signature of the\
+    \ message [(HMAC_SHA256)](https://en.wikipedia.org/wiki/HMAC)\n\n### Obtaining the Tenant Signing\
+    \ Key\n\nSee: [Get Tenant Settings](#operation/readTenantSettings) which returns a `webhook_signing_key`\n\
+    \n### Calculating the Message Signature\n\nThe webhook message signature is calculated by joining\
+    \ the `timestamp` of the request, the `uuid` of the webhook and the `body` of the request with periods\
+    \ (`.`) into a single string.\n\nThe signature is generated by creating a HMAC SHA256 signature of\
+    \ that message using the tenant signing key.\n\nThe calculated signature can then be matched to the\
+    \ `v1` signature in the `X-Fincura-Signature` header to verify the request originated from Fincura\
+    \ and the body has not been tampered with.\n\nNOTE: Fincura periodically rotates signing keys for\
+    \ security purposes, if a signature mismatch if found, it is recommended to make sure you are using\
+    \ the latest signing key.\n\nPython example of validating a signature:\n```\n#!/usr/bin/env python\n\
+    import hmac\nimport hashlib \n\nSIGNING_KEY = \"tenant signing key\" # Obtained via API call to `operation/readTenantSettings`\n\
+    \ndef create_message(timestamp, uuid, body):\n    return  f\"{timestamp}.{uuid}.{body}\"\n\ndef create_sha256_signature(key,\
+    \ message):\n    message = message.encode()\n    return hmac.new(key.encode('utf-8'), message, hashlib.sha256).hexdigest().upper()\n\
+    \ndef verify_fincura_header(signature_header, request_body):\n    header_params = {kv[0]:kv[1] for\
+    \ kv in param.split('=') for param in signature_header.split(',')} \n    message = create_message(header_params['t'],\
+    \ header_params['uuid'], request_body)\n    signature = create_sha256_signature(SIGNING_KEY, message)\n\
+    \n    if signature != header_params['v1']:\n        raise Exception('Webhook Signature Mismatch')\n\
+    \n// for example (signature shortened for brevity)\nheader_value = 't=1602104227,uuid=5262fc90-eb99-4bd8-8712-ae50fc71ea92,v1=E9397...9C3332'\n\
+    request_body = '{\"event:\"value\"}'\n\nverify_fincura_header(header_value, request_body)\n```"
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-webhooks-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
 common:
+- type: AgenticAccess
+  url: agentic-access/fincura-agentic-access.yml
+- type: DomainSecurity
+  url: security/fincura-domain-security.yml
+- type: Authentication
+  url: authentication/fincura-authentication.yml
+- type: Packages
+  url: packages/fincura-packages.yml
+- type: SDKs
+  url: packages/fincura-packages.yml
+- type: MCPServer
+  url: mcp/fincura-mcp.yml
+- type: LLMsTxt
+  url: llms/fincura-llms.txt
+- type: Conformance
+  url: conformance/fincura-conformance.yml
+- type: ErrorCatalog
+  url: errors/fincura-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/fincura-lifecycle.yml
+- type: Conventions
+  url: conventions/fincura-conventions.yml
+- type: Components
+  url: components/fincura-components.yml
+- type: DataModel
+  url: data-model/fincura-data-model.yml
+- type: Webhooks
+  url: asyncapi/fincura-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  name: Spread a borrower financial statement and run DSCR analysis
+  url: arazzo/fincura-spread-and-analyze.yml
+- type: GitHubOrganization
+  url: https://github.com/fincura
+- type: Login
+  url: https://app.fincura.com/
 - type: Website
-  url: https://fincura.com/
+  url: https://www.abrigo.com/
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

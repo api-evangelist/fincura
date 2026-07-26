@@ -1,0 +1,38 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/fincura-openapi-original.yml
+notes: >-
+  Fincura exposes hosted, embeddable UI workflows ("Embedded Workflows") that lenders
+  drop into their own applications to run spreading and analysis without building the UI.
+  Each is created via the API and returns a hosted surface plus UI controls.
+families:
+- name: Embedded Workflows
+  description: Hosted spreading/analysis UI surfaces embedded via the returned workflow.
+  components:
+  - name: Embedded Workflow (spreading)
+    create: POST /v1/embedded-workflow
+    retrieve: GET /v1/embedded-workflow/{uuid}
+    operations: [createEmbeddedWorkflow, retrieveEmbeddedWorkflow]
+    schema: EmbeddedWorkflow
+  - name: Embedded Financials
+    create: POST /v1/embedded-financials
+    retrieve: GET /v1/embedded-financials/{uuid}
+    operations: [createEmbeddedFinancials, retrieveEmbeddedFinancials]
+    schema: EmbeddedFinancialsWorkflow
+  - name: Embedded DSCR Analysis
+    create: POST /v1/embedded-dscr-analysis
+    retrieve: GET /v1/embedded-dscr-analysis/{uuid}
+    operations: [createEmbeddedDscrAnalysis, retrieveEmbeddedDscrAnalysis]
+    schema: EmbeddedDscrAnalysisWorkflow
+  - name: Embedded Global Cashflow Analysis
+    create: POST /v1/embedded-global-cashflow-analysis
+    retrieve: GET /v1/embedded-global-cashflow-analysis/{uuid}
+    operations: [createEmbeddedGlobalCashflowAnalysis, retrieveEmbeddedGlobalCashflowAnalysis]
+    schema: EmbeddedGlobalCashflowAnalysisWorkflow
+- name: Borrower Portal
+  description: A hosted borrower-facing document collection portal.
+  components:
+  - name: Borrower Portal Link
+    create: POST /v1/borrower/{uuid}/portal_link
+    operations: [portalLinkBorrower]
+    schema: PortalLink

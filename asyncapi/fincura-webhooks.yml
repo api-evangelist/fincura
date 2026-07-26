@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/fincura-openapi-original.yml
+type: Webhooks
+notes: >-
+  Fincura delivers events to subscriber URLs registered via POST /v1/webhook.
+  Each webhook carries an event_type, a target webhook_url, an HTTP method, an
+  optional external_id, and a signing_key used to HMAC-sign deliveries. No AsyncAPI
+  document is published; this catalog is derived from the Webhook schema's event_type enum.
+subscription:
+  register: POST /v1/webhook
+  retrieve: GET /v1/webhook/{uuid}
+  list: GET /v1/webhook
+  delete: DELETE /v1/webhook/{uuid}
+  operations: [createWebhook, retrieveWebhook, listWebhooks, destroyWebhook]
+delivery:
+  signing: HMAC using per-webhook signing_key
+  method_field: webhook_method
+  target_field: webhook_url
+event_types:
+- GlobalCashflow.Saved
+- Analysis.Saved
+- DocumentFile.Received
+- DocumentFile.Processing
+- DocumentFile.HumanRequired
+- DocumentFile.SpreadComplete
+- DocumentFile.Error
+- BulkFile.Received
+- BulkFile.Processing
+- BulkFile.Processed
+- BulkFile.Error
+- Template.Changed
+- Borrower.CreatedFromImport
+- CalculatedStatement.Update
+- ForecastedStatement.Update
+- AnnualizedStatement.Update
+- '*'

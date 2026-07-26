@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Fincura Automated Spreading and Analysis API
+  version: 1.0.0
+extends: openapi/fincura-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating: 3
+    x-apievangelist-provider: fincura
+    x-apievangelist-parent: abrigo
+    x-apievangelist-notes: >-
+      Live OpenAPI 3.0.2 harvested from https://api.fincura.com/v1/openapi.json.
+      Bearer JWT API key auth; limit/offset pagination; 17 webhook event types with
+      HMAC signing. Fincura is now part of Abrigo.
+- target: $.servers
+  update:
+  - url: https://api.fincura.com
+    description: Production
+- target: $.info
+  update:
+    x-agent-readiness:
+      auth: bearer-jwt
+      pagination: limit-offset
+      webhooks: true
+      idempotency: webhook-registration-only

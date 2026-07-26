@@ -1,0 +1,47 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/fincura-openapi-original.yml
+authentication:
+  style: http-bearer
+  token_format: JWT
+  header: 'Authorization: Bearer <api_key>'
+  refresh: POST /v1/api-key/refresh
+  cross_ref: authentication/fincura-authentication.yml
+pagination:
+  style: limit-offset
+  params: [limit, offset]
+  applies_to: list endpoints (borrowers, loans, portfolios, document-files, analyses)
+idempotency:
+  supported: partial
+  mechanism: no request-level Idempotency-Key header
+  notes: >-
+    Only webhook registration (POST /v1/webhook) is documented as idempotent
+    ("This call is idempotent"). There is no general Idempotency-Key contract across
+    write operations, so no repo-wide Idempotency guarantee is claimed.
+uploads:
+  transport: multipart
+  content_types:
+  - application/pdf
+  - application/x-pdf
+  - application/vnd.ms-excel
+  - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  - application/vnd.ms-excel.sheet.macroEnabled.12
+  - image/png
+  - image/gif
+  - image/jpeg
+identifiers:
+  style: uuid
+  notes: Resources are addressed and cross-referenced by uuid path/field values.
+versioning:
+  style: uri-path
+  current: v1
+  cross_ref: lifecycle/fincura-lifecycle.yml
+error_envelope:
+  media_type: application/json
+  problem_json: false
+  cross_ref: errors/fincura-problem-types.yml
+rate_limiting:
+  signal: HTTP 429 (only declared error response)
+webhooks:
+  signing: HMAC via per-webhook signing_key
+  cross_ref: asyncapi/fincura-webhooks.yml

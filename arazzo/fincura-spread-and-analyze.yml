@@ -1,0 +1,66 @@
+arazzo: 1.0.1
+info:
+  title: Spread a borrower financial statement and run DSCR analysis
+  version: 1.0.0
+  description: >-
+    Creates a borrower, uploads a financial document for automated spreading,
+    retrieves the normalized data view, then runs a DSCR analysis and downloads it.
+sourceDescriptions:
+- name: fincura
+  url: ../openapi/fincura-openapi-original.yml
+  type: openapi
+workflows:
+- workflowId: spreadAndAnalyze
+  summary: Create borrower, spread a document, retrieve the data view, run DSCR.
+  inputs:
+    type: object
+    properties:
+      borrower_name:
+        type: string
+      document:
+        type: string
+        description: The financial statement file to upload (PDF/Excel/image).
+      dscr_template_uuid:
+        type: string
+  steps:
+  - stepId: createBorrower
+    operationId: createBorrower
+    requestBody:
+      payload:
+        name: $inputs.borrower_name
+    outputs:
+      borrower_uuid: $response.body#/uuid
+  - stepId: uploadDocument
+    operationId: createDocumentFile
+    requestBody:
+      contentType: multipart/form-data
+      payload:
+        borrower_uuid: $steps.createBorrower.outputs.borrower_uuid
+        file: $inputs.document
+    outputs:
+      document_file_uuid: $response.body#/uuid
+  - stepId: getDataView
+    operationId: retrieveDataViewFromDocumentFile
+    parameters:
+    - name: document_file_uuid
+      in: path
+      value: $steps.uploadDocument.outputs.document_file_uuid
+    outputs:
+      data_view: $response.body
+  - stepId: runDscr
+    operationId: createDscrAnalysis
+    requestBody:
+      payload:
+        borrower_uuid: $steps.createBorrower.outputs.borrower_uuid
+        template_uuid: $inputs.dscr_template_uuid
+    outputs:
+      analysis_uuid: $response.body#/uuid
+  - stepId: downloadDscr
+    operationId: downloadPdfDscrAnalysis
+    parameters:
+    - name: uuid
+      in: path
+      value: $steps.runDscr.outputs.analysis_uuid
+  outputs:
+    borrower_uuid: $steps.createBorrower.outputs.borrower_uuid
+    analysis_uuid: $steps.runDscr.outputs.analysis_uuid

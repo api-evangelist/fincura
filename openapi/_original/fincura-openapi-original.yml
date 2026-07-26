@@ -1,0 +1,5366 @@
+openapi: 3.0.2
+info:
+  title: Automated Spreading and Analysis API
+  version: 1.3.1
+  description: "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer)\
+    \ allows you to interact with the Automated Spreading processing and insights\
+    \ engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated\
+    \ Spreading User account. To get access to your User account, speak with your\
+    \ Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
+    \ | Extension(s)     | Content-Type(s) |\n| -------------------------------- |--------------\
+    \ | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf`\
+    \ |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx\
+    \ | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n|\
+    \ Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n|\
+    \ PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG\
+    \ Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n\
+    | JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create\
+    \ a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile)\
+    \ for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****"
+  x-logo:
+    url: https://manual-public-web-static-resources.s3.amazonaws.com/public-api/Moodys-icon.svg
+  contact:
+    name: Moody's Automated Spreading Customer Support
+    email: MA_NMR_Support@moodys.com
+paths:
+  /v1/data-view/from_document_file/{document_file_uuid}:
+    get:
+      operationId: retrieveDataViewFromDocumentFile
+      description: Retrieve a DataView from the standardized output of a DocumentFile
+        submitted to Fincura
+      parameters:
+      - name: document_file_uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataView'
+          description: ''
+      tags:
+      - DataViews
+      summary: Get DataView from a DocumentFile
+  /v1/data-view/from_document_file/{document_file_uuid}/creditlens:
+    get:
+      operationId: creditlensDataViewFromDocumentFile
+      description: Retrieve a DataView from the standardized output of a DocumentFile
+        submitted to Fincura in CreditLens format
+      parameters:
+      - name: document_file_uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataView'
+          description: ''
+      tags:
+      - DataViews
+      summary: Get DataView from a DocumentFile in CreditLens format
+  /v1/data-view/most_recent/{borrower_uuid}:
+    get:
+      operationId: retrieveMostRecentDataView
+      description: Retrieve a DataView from the most recent standardized data for
+        a borrower
+      parameters:
+      - name: borrower_uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: reporting_interval
+        required: false
+        in: query
+        description: Reporting Interval of the financial data
+        schema:
+          type: string
+          enum:
+          - MONTHLY
+          - QUARTERLY
+          - SEMI_ANNUALLY
+          - ANNUALLY
+          - FISCAL_YTD
+          - TTM
+      - name: preparation_type
+        required: false
+        in: query
+        description: Preparation Type of the finanical data
+        schema:
+          type: string
+          enum:
+          - UNQUALIFIED
+          - QUALIFIED
+          - TAX_RETURN
+          - REVIEWED
+          - CPA_PREP
+          - NTR
+          - MANAGEMENT
+          - COMBINED
+          - UNKNOWN
+          - CALCULATED
+          - ANALYST
+          - UNQUALIFIED_IMPORT
+          - QUALIFIED_IMPORT
+          - TAX_RETURN_IMPORT
+          - REVIEWED_IMPORT
+          - CPA_PREP_IMPORT
+          - NTR_IMPORT
+          - MANAGEMENT_IMPORT
+          - ANALYST_IMPORT
+          - IMPORTED
+          - FORECASTED
+          - ANNUALIZED
+      - name: column_limit
+        required: false
+        in: query
+        description: Number of columns of dataview data to return. Defaults to 1 if
+          not provided
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataView'
+          description: ''
+      tags:
+      - DataViews
+      summary: Get the most recent period of data for a Borrower
+  /v1/data-view/all/{uuid_or_labeled_key}:
+    get:
+      operationId: retrieveAllDataViews
+      description: 'Retrieve DataViews for all standardized data for a borrower, by
+        primary or secondary key
+
+
+        The path variable `uuid_or_labeled_key`, can either be a uuid or a label:key
+        (label=key is also accepted).
+
+        The labels `borrower_uuid` and `external_id` are supported.
+
+
+        examples of path variables:
+
+        1. 2dfefa9c-c91e-4cc1-b783-363659e596f5
+
+        2. borrower_uuid:2dfefa9c-c91e-4cc1-b783-363659e596f5
+
+        3. borrower_uuid=2dfefa9c-c91e-4cc1-b783-363659e596f5
+
+        4. external_id=1000882211
+
+
+        values 1..3 are equivalent, and if the DataView has that external_id, so is
+        4.'
+      parameters:
+      - name: uuid_or_labeled_key
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: reporting_interval
+        required: false
+        in: query
+        description: Reporting Interval of the financial data
+        schema:
+          type: string
+          enum:
+          - MONTHLY
+          - QUARTERLY
+          - SEMI_ANNUALLY
+          - ANNUALLY
+          - FISCAL_YTD
+          - TTM
+      - name: preparation_type
+        required: false
+        in: query
+        description: Preparation Type of the finanical data
+        schema:
+          type: string
+          enum:
+          - UNQUALIFIED
+          - QUALIFIED
+          - TAX_RETURN
+          - REVIEWED
+          - CPA_PREP
+          - NTR
+          - MANAGEMENT
+          - COMBINED
+          - UNKNOWN
+          - CALCULATED
+          - ANALYST
+          - UNQUALIFIED_IMPORT
+          - QUALIFIED_IMPORT
+          - TAX_RETURN_IMPORT
+          - REVIEWED_IMPORT
+          - CPA_PREP_IMPORT
+          - NTR_IMPORT
+          - MANAGEMENT_IMPORT
+          - ANALYST_IMPORT
+          - IMPORTED
+          - FORECASTED
+          - ANNUALIZED
+      - name: period_key_uuid
+        required: false
+        in: query
+        description: Period in a dataview to return.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataView'
+          description: ''
+      tags:
+      - DataViews
+      summary: Get all dataviews for a specific borrower, using a primary or secondary
+        key
+  /v1/data-view/all/{uuid_or_labeled_key}/download_pdf:
+    get:
+      operationId: downloadPdfAllDataViews
+      description: 'Download a PDF overview summarizing all standardized data for
+        a borrower, by primary or secondary key
+
+
+        This supports the same label:key scheme as the method above.'
+      parameters:
+      - name: uuid_or_labeled_key
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/DataView'
+          description: ''
+      tags:
+      - DataViews
+      summary: Get a PDF for all dataviews for a specific borrower, using a primary
+        or secondary key
+  /v1/data-view/metadata/{borrower_uuid}/periods:
+    get:
+      operationId: periodsDataViewMetadata
+      description: Retrieve the metadata for all periods for a borrower
+      parameters:
+      - name: borrower_uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllPeriodsList'
+          description: ''
+      tags:
+      - DataViews
+      summary: Get a list of metadata for all dataview periods for a specific borrower
+  /v1/document-file:
+    get:
+      operationId: listDocumentFiles
+      description: List files submitted to Fincura
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DocumentFileRead'
+          description: ''
+      tags:
+      - Files
+      summary: List DocumentFile records
+    post:
+      operationId: createDocumentFile
+      description: "Add a new file to Fincura for processing.\n\nThe minimal document\
+        \ creation request requires just a `borrower_uuid` and the `media_type` of\
+        \ the file to process.\n\n\n    POST /v1/document-file HTTP/1.1\n    Host:\
+        \ api.amer.spreading.moodysanalytics.com\n    Accept: application/json\n \
+        \   Authorization: Bearer eyJ0e...nFTRKTbcg\n    Content-Type: application/json\n\
+        \n    {\n        \"borrower_uuid\": \"6e64724a-25fc-4e1a-8071-1ef29845ab1d\"\
+        ,\n        \"media_type\": \"application/pdf\"\n    }\n    \n\nThe above request\
+        \ will create a new document record in Fincura and return a url to send the\
+        \ file to, as seen below.\n\n    {\n        \"uuid\": \"f67a21dd-32a0-4664-9cd4-4181640be400\"\
+        ,\n        \"upload_url\": \"https://upload.fincura.com/f67a21dd-32a0-4664-9cd4-4181640be400/document.pdf?signature=mWFg4xsgm4EtFEt\"\
+        \n    }\n\nIn a subsequent request, the file can be sent to the `upload_url`\
+        \ via [HTTP PUT](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT).\
+        \ The `Content-Length` and `Content-Type` headers are required. The `Content-Type`\
+        \ should match the `media_type` from the previous request.\n\n    PUT /f67a21dd-32a0-4664-9cd4-4181640be400/document.pdf?signature=mWFg4xsgm4EtFEt\
+        \ HTTP/1.1\n    Host: upload.fincura.com\n    Content-Length: 18828\n    Content-Type:\
+        \ application/pdf\n    \n    {FILE  DATA}\n\nFincura will begin processing\
+        \ the file once it has been completely uploaded.\n\nAdditional fields described\
+        \ below:"
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentFileCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DocumentFileCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DocumentFileCreate'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentFileCreate'
+          description: ''
+        429:
+          content:
+            application/json:
+              schema:
+                properties:
+                  details:
+                    type: string
+                    example: Request was throttled. Expected available in 35 seconds.
+          description: Rate Limit
+      tags:
+      - Files
+      summary: Submit a new DocumentFile
+  /v1/document-file/{uuid}:
+    get:
+      operationId: retrieveDocumentFile
+      description: Retrieve a file submitted to Fincura
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentFileRead'
+          description: ''
+      tags:
+      - Files
+      summary: Get a DocumentFile
+    delete:
+      operationId: destroyDocumentFile
+      description: Delete a file from Fincura.
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Files
+      summary: Delete a DocumentFile
+  /v1/bulk-file/{uuid}:
+    get:
+      operationId: retrieveBulkFile
+      description: Retrieve a bulk file submitted to Fincura
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkFileRead'
+          description: ''
+      tags:
+      - Files
+      summary: Retrieve a BulkFile
+  /v1/borrower:
+    get:
+      operationId: listBorrowers
+      description: List Borrower records
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Borrower'
+          description: ''
+      tags:
+      - Borrowers
+      summary: List Borrowers
+    post:
+      operationId: createBorrower
+      description: Create a new Borrower record
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Borrower'
+          description: ''
+      tags:
+      - Borrowers
+      summary: Create a new Borrower
+  /v1/borrower/{uuid}:
+    get:
+      operationId: retrieveBorrower
+      description: Retrieve a Borrower
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Borrower'
+          description: ''
+      tags:
+      - Borrowers
+      summary: Retrieve a Borrower
+    patch:
+      operationId: partialUpdateBorrower
+      description: ''
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Borrower'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Borrower'
+          description: ''
+      tags:
+      - Borrowers
+      summary: Update a Borrower
+  /v1/portfolio:
+    get:
+      operationId: listPortfolios
+      description: List Portfolio records
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Portfolio'
+          description: ''
+      tags:
+      - Portfolios
+      summary: List Portfolios
+    post:
+      operationId: createPortfolio
+      description: Create a new Portfolio record
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Portfolio'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Portfolio'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Portfolio'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+          description: ''
+      tags:
+      - Portfolios
+      summary: Create a new Portfolio
+  /v1/loan:
+    get:
+      operationId: listLoans
+      description: List Loan records
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Loan'
+          description: ''
+      tags:
+      - Loans
+      summary: List Loans
+    post:
+      operationId: createLoan
+      description: Create a new Loan record
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Loan'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Loan'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Loan'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Loan'
+          description: ''
+      tags:
+      - Loans
+      summary: Create a new Loan
+  /v1/loan/{uuid}:
+    get:
+      operationId: retrieveLoan
+      description: Retrieve a Loan
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Loan'
+          description: ''
+      tags:
+      - Loans
+      summary: Retrieve a Loan
+    patch:
+      operationId: partialUpdateLoan
+      description: ''
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Loan'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Loan'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Loan'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Loan'
+          description: ''
+      tags:
+      - Loans
+      summary: Update a Loan
+    delete:
+      operationId: destroyLoan
+      description: Delete a loan from Fincura.
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Loans
+      summary: Delete a Loan
+  /v1/analysis/dscr:
+    get:
+      operationId: listDscrAnalyses
+      description: List DSCR Analysis
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DSCRAnalysis'
+          description: ''
+      tags:
+      - DscrAnalysis
+    post:
+      operationId: createDscrAnalysis
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DSCRAnalysisDetails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DSCRAnalysisDetails'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DSCRAnalysisDetails'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DSCRAnalysisDetails'
+          description: ''
+      tags:
+      - DscrAnalysis
+      summary: Create a new DSCR Analysis
+  /v1/analysis/dscr/{uuid}:
+    get:
+      operationId: retrieveDscrAnalysis
+      description: Retrieve DSCR analysis record
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DSCRAnalysisDetails'
+          description: ''
+      tags:
+      - DscrAnalysis
+    delete:
+      operationId: destroyDscrAnalysis
+      description: Remove an existing DSCR analysis record
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - DscrAnalysis
+      summary: Remove an existing DSCR Analysis
+  /v1/analysis/dscr/{uuid}/download_excel:
+    get:
+      operationId: downloadExcelDscrAnalysis
+      description: Download the DSCR analysis as an Excel file
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                $ref: '#/components/schemas/DSCRAnalysis'
+          description: ''
+      tags:
+      - DscrAnalysis
+  /v1/analysis/dscr/{uuid}/download_pdf:
+    get:
+      operationId: downloadPdfDscrAnalysis
+      description: Download the DSCR analysis as a PDF file
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/DSCRAnalysis'
+          description: ''
+      tags:
+      - DscrAnalysis
+  /v1/analysis/global-cashflow:
+    get:
+      operationId: listGlobalCashflowAnalyses
+      description: List Global Cashflow analyses
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GlobalCashflowAnalysis'
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: List all Global Cashflows
+    post:
+      operationId: createGlobalCashflowAnalysis
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlobalCashflowAnalysisCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GlobalCashflowAnalysisCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GlobalCashflowAnalysisCreate'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalCashflowAnalysisCreate'
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: Create a new Global Cashflow
+  /v1/analysis/global-cashflow/{uuid}:
+    get:
+      operationId: retrieveGlobalCashflowAnalysis
+      description: Retrieve Global Cashflow analysis record
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalCashflowAnalysisRetrieve'
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: Retrieve a Global Cashflow
+    delete:
+      operationId: destroyGlobalCashflowAnalysis
+      description: Remove an existing Global Cashflow analysis record
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: Delete a Global Cashflow
+  /v1/analysis/global-cashflow/{uuid}/download_excel:
+    get:
+      operationId: downloadExcelGlobalCashflowAnalysis
+      description: Download the Global Cashflow analysis as an Excel file
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                $ref: '#/components/schemas/GlobalCashflowAnalysis'
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: Download an excel for a Global Cashflow
+  /v1/analysis/global-cashflow/{uuid}/download_pdf:
+    get:
+      operationId: downloadPdfGlobalCashflowAnalysis
+      description: Download the Global Cashflow analysis as a PDF file
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/GlobalCashflowAnalysis'
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: Download a PDF for a Global Cashflow
+  /v1/analysis/global-cashflow/{uuid}/retrieve-with-entity-detail:
+    get:
+      operationId: retrieveV2GlobalCashflowAnalysis
+      description: Retrieve Global Cashflow analysis record
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalCashflowAnalysisRetrieveV2'
+          description: ''
+      tags:
+      - GlobalCashflowAnalysis
+      summary: Retrieve a Global Cashflow with extra borrower details
+  /v1/financial-requirement:
+    get:
+      operationId: listFinancialRequirements
+      description: List FinancialRequirement records
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FinancialRequirement'
+          description: ''
+      tags:
+      - Requirements
+      summary: List FinancialRequirements
+    post:
+      operationId: createFinancialRequirement
+      description: Create a new FinancialRequirement record
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinancialRequirement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FinancialRequirement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FinancialRequirement'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancialRequirement'
+          description: ''
+      tags:
+      - Requirements
+      summary: Create a new FinancialRequirement
+  /v1/financial-requirement/{uuid}:
+    get:
+      operationId: retrieveFinancialRequirement
+      description: Retrieve a FinancialRequirement
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancialRequirement'
+          description: ''
+      tags:
+      - Requirements
+      summary: Retrieve a FinancialRequirement
+    patch:
+      operationId: partialUpdateFinancialRequirement
+      description: ''
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: borrower_uuid
+        required: false
+        in: query
+        description: Borrower to filter results for
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinancialRequirement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FinancialRequirement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FinancialRequirement'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancialRequirement'
+          description: ''
+      tags:
+      - Requirements
+      summary: Update a FinancialRequirement
+  /v1/webhook:
+    get:
+      operationId: listWebhooks
+      description: List registered webhooks
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Webhook'
+          description: ''
+      tags:
+      - Webhooks
+      summary: List webhooks
+    post:
+      operationId: createWebhook
+      description: Register a webhook. This call in idempotent.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: ''
+      tags:
+      - Webhooks
+      summary: Create a webhook
+  /v1/webhook/{uuid}:
+    get:
+      operationId: retrieveWebhook
+      description: Retrieve a registerted webhook
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: ''
+      tags:
+      - Webhooks
+      summary: Get webhook info
+    delete:
+      operationId: destroyWebhook
+      description: Delete a webhook from Fincura.
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Webhooks
+      summary: Delete a webhook
+  /v1/tenant-settings/read:
+    get:
+      operationId: readTenantSettings
+      description: Read Tenant Settings
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantSettings'
+          description: ''
+      tags:
+      - TenantSettings
+      summary: Get Tenant Settings
+  /v1/template/spreading:
+    get:
+      operationId: listSpreadingTemplates
+      description: List Spreading templates
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TemplateRead'
+          description: ''
+      tags:
+      - SpreadingTemplate
+      summary: List Spreading Templates
+  /v1/template/spreading/{uuid}:
+    get:
+      operationId: retrieveSpreadingTemplate
+      description: Retrieve a Borrower
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateRetrieve'
+          description: ''
+      tags:
+      - SpreadingTemplate
+      summary: Get Spreading Template with Flattened Taxonomy Items
+  /v1/template/dscr:
+    get:
+      operationId: listDscrTemplates
+      description: List DSCR templates
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TemplateRead'
+          description: ''
+      tags:
+      - DscrTemplate
+      summary: List DSCR Templates
+  /v1/template/global-cashflow:
+    get:
+      operationId: listGlobalCashflowTemplates
+      description: List Global Cashflow templates
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TemplateRead'
+          description: ''
+      tags:
+      - GlobalCashflowTemplate
+      summary: List Global Cashflow Templates
+  /v1/custom-attribute-definition:
+    get:
+      operationId: listCustomAttributeDefinitions
+      description: List CustomAttributeDefinition
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomAttributeDefinition'
+          description: ''
+      tags:
+      - CustomAttributes
+      summary: List CustomAttributeDefinitions
+    post:
+      operationId: createCustomAttributeDefinition
+      description: Create a CustomAttributeDefinition
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomAttributeDefinition'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomAttributeDefinition'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomAttributeDefinition'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomAttributeDefinition'
+          description: ''
+      tags:
+      - CustomAttributes
+      summary: Create a CustomAttributeDefinition
+  /v1/custom-attribute-definition/{uuid}:
+    get:
+      operationId: retrieveCustomAttributeDefinition
+      description: Retrieve a CustomAttributeDefinition
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomAttributeDefinition'
+          description: ''
+      tags:
+      - CustomAttributes
+      summary: Get CustomAttributeDefinition info
+    delete:
+      operationId: destroyCustomAttributeDefinition
+      description: Delete a CustomAttributeDefinition.
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - CustomAttributes
+      summary: Delete a CustomAttributeDefinition
+  /v1/embedded-workflow/{uuid}:
+    get:
+      operationId: retrieveEmbeddedWorkflow
+      description: ''
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedWorkflow'
+          description: ''
+      tags:
+      - EmbeddedDocument
+  /v1/embedded-financials/{uuid}:
+    get:
+      operationId: retrieveEmbeddedFinancials
+      description: ''
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedFinancialsWorkflow'
+          description: ''
+      tags:
+      - EmbeddedFinancials
+  /v1/embedded-dscr-analysis/{uuid}:
+    get:
+      operationId: retrieveEmbeddedDscrAnalysis
+      description: ''
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedDscrAnalysisWorkflow'
+          description: ''
+      tags:
+      - EmbeddedDscrAnalysis
+  /v1/embedded-global-cashflow-analysis/{uuid}:
+    get:
+      operationId: retrieveEmbeddedGlobalCashflowAnalysis
+      description: ''
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedGlobalCashflowAnalysisWorkflow'
+          description: ''
+      tags:
+      - EmbeddedGlobalCashflowAnalysis
+  /v1/api-key/refresh:
+    post:
+      operationId: refreshApiKey
+      description: Extend the life of the current authorized token by exchanging it
+        for a new one
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKey'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ApiKey'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ApiKey'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+          description: ''
+      tags:
+      - Api-Key
+      summary: Refresh Api Key
+  /v1/data-view/create-dataview-from-orbis:
+    post:
+      operationId: createDataViewFromOrbis
+      description: "Create a DataView by fetching financial data from Orbis API.\n\
+        \nAccepts an Orbis company ID and returns annual financial statements \nin\
+        \ standardized DataView format.\n\n**Request Parameters:**\n\n- **orbis_id**\
+        \ (required): The Orbis company identifier to fetch financial data for.\n\n\
+        - **spreading_template_uuid** (optional): UUID of the spreading template to\
+        \ use for calculations.\n  If not provided, the borrower's default template\
+        \ is used.\n\n- **num_periods** (optional, default=1): Number of annual periods\
+        \ to return (1-100). \n  Each period becomes a column in the DataView. Orbis\
+        \ returns all available periods \n  up to this number.\n\n- **lookback_window**\
+        \ (optional, default=12): Data freshness check in months (1-120). \n  If the\
+        \ most recent Orbis financial data is older than this window, an error is\
+        \ \n  returned. For example, with a 12-month lookback, data dated before 12\
+        \ months ago \n  will be rejected.\n\n- **refs_to_exclude** (optional): List\
+        \ of REF names to exclude from calculations.\n\n**Response:**\n\n- **dataview**:\
+        \ Full DataView structure with calculated values and multiple columns \n \
+        \ (one per period requested)\n- **metadata**: Orbis company information, fiscal\
+        \ period details, currency, etc.\n- **statistics**: Completeness metrics showing\
+        \ data coverage\n- **warnings**: Any validation warnings (optional)\n\n**Error\
+        \ Responses:**\n\n- **OrbisCompanyNotFoundError**: The Orbis ID does not exist\
+        \ or has no data\n- **OrbisDataTooStaleError**: Most recent data is older\
+        \ than the lookback window\n- **OrbisAPIKeyError**: API key is missing or\
+        \ invalid\n- **OrbisAPIConnectionError**: Unable to connect to Orbis API\n\
+        \nThis is an ephemeral operation - no data is persisted to the database.\n\
+        The spreading calculations are performed in real-time using the Orbis data."
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrbisDataViewRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrbisDataViewRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrbisDataViewRequest'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrbisDataViewRequest'
+          description: ''
+      tags:
+      - DataViews
+      summary: Create DataView from Orbis company data
+  /v1/financial-statement-submission:
+    post:
+      operationId: createFinancialStatementSubmission
+      description: Submit structured financial statement data (JSON body); file is
+        stored in S3 and processing is queued.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinancialStatementSubmission'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FinancialStatementSubmission'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FinancialStatementSubmission'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancialStatementSubmission'
+          description: ''
+      tags:
+      - FinancialStatementSubmission
+      summary: Submit structured financial statements (JSON)
+  /v1/bulk-file:
+    post:
+      operationId: createBulkFile
+      description: "Add a new file to Fincura that maps to many borrowers. Requires\
+        \ use of a specific file processor per file format. Speak with you Fincura\
+        \ account manager about available options on your account.\n\n\n    POST /v1/bulk-file\
+        \ HTTP/1.1\n    Host: api.amer.spreading.moodysanalytics.com\n    Accept:\
+        \ application/json\n    Authorization: Bearer eyJ0e...nFTRKTbcg\n    Content-Type:\
+        \ application/json\n\n    {\n        \"processor_key\": \"6e64724a-25fc-4e1a-8071-1ef29845ab1d\"\
+        ,\n        \"media_type\": \"application/pdf\"\"\n    }\n    \n\nThe above\
+        \ request will create a new document record in Fincura and return a url to\
+        \ send the file to, as seen below.\n\n    {\n        \"uuid\": \"d789dfd5-42ee-46df-99f2-e6725bee9678\"\
+        ,\n        \"upload_url\": \"https://upload.fincura.com/d789dfd5-42ee-46df-99f2-e6725bee9678/document.pdf?signature=mWFg4xsgm4EtFEt\"\
+        \n    }\n\nIn a subsequent request, the file can be sent to the `upload_url`\
+        \ via [HTTP PUT](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT).\
+        \ The `Content-Length` and `Content-Type` headers are required. The `Content-Type`\
+        \ should match the `media_type` from the previous request.\n\n    PUT /d789dfd5-42ee-46df-99f2-e6725bee9678/document.pdf?signature=mWFg4xsgm4EtFEt\
+        \ HTTP/1.1\n    Host: upload.fincura.com\n    Content-Length: 18828\n    Content-Type:\
+        \ application/pdf\n    \n    {FILE  DATA}\n\nFincura will begin processing\
+        \ the file once it has been completely uploaded."
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkFileCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BulkFileCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BulkFileCreate'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkFileCreate'
+          description: ''
+      tags:
+      - Files
+      summary: Submit a new BulkFile
+  /v1/borrower/{uuid}/link_entity:
+    post:
+      operationId: linkEntityBorrower
+      description: Creates a link between a primary entity and a secondary entity
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BorrowerEntityLink'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BorrowerEntityLink'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BorrowerEntityLink'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BorrowerEntityLink'
+          description: ''
+      tags:
+      - Borrowers
+      summary: Link a secondary borrower to the Borrower
+  /v1/borrower/{uuid}/portal_link:
+    post:
+      operationId: portalLinkBorrower
+      description: ''
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortalLink'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PortalLink'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PortalLink'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortalLink'
+          description: ''
+      tags:
+      - Borrowers
+      summary: Generate a Borrower portal link
+  /v1/embedded-workflow:
+    post:
+      operationId: createEmbeddedWorkflow
+      description: Returns a URL to an HTML webapp to complete document parsing pipeline
+        flow
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbeddedWorkflow'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EmbeddedWorkflow'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EmbeddedWorkflow'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedWorkflow'
+          description: ''
+      tags:
+      - EmbeddedDocument
+  /v1/embedded-financials:
+    post:
+      operationId: createEmbeddedFinancials
+      description: Returns a URL to an HTML webapp to view the financials of a borrower
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbeddedFinancialsWorkflow'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EmbeddedFinancialsWorkflow'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EmbeddedFinancialsWorkflow'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedFinancialsWorkflow'
+          description: ''
+      tags:
+      - EmbeddedFinancials
+  /v1/embedded-dscr-analysis:
+    post:
+      operationId: createEmbeddedDscrAnalysis
+      description: Returns a URL to an HTML webapp to view and modify a particular
+        dscr analysis
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbeddedDscrAnalysisWorkflow'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EmbeddedDscrAnalysisWorkflow'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EmbeddedDscrAnalysisWorkflow'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedDscrAnalysisWorkflow'
+          description: ''
+      tags:
+      - EmbeddedDscrAnalysis
+  /v1/embedded-global-cashflow-analysis:
+    post:
+      operationId: createEmbeddedGlobalCashflowAnalysis
+      description: Returns a URL to an HTML webapp to view and modify a particular
+        global cashflow analysis
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbeddedGlobalCashflowAnalysisWorkflow'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EmbeddedGlobalCashflowAnalysisWorkflow'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EmbeddedGlobalCashflowAnalysisWorkflow'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedGlobalCashflowAnalysisWorkflow'
+          description: ''
+      tags:
+      - EmbeddedGlobalCashflowAnalysis
+  /v1/portfolio/{uuid}:
+    patch:
+      operationId: partialUpdatePortfolio
+      description: Update a Portfolio
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Portfolio'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Portfolio'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Portfolio'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+          description: ''
+      tags:
+      - Portfolios
+      summary: Update a Portfolio
+components:
+  schemas:
+    DataView:
+      type: object
+      properties:
+        title:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the borrower for this DataView. (see [Borrowers](#tag/Borrowers))
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template used for spreading for the given company.
+        columns:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              statement_date:
+                type: string
+                format: date-time
+              reporting_interval:
+                type: string
+              preparation_type:
+                type: string
+              prepared_by:
+                type: string
+              months_in_interval:
+                type: integer
+              scenario:
+                type: string
+              scenario_label:
+                type: string
+              fiscal_year_end:
+                type: string
+              currency_format:
+                type: string
+              modified_date:
+                type: string
+                format: date
+              modified_by:
+                type: string
+              cells:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    calculated_value:
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                          multipleOf: 0.01
+                        error:
+                          type: string
+                        error_message:
+                          type: string
+                        line_item:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            label:
+                              type: string
+                            ref:
+                              type: string
+                            standardized_name:
+                              type: string
+                          required:
+                          - id
+                          - label
+                          - ref
+                          - standardized_name
+                        source_items:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              label:
+                                type: string
+                              value:
+                                type: integer
+                            required:
+                            - label
+                            - value
+                        source_comments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              comment:
+                                type: string
+                              created_by:
+                                type: string
+                                nullable: true
+                              created_date:
+                                type: string
+                                format: date-time
+                                nullable: true
+                              changed_by:
+                                type: string
+                                nullable: true
+                              changed_date:
+                                type: string
+                                format: date-time
+                                nullable: true
+                              stmt_name:
+                                type: string
+                                nullable: true
+                              line_item_label:
+                                type: string
+                                nullable: true
+                            required:
+                            - comment
+                      required:
+                      - value
+                      - error
+                      - error_message
+                      - line_item
+                      - source_items
+                  required:
+                  - calculated_value
+              source_comments:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    comment:
+                      type: string
+                    created_by:
+                      type: string
+                      nullable: true
+                    created_date:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    changed_by:
+                      type: string
+                      nullable: true
+                    changed_date:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    stmt_name:
+                      type: string
+                      nullable: true
+                    line_item_label:
+                      type: string
+                      nullable: true
+                  required:
+                  - comment
+            required:
+            - label
+            - statement_date
+            - reporting_interval
+            - preparation_type
+            - prepared_by
+            - months_in_interval
+            - scenario
+            - scenario_label
+            - fiscal_year_end
+            - currency_format
+            - cells
+        rows:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              line_item:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  label:
+                    type: string
+                  ref:
+                    type: string
+                required:
+                - id
+                - label
+                - ref
+              indentation:
+                type: integer
+              row_format:
+                type: object
+                properties:
+                  header:
+                    type: boolean
+                  bold:
+                    type: boolean
+                  is_parent:
+                    type: boolean
+                required:
+                - header
+                - bold
+                - is_parent
+              cell_format:
+                type: object
+                properties:
+                  text_format:
+                    enum:
+                    - PERCENT
+                    - CURRENCY
+                    - RATIO
+                    - DAYS
+                    type: string
+                required:
+                - text_format
+              excludeFromRoundingAndMultiplication:
+                type: boolean
+                default: false
+            required:
+            - label
+            - line_item
+            - indentation
+            - row_format
+            - cell_format
+      required:
+      - title
+      - borrower_uuid
+      - columns
+      - rows
+    AllPeriodsList:
+      type: object
+      properties:
+        borrower_uuid:
+          type: string
+          format: uuid
+        periods:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              label:
+                type: string
+              interval:
+                type: string
+              year:
+                type: integer
+              interval_index:
+                type: integer
+              preparation_type:
+                type: string
+              fiscal_year_end:
+                type: string
+              scenario:
+                type: string
+              projection_name:
+                type: string
+              period_key_uuid:
+                type: string
+              currency_format:
+                type: string
+            required:
+            - value
+            - label
+            - interval
+            - year
+            - interval_index
+            - preparation_type
+            - fiscal_year_end
+            - scenario
+      required:
+      - borrower_uuid
+      - periods
+    DocumentFileRead:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        pipeline_step:
+          type: string
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the borrower for this file.
+        borrower_name:
+          type: string
+          readOnly: true
+        filename:
+          type: string
+          description: Used to reference the original filename. Defaults to `document.{MEDIA
+            TYPE FILE EXTENSION}` e.g. fye_2026.pdf
+          maxLength: 200
+        statement_types:
+          type: array
+          items: {}
+          readOnly: true
+          default:
+          - OTHER
+        custom_attributes:
+          type: object
+        document_type:
+          enum:
+          - INCOME_STATEMENT
+          - BALANCE_SHEET
+          - TAX_RETURN
+          type: string
+          default: TAX_RETURN
+        review_queue_item_status:
+          type: string
+          readOnly: true
+        review_queue_item_status_code:
+          type: string
+          readOnly: true
+        review_queue_item_exception_message:
+          type: string
+          readOnly: true
+        review_queue_item_exception_class:
+          type: string
+          readOnly: true
+        tax_form_type:
+          type: string
+          nullable: true
+          maxLength: 50
+      required:
+      - borrower_uuid
+    BulkFileRead:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        media_type:
+          enum:
+          - application/pdf
+          - application/x-pdf
+          - application/vnd.ms-excel
+          - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+          - application/vnd.ms-excel.sheet.macroEnabled.12
+          - image/png
+          - image/gif
+          - image/jpeg
+          - application/json
+          type: string
+          writeOnly: true
+          description: '[MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type)
+            of the file'
+        filename:
+          type: string
+          description: Used to reference the original filename. Defaults to `document.{MEDIA
+            TYPE FILE EXTENSION}` e.g. fye_2026.pdf
+          maxLength: 200
+        document_files:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        processor_key:
+          type: string
+          description: Key of custom processor
+        external_id:
+          type: string
+          description: External ID is used to uniquely identify a record from your
+            system in our system. Must be unique across records.
+          maxLength: 255
+        custom_attributes:
+          type: object
+      required:
+      - media_type
+    Borrower:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Name of the Borrower. Must be unique across Borrower records
+          maxLength: 500
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        portfolio_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Portfolio for this Borrower. (see [Portfolios](#tag/Portfolios))
+        spreading_template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the SpreadingTemplate for this Borrower
+        external_id:
+          type: string
+          nullable: true
+          description: External ID is used to uniquely identify a record from your
+            system in our system. Must be unique across records.
+          maxLength: 250
+        contact_email:
+          type: string
+          format: email
+          description: Borrower contact email
+        contact_person:
+          type: string
+          nullable: true
+          description: Borrower contact Full Name
+          maxLength: 100
+        contact_phone:
+          type: string
+          nullable: true
+          description: Borrower contact Phone Number
+          maxLength: 100
+        sic_code:
+          type: string
+          nullable: true
+          maxLength: 4
+        naics_code:
+          type: string
+          nullable: true
+          maxLength: 6
+        sic_industry:
+          enum:
+          - UNKNOWN
+          - AGRICULTURE_FORESTRY_FISHING
+          - CONSTRUCTION
+          - MINING
+          - TRANSPORTATION_AND_PUBLIC_UTILITIES
+          - WHOLESALE_TRADE
+          - RETAIL_TRADE
+          - MANUFACTURING
+          - FINANCE_INSURANCE_REAL_ESTATE
+          - SERVICES
+          - PUBLIC_ADMINISTRATION
+          type: string
+        custom_attributes:
+          type: object
+        is_individual:
+          type: boolean
+          default: false
+          description: If borrower is a person or individual, pass 'True'
+        region:
+          type: string
+          nullable: true
+          description: Region of this Borrower
+          maxLength: 75
+        country:
+          type: string
+          nullable: true
+          description: Country of this Borrower
+          maxLength: 75
+        default_spreading_template_subtype:
+          type: string
+          nullable: true
+          maxLength: 50
+      required:
+      - name
+    Portfolio:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Name of the Portfolio. Must be unique across Portfolio records
+          maxLength: 200
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        external_id:
+          type: string
+          description: External ID is used to uniquely identify a record from your
+            system in our system. Must be unique across records.
+          maxLength: 255
+      required:
+      - name
+    Loan:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          description: Title of the Loan. Must be unique for the Borrower
+          maxLength: 200
+        description:
+          type: string
+          nullable: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        external_id:
+          type: string
+          nullable: true
+          description: External ID is used to uniquely identify a record from your
+            system in our system. Must be unique across records.
+          maxLength: 250
+        loan_id:
+          type: string
+          nullable: true
+          maxLength: 250
+        contract_type:
+          enum:
+          - LEASE
+          - LOAN
+          - NOT_APPLICABLE
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the borrower for this loan. (see [Borrowers](#tag/Borrowers))
+        borrower_info:
+          type: object
+          properties:
+            name:
+              type: string
+              maxLength: 500
+            industry:
+              enum:
+              - UNKNOWN
+              - AGRICULTURE_FORESTRY_FISHING
+              - CONSTRUCTION
+              - MINING
+              - TRANSPORTATION_AND_PUBLIC_UTILITIES
+              - WHOLESALE_TRADE
+              - RETAIL_TRADE
+              - MANUFACTURING
+              - FINANCE_INSURANCE_REAL_ESTATE
+              - SERVICES
+              - PUBLIC_ADMINISTRATION
+              type: string
+            naics_code:
+              type: integer
+              maximum: 999999
+              nullable: true
+              minimum: 0
+            address:
+              type: string
+              nullable: true
+            city:
+              type: string
+              nullable: true
+              maxLength: 255
+            state:
+              type: string
+              nullable: true
+              maxLength: 50
+            zipcode:
+              type: string
+              nullable: true
+              maxLength: 20
+            country:
+              type: string
+              nullable: true
+              maxLength: 255
+            email:
+              type: string
+              format: email
+              nullable: true
+              maxLength: 254
+            company_notes:
+              type: string
+              nullable: true
+            dun_bradstreet_score:
+              type: integer
+              maximum: 100
+              nullable: true
+              minimum: 0
+            paynet_score:
+              type: string
+              nullable: true
+              maxLength: 50
+          required:
+          - name
+          description: Borrower information specific to this loan (does not update
+            the underlying Borrower)
+        principal:
+          type: number
+          multipleOf: 0.01
+          maximum: 1000000000000000000
+          minimum: 0
+          description: Original principal value
+        interest_rate:
+          type: number
+          multipleOf: 0.0001
+          maximum: 100
+          minimum: 0
+        interest_type:
+          enum:
+          - FIXED
+          - ADJUSTABLE
+          type: string
+        term_months:
+          type: integer
+        payment_type:
+          enum:
+          - PRINCIPAL_AND_INTEREST
+          - PRINCIPAL_PLUS_INTEREST
+          - IO_PERIOD
+          type: string
+        state:
+          enum:
+          - PROPOSED
+          - APPROVED
+          - DECLINED
+          - ACTIVE
+          - PAID_OFF
+          - DESISTED
+          type: string
+        payment_status:
+          enum:
+          - CURRENT
+          - GRACE_PERIOD
+          - DELINQUENT
+          type: string
+        start_date:
+          type: string
+          format: date
+          nullable: true
+        end_date:
+          type: string
+          format: date
+          readOnly: true
+          description: Loan end date. Calculated field
+        monthly_payment:
+          type: number
+          multipleOf: 0.01
+          maximum: 1000000000000000000
+          minimum: -1000000000000000000
+          readOnly: true
+          description: calculated field
+        payments_remaining:
+          type: integer
+          readOnly: true
+          description: Calculated field
+        outstanding_principal:
+          type: number
+          multipleOf: 0.01
+          maximum: 1000000000000000000
+          minimum: -1000000000000000000
+          readOnly: true
+          description: calculated field
+        interest_accrued:
+          type: number
+          multipleOf: 0.01
+          maximum: 1000000000000000000
+          minimum: -1000000000000000000
+          readOnly: true
+          description: calculated field
+        loan_to_value:
+          type: number
+          multipleOf: 0.01
+          maximum: 10000
+          minimum: -10000
+          readOnly: true
+          description: calculated field
+        scorecard:
+          enum:
+          - PASSED
+          - FAILED
+          - NOT_APPLICABLE
+          type: string
+          nullable: true
+        collateral_type:
+          enum:
+          - NONE
+          - CASH
+          - AR
+          - IP
+          - REAL_ESTATE
+          - EQUIPMENT
+          type: string
+        collateral_value:
+          type: number
+          multipleOf: 0.01
+          maximum: 1000000000000000000
+          minimum: 0
+          nullable: true
+        collateral_life_months:
+          type: integer
+          description: The life of the collateral in months
+        residual_value:
+          type: number
+          multipleOf: 0.01
+          maximum: 1000000000000000000
+          minimum: 0
+          nullable: true
+        balloon_payment:
+          type: number
+          multipleOf: 0.01
+          maximum: 1000000000000000000
+          minimum: 0
+          nullable: true
+        last_payment_date:
+          type: string
+          format: date
+          nullable: true
+        compliance_info:
+          type: object
+          properties:
+            ofac_sanctions:
+              type: boolean
+            pacer_bankruptcies:
+              type: boolean
+            state_court_claims:
+              type: boolean
+            divisions_of_corp_report:
+              type: boolean
+          description: Compliance information for this loan and borrower
+        template_uuid:
+          type: string
+          format: uuid
+          writeOnly: true
+          description: DSRC template to use for finanical information
+        periods:
+          type: array
+          items:
+            type: object
+            properties:
+              reporting_period:
+                type: string
+                maxLength: 200
+              preparation_type:
+                type: string
+                maxLength: 200
+            required:
+            - reporting_period
+            - preparation_type
+          writeOnly: true
+          description: ReportingPeriod's to include in the loan financial information
+        documents:
+          type: array
+          items:
+            type: object
+            properties:
+              uuid:
+                type: string
+                format: uuid
+              status:
+                type: string
+                readOnly: true
+              created_date:
+                type: string
+                format: date-time
+                readOnly: true
+              filename:
+                type: string
+                readOnly: true
+                maxLength: 200
+              statement_types:
+                type: array
+                items: {}
+                readOnly: true
+                default:
+                - OTHER
+              custom_attributes:
+                type: object
+                readOnly: true
+          description: Additional DocumentFile's to be included with loan information
+        financials:
+          type: object
+          properties:
+            data_overrides:
+              type: array
+              items:
+                type: array
+                items:
+                  type: string
+            template_items:
+              type: array
+              items:
+                type: object
+                properties:
+                  ref:
+                    type: string
+                    readOnly: true
+                  label:
+                    type: string
+                    readOnly: true
+                  item_type:
+                    type: string
+                    readOnly: true
+                  text_format:
+                    enum:
+                    - NUMBER
+                    - PERCENT
+                    - DAYS
+                    - RATIO
+                    type: string
+                    readOnly: true
+                  original_equation:
+                    type: string
+                    readOnly: true
+                  equation_override:
+                    type: string
+                    readOnly: true
+                  line_item_id:
+                    type: integer
+                    readOnly: true
+                  display_bold:
+                    type: boolean
+                    readOnly: true
+                  num_decimals:
+                    type: integer
+                    readOnly: true
+              readOnly: true
+            data_columns:
+              type: array
+              items:
+                type: object
+                properties:
+                  header:
+                    type: string
+                    readOnly: true
+                  statement_date:
+                    type: string
+                    format: date
+                    readOnly: true
+                  reporting_period:
+                    type: string
+                    readOnly: true
+                  preparation_type:
+                    type: string
+                    readOnly: true
+                  months_in_interval:
+                    type: integer
+                    readOnly: true
+                  reporting_interval:
+                    type: string
+                    readOnly: true
+                  prepared_by:
+                    type: string
+                    readOnly: true
+                  cells:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        line_item_id:
+                          type: integer
+                          readOnly: true
+                        ref:
+                          type: string
+                          readOnly: true
+                        calculated_value:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                              multipleOf: 0.01
+                              maximum: 1000000000000000000
+                              minimum: -1000000000000000000
+                              readOnly: true
+                          readOnly: true
+                    readOnly: true
+              readOnly: true
+          required:
+          - data_overrides
+        analysis_commentary:
+          type: string
+          nullable: true
+        guarantors:
+          type: array
+          items:
+            type: object
+            properties:
+              first_name:
+                type: string
+                maxLength: 255
+              last_name:
+                type: string
+                maxLength: 255
+              credit_score:
+                type: string
+                maxLength: 255
+              credit_score_source:
+                type: string
+                description: Reporting agency for credit score
+                maxLength: 255
+            required:
+            - first_name
+            - last_name
+        prior_year_financials:
+          type: object
+          properties:
+            statement_date:
+              type: string
+              format: date
+              readOnly: true
+            preparation_type:
+              type: string
+              readOnly: true
+            net_income:
+              type: number
+              multipleOf: 0.01
+              maximum: 1000000000000000000
+              minimum: -1000000000000000000
+              readOnly: true
+          readOnly: true
+        custom_attributes:
+          type: object
+      required:
+      - title
+      - borrower_uuid
+      - borrower_info
+      - principal
+      - term_months
+    DSCRAnalysis:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+        external_user_id:
+          type: string
+          writeOnly: true
+        external_user_label:
+          type: string
+          writeOnly: true
+      required:
+      - analysis_name
+      - borrower_uuid
+    DSCRAnalysisDetails:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+        proposed_debts:
+          type: array
+          items:
+            type: object
+            properties:
+              debt_name:
+                type: string
+              principal:
+                type: integer
+              term_months:
+                type: integer
+              interest_rate:
+                type: number
+                multipleOf: 0.0001
+                maximum: 100000000000
+                minimum: -100000000000
+              amortization_method:
+                enum:
+                - PRINCIPAL_AND_INTEREST
+                - PRINCIPAL_PLUS_INTEREST
+                - IO_PERIOD
+                type: string
+              amortization_overrides:
+                type: object
+                properties:
+                  monthly_payment:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000000000000
+                    minimum: -10000000000000
+                    description: Override for monthly payment for amortization
+                  basis:
+                    type: string
+                    description: number of days in year to use in amortization. Choices
+                      are '360' or '365'
+                  days_in_month:
+                    type: string
+                    description: 'Number of days in month to use in amortization.
+                      Choices are: ''actual'' or ''30'''
+                  payment_day:
+                    type: integer
+                    description: Used to determine what day of the month payments
+                      are made on for amortization
+                  last_day_for_next_payment:
+                    type: integer
+                    description: Last day in the month that the next month's payment
+                      can be made
+                required:
+                - monthly_payment
+            required:
+            - debt_name
+            - principal
+            - term_months
+            - interest_rate
+            - amortization_method
+        columns:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              statement_date:
+                type: string
+                format: date-time
+              reporting_interval:
+                type: string
+              preparation_type:
+                type: string
+              prepared_by:
+                type: string
+              months_in_interval:
+                type: integer
+              scenario:
+                type: string
+              cells:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    calculated_value:
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                          multipleOf: 0.01
+                        error:
+                          type: string
+                        error_message:
+                          type: string
+                        line_item:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            label:
+                              type: string
+                            ref:
+                              type: string
+                          required:
+                          - id
+                          - label
+                          - ref
+                      required:
+                      - value
+                      - error
+                      - error_message
+                      - line_item
+                  required:
+                  - calculated_value
+              source_comments:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    comment:
+                      type: string
+                    created_by:
+                      type: string
+                      nullable: true
+                    created_date:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    changed_by:
+                      type: string
+                      nullable: true
+                    changed_date:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    stmt_name:
+                      type: string
+                      nullable: true
+                    line_item_label:
+                      type: string
+                      nullable: true
+                  required:
+                  - comment
+            required:
+            - label
+            - statement_date
+            - reporting_interval
+            - preparation_type
+            - prepared_by
+            - months_in_interval
+            - scenario
+            - cells
+          readOnly: true
+        periods_to_include:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              label:
+                type: string
+              interval:
+                type: string
+              year:
+                type: integer
+              interval_index:
+                type: integer
+              preparation_type:
+                type: string
+              fiscal_year_end:
+                type: string
+              scenario:
+                type: string
+              projection_name:
+                type: string
+              period_key_uuid:
+                type: string
+              currency_format:
+                type: string
+            required:
+            - value
+            - label
+            - interval
+            - year
+            - interval_index
+            - preparation_type
+            - fiscal_year_end
+            - scenario
+          default: []
+        commentary:
+          type: string
+          readOnly: true
+          nullable: true
+          description: The commentary associated with a given DSCR Analysis. This
+            will will be `null` if not commentary exists
+        external_user_id:
+          type: string
+          writeOnly: true
+        external_user_label:
+          type: string
+          writeOnly: true
+      required:
+      - analysis_name
+      - borrower_uuid
+    GlobalCashflowAnalysis:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+      required:
+      - analysis_name
+      - borrower_uuid
+    GlobalCashflowAnalysisRetrieve:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+        proposed_debts:
+          type: array
+          items:
+            type: object
+            properties:
+              debt_name:
+                type: string
+              principal:
+                type: integer
+              term_months:
+                type: integer
+              interest_rate:
+                type: number
+                multipleOf: 0.0001
+                maximum: 100000000000
+                minimum: -100000000000
+              amortization_method:
+                enum:
+                - PRINCIPAL_AND_INTEREST
+                - PRINCIPAL_PLUS_INTEREST
+                - IO_PERIOD
+                type: string
+              amortization_overrides:
+                type: object
+                properties:
+                  monthly_payment:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000000000000
+                    minimum: -10000000000000
+                    description: Override for monthly payment for amortization
+                  basis:
+                    type: string
+                    description: number of days in year to use in amortization. Choices
+                      are '360' or '365'
+                  days_in_month:
+                    type: string
+                    description: 'Number of days in month to use in amortization.
+                      Choices are: ''actual'' or ''30'''
+                  payment_day:
+                    type: integer
+                    description: Used to determine what day of the month payments
+                      are made on for amortization
+                  last_day_for_next_payment:
+                    type: integer
+                    description: Last day in the month that the next month's payment
+                      can be made
+                required:
+                - monthly_payment
+            required:
+            - debt_name
+            - principal
+            - term_months
+            - interest_rate
+            - amortization_method
+        data_view_columns:
+          type: object
+          properties:
+            primary_entity:
+              type: array
+              items:
+                type: object
+                properties:
+                  label:
+                    type: string
+                  statement_date:
+                    type: string
+                    format: date-time
+                  reporting_interval:
+                    type: string
+                  preparation_type:
+                    type: string
+                  prepared_by:
+                    type: string
+                  months_in_interval:
+                    type: integer
+                  scenario:
+                    type: string
+                  cells:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        calculated_value:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                              multipleOf: 0.01
+                            error:
+                              type: string
+                            error_message:
+                              type: string
+                            line_item:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                label:
+                                  type: string
+                                ref:
+                                  type: string
+                              required:
+                              - id
+                              - label
+                              - ref
+                          required:
+                          - value
+                          - error
+                          - error_message
+                          - line_item
+                      required:
+                      - calculated_value
+                  source_comments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        comment:
+                          type: string
+                        created_by:
+                          type: string
+                          nullable: true
+                        created_date:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        changed_by:
+                          type: string
+                          nullable: true
+                        changed_date:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        stmt_name:
+                          type: string
+                          nullable: true
+                        line_item_label:
+                          type: string
+                          nullable: true
+                      required:
+                      - comment
+                required:
+                - label
+                - statement_date
+                - reporting_interval
+                - preparation_type
+                - prepared_by
+                - months_in_interval
+                - scenario
+                - cells
+            linked_entities:
+              type: array
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    statement_date:
+                      type: string
+                      format: date-time
+                    reporting_interval:
+                      type: string
+                    preparation_type:
+                      type: string
+                    prepared_by:
+                      type: string
+                    months_in_interval:
+                      type: integer
+                    scenario:
+                      type: string
+                    cells:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          calculated_value:
+                            type: object
+                            properties:
+                              value:
+                                type: number
+                                multipleOf: 0.01
+                              error:
+                                type: string
+                              error_message:
+                                type: string
+                              line_item:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                  label:
+                                    type: string
+                                  ref:
+                                    type: string
+                                required:
+                                - id
+                                - label
+                                - ref
+                            required:
+                            - value
+                            - error
+                            - error_message
+                            - line_item
+                        required:
+                        - calculated_value
+                    source_comments:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          comment:
+                            type: string
+                          created_by:
+                            type: string
+                            nullable: true
+                          created_date:
+                            type: string
+                            format: date-time
+                            nullable: true
+                          changed_by:
+                            type: string
+                            nullable: true
+                          changed_date:
+                            type: string
+                            format: date-time
+                            nullable: true
+                          stmt_name:
+                            type: string
+                            nullable: true
+                          line_item_label:
+                            type: string
+                            nullable: true
+                        required:
+                        - comment
+                  required:
+                  - label
+                  - statement_date
+                  - reporting_interval
+                  - preparation_type
+                  - prepared_by
+                  - months_in_interval
+                  - scenario
+                  - cells
+          required:
+          - primary_entity
+          - linked_entities
+          readOnly: true
+        commentary:
+          type: string
+          readOnly: true
+          nullable: true
+      required:
+      - analysis_name
+      - borrower_uuid
+    GlobalCashflowAnalysisRetrieveV2:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+        proposed_debts:
+          type: array
+          items:
+            type: object
+            properties:
+              debt_name:
+                type: string
+              principal:
+                type: integer
+              term_months:
+                type: integer
+              interest_rate:
+                type: number
+                multipleOf: 0.0001
+                maximum: 100000000000
+                minimum: -100000000000
+              amortization_method:
+                enum:
+                - PRINCIPAL_AND_INTEREST
+                - PRINCIPAL_PLUS_INTEREST
+                - IO_PERIOD
+                type: string
+              amortization_overrides:
+                type: object
+                properties:
+                  monthly_payment:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000000000000
+                    minimum: -10000000000000
+                    description: Override for monthly payment for amortization
+                  basis:
+                    type: string
+                    description: number of days in year to use in amortization. Choices
+                      are '360' or '365'
+                  days_in_month:
+                    type: string
+                    description: 'Number of days in month to use in amortization.
+                      Choices are: ''actual'' or ''30'''
+                  payment_day:
+                    type: integer
+                    description: Used to determine what day of the month payments
+                      are made on for amortization
+                  last_day_for_next_payment:
+                    type: integer
+                    description: Last day in the month that the next month's payment
+                      can be made
+                required:
+                - monthly_payment
+            required:
+            - debt_name
+            - principal
+            - term_months
+            - interest_rate
+            - amortization_method
+        data_view_columns:
+          type: object
+          properties:
+            primary_entity:
+              type: object
+              properties:
+                entity_uuid:
+                  type: string
+                  format: uuid
+                entity_name:
+                  type: string
+                columns:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      label:
+                        type: string
+                      statement_date:
+                        type: string
+                        format: date-time
+                      reporting_interval:
+                        type: string
+                      preparation_type:
+                        type: string
+                      prepared_by:
+                        type: string
+                      months_in_interval:
+                        type: integer
+                      scenario:
+                        type: string
+                      cells:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            calculated_value:
+                              type: object
+                              properties:
+                                value:
+                                  type: number
+                                  multipleOf: 0.01
+                                error:
+                                  type: string
+                                error_message:
+                                  type: string
+                                line_item:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    label:
+                                      type: string
+                                    ref:
+                                      type: string
+                                  required:
+                                  - id
+                                  - label
+                                  - ref
+                              required:
+                              - value
+                              - error
+                              - error_message
+                              - line_item
+                          required:
+                          - calculated_value
+                      source_comments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            comment:
+                              type: string
+                            created_by:
+                              type: string
+                              nullable: true
+                            created_date:
+                              type: string
+                              format: date-time
+                              nullable: true
+                            changed_by:
+                              type: string
+                              nullable: true
+                            changed_date:
+                              type: string
+                              format: date-time
+                              nullable: true
+                            stmt_name:
+                              type: string
+                              nullable: true
+                            line_item_label:
+                              type: string
+                              nullable: true
+                          required:
+                          - comment
+                    required:
+                    - label
+                    - statement_date
+                    - reporting_interval
+                    - preparation_type
+                    - prepared_by
+                    - months_in_interval
+                    - scenario
+                    - cells
+              required:
+              - entity_uuid
+              - entity_name
+              - columns
+            linked_entities:
+              type: array
+              items:
+                type: object
+                properties:
+                  entity_uuid:
+                    type: string
+                    format: uuid
+                  entity_name:
+                    type: string
+                  columns:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        label:
+                          type: string
+                        statement_date:
+                          type: string
+                          format: date-time
+                        reporting_interval:
+                          type: string
+                        preparation_type:
+                          type: string
+                        prepared_by:
+                          type: string
+                        months_in_interval:
+                          type: integer
+                        scenario:
+                          type: string
+                        cells:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              calculated_value:
+                                type: object
+                                properties:
+                                  value:
+                                    type: number
+                                    multipleOf: 0.01
+                                  error:
+                                    type: string
+                                  error_message:
+                                    type: string
+                                  line_item:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                      label:
+                                        type: string
+                                      ref:
+                                        type: string
+                                    required:
+                                    - id
+                                    - label
+                                    - ref
+                                required:
+                                - value
+                                - error
+                                - error_message
+                                - line_item
+                            required:
+                            - calculated_value
+                        source_comments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              comment:
+                                type: string
+                              created_by:
+                                type: string
+                                nullable: true
+                              created_date:
+                                type: string
+                                format: date-time
+                                nullable: true
+                              changed_by:
+                                type: string
+                                nullable: true
+                              changed_date:
+                                type: string
+                                format: date-time
+                                nullable: true
+                              stmt_name:
+                                type: string
+                                nullable: true
+                              line_item_label:
+                                type: string
+                                nullable: true
+                            required:
+                            - comment
+                      required:
+                      - label
+                      - statement_date
+                      - reporting_interval
+                      - preparation_type
+                      - prepared_by
+                      - months_in_interval
+                      - scenario
+                      - cells
+                required:
+                - entity_uuid
+                - entity_name
+                - columns
+          required:
+          - primary_entity
+          - linked_entities
+          readOnly: true
+        commentary:
+          type: string
+          readOnly: true
+          nullable: true
+      required:
+      - analysis_name
+      - borrower_uuid
+    FinancialRequirement:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Title of the FinancialRequirement. Must be unique for the Borrower
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        external_id:
+          type: string
+          nullable: true
+          description: External ID is used to uniquely identify a record from your
+            system in our system. Must be unique across records.
+          maxLength: 250
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the borrower for this loan. (see [Borrowers](#tag/Borrowers))
+        loan_uuid:
+          type: string
+          format: uuid
+          description: UUID of the loan for this requirement. (see [Loans](#tag/Loans))
+        input_equation:
+          type: string
+          maxLength: 1200
+        frequency:
+          enum:
+          - MONTHLY
+          - QUARTERLY
+          - SEMI_ANNUALLY
+          - ANNUALLY
+          - TTM
+          - FISCAL_YTD
+          type: string
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              uuid:
+                type: string
+                format: uuid
+                readOnly: true
+              threshold_value:
+                type: number
+                multipleOf: 0.01
+                maximum: 1000000000000000000
+                minimum: -1000000000000000000
+              comparer:
+                enum:
+                - ==
+                - '!='
+                - '>'
+                - <
+                - '>='
+                - <=
+                type: string
+              start_date:
+                type: string
+                format: date
+              end_date:
+                type: string
+                format: date
+                nullable: true
+            required:
+            - threshold_value
+            - start_date
+      required:
+      - name
+      - borrower_uuid
+      - input_equation
+    Webhook:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        event_type:
+          enum:
+          - GlobalCashflow.Saved
+          - Analysis.Saved
+          - DocumentFile.Received
+          - DocumentFile.Processing
+          - DocumentFile.HumanRequired
+          - DocumentFile.SpreadComplete
+          - DocumentFile.Error
+          - BulkFile.Received
+          - BulkFile.Processing
+          - BulkFile.Processed
+          - BulkFile.Error
+          - '*'
+          - Template.Changed
+          - Borrower.CreatedFromImport
+          - CalculatedStatement.Update
+          - ForecastedStatement.Update
+          - AnnualizedStatement.Update
+          type: string
+        webhook_url:
+          type: string
+          format: uri
+          maxLength: 2500
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\\
+            .(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\\
+            ]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF0-9])?(?:\\\
+            .(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\\
+            .?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
+        webhook_method:
+          enum:
+          - GET
+          - POST
+          type: string
+          default: POST
+        external_id:
+          type: string
+          description: External ID is used to uniquely identify a record from your
+            system in our system. Must be unique across records.
+          maxLength: 255
+        signing_key:
+          type: string
+          readOnly: true
+          maxLength: 200
+      required:
+      - event_type
+      - webhook_url
+    TenantSettings:
+      type: object
+      properties:
+        portal_domain:
+          type: string
+          readOnly: true
+          description: Whitelabled domain for borrower portal
+          maxLength: 255
+        webhook_signing_key:
+          type: string
+          format: uuid
+          readOnly: true
+          description: 32 character hexadecimal string
+    TemplateRead:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        template_type:
+          type: string
+          readOnly: true
+          default: STANDARD
+        name:
+          type: string
+          readOnly: true
+        is_default:
+          type: boolean
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        active:
+          type: boolean
+          readOnly: true
+    TemplateRetrieve:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        template_type:
+          type: string
+          readOnly: true
+          default: STANDARD
+        name:
+          type: string
+          readOnly: true
+        is_default:
+          type: boolean
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        active:
+          type: boolean
+          readOnly: true
+        template_items:
+          type: string
+          readOnly: true
+    CustomAttributeDefinition:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        key:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          nullable: true
+        record_type:
+          enum:
+          - DocumentFile
+          - Borrower
+          - Loan
+          type: string
+        attribute_type:
+          enum:
+          - STRING
+          - BOOLEAN
+          - NUMBER
+          type: string
+        required:
+          type: boolean
+      required:
+      - name
+      - record_type
+    EmbeddedWorkflow:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        document_file_uuid:
+          type: string
+          format: uuid
+          description: UUID of the DocumentFile for this workflow
+        embed_type:
+          enum:
+          - IFRAME
+          - NONE
+          type: string
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        exit_step:
+          enum:
+          - TABLE_ID
+          - COLUMN_ID
+          - REVIEW
+          - SPREAD
+          type: string
+        redirect_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 2500
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\\
+            .(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\\
+            ]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF0-9])?(?:\\\
+            .(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\\
+            .?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
+        ui_controls:
+          type: object
+          properties:
+            primary_button_color:
+              type: string
+              nullable: true
+              maxLength: 50
+            complete_button_label:
+              type: string
+              nullable: true
+              maxLength: 20
+            show_exit_button:
+              type: boolean
+        loaded:
+          type: boolean
+          readOnly: true
+        load_workflow_url:
+          type: string
+          format: uri
+          readOnly: true
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\\
+            .(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\\
+            ]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF0-9])?(?:\\\
+            .(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\\
+            .?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
+        external_user_id:
+          type: string
+          nullable: true
+          description: Id to identify the user performing the work (e.g. email or
+            username)
+          maxLength: 255
+        external_user_label:
+          type: string
+          nullable: true
+          description: Human readable label to identify the user performing the work
+            (e.g. name)
+          maxLength: 255
+      required:
+      - document_file_uuid
+    EmbeddedFinancialsWorkflow:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this view
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        loaded:
+          type: boolean
+          readOnly: true
+        load_workflow_url:
+          type: string
+          format: uri
+          readOnly: true
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\\
+            .(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\\
+            ]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF0-9])?(?:\\\
+            .(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\\
+            .?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
+        external_user_id:
+          type: string
+          nullable: true
+          description: Id to identify the user performing the work (e.g. email or
+            username)
+          maxLength: 255
+        external_user_label:
+          type: string
+          nullable: true
+          description: Human readable label to identify the user performing the work
+            (e.g. name)
+          maxLength: 255
+      required:
+      - borrower_uuid
+    EmbeddedDscrAnalysisWorkflow:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        dscr_analysis_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Analysis for this view
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        loaded:
+          type: boolean
+          readOnly: true
+        load_workflow_url:
+          type: string
+          format: uri
+          readOnly: true
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\\
+            .(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\\
+            ]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF0-9])?(?:\\\
+            .(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\\
+            .?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
+        external_user_id:
+          type: string
+          nullable: true
+          description: Id to identify the user performing the work (e.g. email or
+            username)
+          maxLength: 255
+        external_user_label:
+          type: string
+          nullable: true
+          description: Human readable label to identify the user performing the work
+            (e.g. name)
+          maxLength: 255
+      required:
+      - dscr_analysis_uuid
+    EmbeddedGlobalCashflowAnalysisWorkflow:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        global_cashflow_analysis_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Analysis for this view
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        loaded:
+          type: boolean
+          readOnly: true
+        load_workflow_url:
+          type: string
+          format: uri
+          readOnly: true
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\\
+            .(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\\
+            ]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF0-9])?(?:\\\
+            .(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\\
+            .?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
+        external_user_id:
+          type: string
+          nullable: true
+          description: Id to identify the user performing the work (e.g. email or
+            username)
+          maxLength: 255
+        external_user_label:
+          type: string
+          nullable: true
+          description: Human readable label to identify the user performing the work
+            (e.g. name)
+          maxLength: 255
+      required:
+      - global_cashflow_analysis_uuid
+    ApiKey:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+          writeOnly: true
+          maxLength: 2500
+        tenant_id:
+          type: string
+          writeOnly: true
+          maxLength: 50
+        access_token:
+          type: string
+          readOnly: true
+        expiration_date:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - refresh_token
+      - tenant_id
+    OrbisDataViewRequest:
+      type: object
+      properties:
+        orbis_id:
+          type: string
+          description: Orbis company identifier
+        spreading_template_uuid:
+          type: string
+          format: uuid
+          nullable: true
+          description: 'Optional: UUID of the spreading template to use. If not provided,
+            uses the borrower''s default template.'
+        num_periods:
+          type: integer
+          maximum: 100
+          minimum: 1
+          default: 1
+          description: Number of annual periods to fetch (1-100). Defaults to 1. Orbis
+            returns all available periods up to this number.
+        lookback_window:
+          type: integer
+          maximum: 120
+          minimum: 1
+          default: 12
+          description: Lookback window in months (1-120). Defaults to 12. If the most
+            recent Orbis financial data is older than this window, an error is returned.
+        refs_to_exclude:
+          type: array
+          items:
+            type: string
+          description: 'Optional: List of REF names to exclude from calculations'
+        is_ephemeral:
+          type: boolean
+          default: true
+          description: When true (default), returns an ephemeral DataView without
+            persisting data. When false, translates Orbis data into a financial statement
+            submission and pushes it through the spreading pipeline to completion.
+            Requires external_company_id.
+        external_company_id:
+          type: string
+          nullable: true
+          description: Required when is_ephemeral=false. The borrower external identifier
+            to attach the submission to.
+        preparation_type:
+          enum:
+          - UNQUALIFIED
+          - QUALIFIED
+          - TAX_RETURN
+          - REVIEWED
+          - CPA_PREP
+          - NTR
+          - MANAGEMENT
+          - COMBINED
+          - UNKNOWN
+          - CALCULATED
+          - ANALYST
+          - UNQUALIFIED_IMPORT
+          - QUALIFIED_IMPORT
+          - TAX_RETURN_IMPORT
+          - REVIEWED_IMPORT
+          - CPA_PREP_IMPORT
+          - NTR_IMPORT
+          - MANAGEMENT_IMPORT
+          - ANALYST_IMPORT
+          - IMPORTED
+          - FORECASTED
+          - ANNUALIZED
+          type: string
+          default: UNQUALIFIED
+          description: Financial statement preparation type for the submission. Only
+            used when is_ephemeral=false. Defaults to UNQUALIFIED.
+      required:
+      - orbis_id
+    DocumentFileCreate:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the borrower for this file. (see [Borrowers](#tag/Borrowers))
+        media_type:
+          enum:
+          - application/pdf
+          - application/x-pdf
+          - application/vnd.ms-excel
+          - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+          - application/vnd.ms-excel.sheet.macroEnabled.12
+          - image/png
+          - image/gif
+          - image/jpeg
+          - application/json
+          type: string
+          writeOnly: true
+          description: '[MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type)
+            of the file'
+        filename:
+          type: string
+          description: Used to reference the original filename. Defaults to `document.{MEDIA
+            TYPE FILE EXTENSION}` e.g. fye_2026.pdf
+          maxLength: 200
+        statements:
+          type: array
+          items:
+            type: object
+            properties:
+              form_type:
+                enum:
+                - INCOME_STATEMENT
+                - BALANCE_SHEET
+                - TAX_RETURN
+                - '1065'
+                - '1040'
+                - '1120'
+                - 1120S
+                - Puerto Rico Corporate
+                - Puerto Rico Individual
+                - Puerto Rico Schedule M Individual
+                - Puerto Rico Schedule CO Individual
+                - Puerto Rico Schedule D Individual
+                - Puerto Rico Schedule F Individual
+                - Puerto Rico Schedule H Individual
+                - Puerto Rico Schedule IE Individual
+                - Puerto Rico Schedule J Individual
+                - Puerto Rico Schedule K Individual
+                - Puerto Rico Schedule L Individual
+                - Puerto Rico Schedule N Individual
+                - Puerto Rico Schedule R1 Individual
+                type: string
+              start_date:
+                type: string
+                format: date
+              end_date:
+                type: string
+                format: date
+              tax_year:
+                type: integer
+                maximum: 2026
+                minimum: 1901
+          writeOnly: true
+          description: "\nBy default, any document submitted to Fincura will be scanned\
+            \ for Income Statement and Balance Sheet information.\n\nThe engine can\
+            \ also be pointed at Tax Returns by setting a statement object with a\
+            \ `form_type` and `tax_year`. Supported tax form types: \n\n```\n{\n \
+            \   \"borrower_uuid\": \"6e...845ab1d\",\n    \"media_type\": \"application/pdf\"\
+            ,\n    \"statements\": [\n        {\n          \"form_type\": \"1065\"\
+            \n          \"tax_year\": 2019\n        }\n      ]\n}\n```\n    \n\n"
+        upload_url:
+          type: string
+          format: uri
+          readOnly: true
+          maxLength: 2500
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\\
+            .(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\\
+            ]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF0-9])?(?:\\\
+            .(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\\
+            .?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
+        external_id:
+          type: string
+          description: External ID is used to uniquely identify a record from your
+            system in our system. Must be unique across records.
+          maxLength: 255
+        custom_attributes:
+          type: object
+        document_type:
+          enum:
+          - INCOME_STATEMENT
+          - BALANCE_SHEET
+          - TAX_RETURN
+          type: string
+          default: TAX_RETURN
+      required:
+      - borrower_uuid
+      - media_type
+    FinancialStatementSubmission:
+      type: object
+      properties:
+        schema_version:
+          type: string
+        company_id:
+          type: integer
+          nullable: true
+        company_uuid:
+          type: string
+          format: uuid
+          nullable: true
+        external_company_id:
+          type: string
+          description: External ID is used to uniquely identify a record from your
+            system in our system. Must be unique across records.
+          maxLength: 255
+        currency:
+          type: string
+          default: USD
+        multiply_by_factor:
+          type: object
+          nullable: true
+        spreading_template_id:
+          type: integer
+          nullable: true
+        original_document_name:
+          type: string
+          nullable: true
+        push_to_completion:
+          type: boolean
+          default: false
+        statements:
+          type: array
+          items:
+            type: object
+            properties:
+              statement_type:
+                enum:
+                - INCOME_STATEMENT
+                - BALANCE_SHEET
+                - CASH_FLOW_STATEMENT
+                type: string
+              columns:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    statement_date:
+                      type: string
+                    reporting_interval:
+                      type: string
+                    scenario_type:
+                      type: string
+                    preparation_type:
+                      type: string
+                    prepared_by:
+                      type: string
+                      default: ''
+                  required:
+                  - statement_date
+                  - reporting_interval
+                  - scenario_type
+                  - preparation_type
+              rows:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    values:
+                      type: array
+                      items:
+                        type: object
+                    spreading_template_line_item_id:
+                      type: integer
+                      nullable: true
+                    spreading_template_line_item_ref:
+                      type: string
+                      nullable: true
+                  required:
+                  - label
+                  - values
+            required:
+            - statement_type
+            - columns
+            - rows
+      required:
+      - statements
+    BulkFileCreate:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        media_type:
+          enum:
+          - application/pdf
+          - application/x-pdf
+          - application/vnd.ms-excel
+          - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+          - application/vnd.ms-excel.sheet.macroEnabled.12
+          - image/png
+          - image/gif
+          - image/jpeg
+          - application/json
+          type: string
+          writeOnly: true
+          description: '[MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type)
+            of the file'
+        filename:
+          type: string
+          description: Used to reference the original filename. Defaults to `document.{MEDIA
+            TYPE FILE EXTENSION}` e.g. fye_2026.pdf
+          maxLength: 200
+        processor_key:
+          type: string
+          description: Key of custom processor
+        upload_url:
+          type: string
+          format: uri
+          readOnly: true
+          maxLength: 2500
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\\
+            .(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\\
+            ]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF0-9])?(?:\\\
+            .(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\\
+            .?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
+        external_id:
+          type: string
+          description: External ID is used to uniquely identify a record from your
+            system in our system. Must be unique across records.
+          maxLength: 255
+        custom_attributes:
+          type: object
+      required:
+      - media_type
+    BorrowerEntityLink:
+      type: object
+      properties:
+        primary_entity_uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        linked_entity_uuid:
+          type: string
+          format: uuid
+          description: UUID of the borrower for this DataView. (see [Borrowers](#tag/Borrowers))
+      required:
+      - linked_entity_uuid
+    PortalLink:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        reporting_interval:
+          enum:
+          - MONTHLY
+          - QUARTERLY
+          - SEMI_ANNUALLY
+          - ANNUALLY
+          - FISCAL_YTD
+          - TTM
+          type: string
+          writeOnly: true
+          default: MONTHLY
+        from_date:
+          type: string
+          format: date
+          writeOnly: true
+          description: Request statements from date
+        to_date:
+          type: string
+          format: date
+          writeOnly: true
+          description: Request statements to date
+        statement_types:
+          type: array
+          items:
+            type: object
+            properties:
+              form_type:
+                enum:
+                - INCOME_STATEMENT
+                - BALANCE_SHEET
+                - CASH_FLOW_STATEMENT
+                - '1065'
+                - '1040'
+                - '1120'
+                - 1120S
+                - Puerto Rico Corporate
+                - Puerto Rico Individual
+                - Puerto Rico Schedule M Individual
+                - Puerto Rico Schedule CO Individual
+                - Puerto Rico Schedule D Individual
+                - Puerto Rico Schedule F Individual
+                - Puerto Rico Schedule H Individual
+                - Puerto Rico Schedule IE Individual
+                - Puerto Rico Schedule J Individual
+                - Puerto Rico Schedule K Individual
+                - Puerto Rico Schedule L Individual
+                - Puerto Rico Schedule N Individual
+                - Puerto Rico Schedule R1 Individual
+                type: string
+                default: INCOME_STATEMENT
+          writeOnly: true
+        portal_url:
+          type: string
+          format: uri
+          readOnly: true
+          maxLength: 2500
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\\
+            .(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\\
+            ]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1-\uFFFF0-9])?(?:\\\
+            .(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\\
+            .?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
+    GlobalCashflowAnalysisCreate:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+        proposed_debts:
+          type: array
+          items:
+            type: object
+            properties:
+              debt_name:
+                type: string
+              principal:
+                type: integer
+              term_months:
+                type: integer
+              interest_rate:
+                type: number
+                multipleOf: 0.0001
+                maximum: 100000000000
+                minimum: -100000000000
+              amortization_method:
+                enum:
+                - PRINCIPAL_AND_INTEREST
+                - PRINCIPAL_PLUS_INTEREST
+                - IO_PERIOD
+                type: string
+              amortization_overrides:
+                type: object
+                properties:
+                  monthly_payment:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000000000000
+                    minimum: -10000000000000
+                    description: Override for monthly payment for amortization
+                  basis:
+                    type: string
+                    description: number of days in year to use in amortization. Choices
+                      are '360' or '365'
+                  days_in_month:
+                    type: string
+                    description: 'Number of days in month to use in amortization.
+                      Choices are: ''actual'' or ''30'''
+                  payment_day:
+                    type: integer
+                    description: Used to determine what day of the month payments
+                      are made on for amortization
+                  last_day_for_next_payment:
+                    type: integer
+                    description: Last day in the month that the next month's payment
+                      can be made
+                required:
+                - monthly_payment
+            required:
+            - debt_name
+            - principal
+            - term_months
+            - interest_rate
+            - amortization_method
+          default: []
+        data_view_columns:
+          type: object
+          properties:
+            primary_entity:
+              type: array
+              items:
+                type: object
+                properties:
+                  label:
+                    type: string
+                  statement_date:
+                    type: string
+                    format: date-time
+                  reporting_interval:
+                    type: string
+                  preparation_type:
+                    type: string
+                  prepared_by:
+                    type: string
+                  months_in_interval:
+                    type: integer
+                  scenario:
+                    type: string
+                  cells:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        calculated_value:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                              multipleOf: 0.01
+                            error:
+                              type: string
+                            error_message:
+                              type: string
+                            line_item:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                label:
+                                  type: string
+                                ref:
+                                  type: string
+                              required:
+                              - id
+                              - label
+                              - ref
+                          required:
+                          - value
+                          - error
+                          - error_message
+                          - line_item
+                      required:
+                      - calculated_value
+                  source_comments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        comment:
+                          type: string
+                        created_by:
+                          type: string
+                          nullable: true
+                        created_date:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        changed_by:
+                          type: string
+                          nullable: true
+                        changed_date:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        stmt_name:
+                          type: string
+                          nullable: true
+                        line_item_label:
+                          type: string
+                          nullable: true
+                      required:
+                      - comment
+                required:
+                - label
+                - statement_date
+                - reporting_interval
+                - preparation_type
+                - prepared_by
+                - months_in_interval
+                - scenario
+                - cells
+            linked_entities:
+              type: array
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    statement_date:
+                      type: string
+                      format: date-time
+                    reporting_interval:
+                      type: string
+                    preparation_type:
+                      type: string
+                    prepared_by:
+                      type: string
+                    months_in_interval:
+                      type: integer
+                    scenario:
+                      type: string
+                    cells:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          calculated_value:
+                            type: object
+                            properties:
+                              value:
+                                type: number
+                                multipleOf: 0.01
+                              error:
+                                type: string
+                              error_message:
+                                type: string
+                              line_item:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                  label:
+                                    type: string
+                                  ref:
+                                    type: string
+                                required:
+                                - id
+                                - label
+                                - ref
+                            required:
+                            - value
+                            - error
+                            - error_message
+                            - line_item
+                        required:
+                        - calculated_value
+                    source_comments:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          comment:
+                            type: string
+                          created_by:
+                            type: string
+                            nullable: true
+                          created_date:
+                            type: string
+                            format: date-time
+                            nullable: true
+                          changed_by:
+                            type: string
+                            nullable: true
+                          changed_date:
+                            type: string
+                            format: date-time
+                            nullable: true
+                          stmt_name:
+                            type: string
+                            nullable: true
+                          line_item_label:
+                            type: string
+                            nullable: true
+                        required:
+                        - comment
+                  required:
+                  - label
+                  - statement_date
+                  - reporting_interval
+                  - preparation_type
+                  - prepared_by
+                  - months_in_interval
+                  - scenario
+                  - cells
+          required:
+          - primary_entity
+          - linked_entities
+          readOnly: true
+        entities_to_include:
+          type: array
+          items:
+            type: object
+            properties:
+              borrower_uuid:
+                type: string
+                format: uuid
+                description: UUID of the Borrower the metadata belongs to
+              is_primary:
+                type: boolean
+                default: false
+                description: Used to designate the entity as the primary entity of
+                  the analysis
+              is_blank_entity:
+                type: boolean
+                default: false
+                description: Set to true if you wish to include the borrower in the
+                  analysis without adding any spread periods for the borrower
+              periods_to_include:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                    label:
+                      type: string
+                    interval:
+                      type: string
+                    year:
+                      type: integer
+                    interval_index:
+                      type: integer
+                    preparation_type:
+                      type: string
+                    fiscal_year_end:
+                      type: string
+                    scenario:
+                      type: string
+                    projection_name:
+                      type: string
+                    period_key_uuid:
+                      type: string
+                    currency_format:
+                      type: string
+                  required:
+                  - value
+                  - label
+                  - interval
+                  - year
+                  - interval_index
+                  - preparation_type
+                  - fiscal_year_end
+                  - scenario
+                default: []
+              open_tradelines:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    display_name:
+                      type: string
+                      description: The name to be displayed for the tradeline
+                    tradeline_type:
+                      type: string
+                      description: The category of the tradeline
+                    revolving_or_installment:
+                      enum:
+                      - revolving
+                      - installment
+                      type: string
+                      description: The type of the tradeline. Can either be revolving
+                        or an installment
+                    tradeline_installment_monthly_amount:
+                      type: integer
+                      nullable: true
+                      description: for installment payments, the monthly installment
+                        amount
+                    tradeline_revolving_amount:
+                      type: integer
+                      nullable: true
+                      description: for revolving type tradelines, the total available
+                        amount or outstanding balance
+                  required:
+                  - display_name
+                  - tradeline_type
+                  - revolving_or_installment
+                default: []
+            required:
+            - borrower_uuid
+        commentary:
+          type: string
+          readOnly: true
+          nullable: true
+          description: The commentary associated with a given GCF Analysis. This will
+            will be `null` if not commentary exists
+        external_user_id:
+          type: string
+          writeOnly: true
+        external_user_label:
+          type: string
+          writeOnly: true
+      required:
+      - analysis_name
+      - borrower_uuid
+      - entities_to_include
+  securitySchemes:
+    API_Key:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+- API_Key: []
+tags:
+- name: Api-Key
+  description: ''
+- name: Borrowers
+  description: A record in our system to link financials and analyses to.
+- name: Files
+  description: Files serve as the source input data for our insights engine. They
+    are represented by a `DocumentFile` record.
+- name: Loans
+  description: A Borrower loan record in our system.
+- name: Requirements
+  description: Set rules/covenants for your borrowers
+- name: Portfolios
+  description: Portfolios allow for grouping Borrowers.
+- name: Webhooks
+  description: "## Supported Events\n\nThe following are events you can listen to\
+    \ via webhooks.\n\n| Event&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description\
+    \     | \n| --------------------------------------------- | --------------------------\
+    \ |\n| GlobalCashflow.Saved | A global cashflow analysis has been saved by the\
+    \ user | \n| Analysis.Saved | An analysis has been saved by the user | \n| DocumentFile.Received\
+    \ | File saved/received to the Fincura Platform | \n| DocumentFile.Processing\
+    \ | File is being processed by the Fincura Pipeline | \n| DocumentFile.HumanRequired\
+    \ | Human Intervention is required for file | \n| DocumentFile.SpreadComplete\
+    \ | File data spread to a template (data now normalized/standardized) | \n| DocumentFile.Error\
+    \ | Error processing DocumentFile | \n| BulkFile.Received | Bulk File saved/received\
+    \ to the Fincura Platform | \n| BulkFile.Processing | Bulk File is being processed\
+    \ by the Fincura Pipeline | \n| BulkFile.Processed | Bulk File has completed processing\
+    \ | \n| BulkFile.Error | Error processing BulkFile | \n| * | Wildcard for all\
+    \ events | \n| Template.Changed | A change was detected in a template for spreading,\
+    \ global cashflow, or DSCR analysis | \n| Borrower.CreatedFromImport | A Borrower\
+    \ was created from processing a file import | \n| CalculatedStatement.Update |\
+    \ A calculated statement has been updated by the user | \n| ForecastedStatement.Update\
+    \ | A forecasted statement has been updated by the user | \n| AnnualizedStatement.Update\
+    \ | An annualized statement has been updated by the user | \n\n\n## Webhook Request\
+    \ Body\n\nThe webhook POST request body will contain the following json parameters:\n\
+    \n- `event` the event that triggered the callback (e.g. `DocumentFile.Received`)\n\
+    - `transaction_id` a unique UUID representing the event\n- `payload` additional\
+    \ event specific parameters\n\n## Webhook Signatures\n\nAll of our outgoing webhook\
+    \ requests contain a `X-Fincura-Signature` header which has been signed by a tenant\
+    \ specific key. This allows a 3rd party to validate requests are from Fincura's\
+    \ servers.\n\nThe header contains a list of comma seperated key value pairs:\n\
+    \n- `t` - UTC timestamp of the request\n- `uuid` - the UUID of the webhook record\n\
+    - `v1` - signature of the message [(HMAC_SHA256)](https://en.wikipedia.org/wiki/HMAC)\n\
+    \n### Obtaining the Tenant Signing Key\n\nSee: [Get Tenant Settings](#operation/readTenantSettings)\
+    \ which returns a `webhook_signing_key`\n\n### Calculating the Message Signature\n\
+    \nThe webhook message signature is calculated by joining the `timestamp` of the\
+    \ request, the `uuid` of the webhook and the `body` of the request with periods\
+    \ (`.`) into a single string.\n\nThe signature is generated by creating a HMAC\
+    \ SHA256 signature of that message using the tenant signing key.\n\nThe calculated\
+    \ signature can then be matched to the `v1` signature in the `X-Fincura-Signature`\
+    \ header to verify the request originated from Fincura and the body has not been\
+    \ tampered with.\n\nNOTE: Fincura periodically rotates signing keys for security\
+    \ purposes, if a signature mismatch if found, it is recommended to make sure you\
+    \ are using the latest signing key.\n\nPython example of validating a signature:\n\
+    ```\n#!/usr/bin/env python\nimport hmac\nimport hashlib \n\nSIGNING_KEY = \"tenant\
+    \ signing key\" # Obtained via API call to `operation/readTenantSettings`\n\n\
+    def create_message(timestamp, uuid, body):\n    return  f\"{timestamp}.{uuid}.{body}\"\
+    \n\ndef create_sha256_signature(key, message):\n    message = message.encode()\n\
+    \    return hmac.new(key.encode('utf-8'), message, hashlib.sha256).hexdigest().upper()\n\
+    \ndef verify_fincura_header(signature_header, request_body):\n    header_params\
+    \ = {kv[0]:kv[1] for kv in param.split('=') for param in signature_header.split(',')}\
+    \ \n    message = create_message(header_params['t'], header_params['uuid'], request_body)\n\
+    \    signature = create_sha256_signature(SIGNING_KEY, message)\n\n    if signature\
+    \ != header_params['v1']:\n        raise Exception('Webhook Signature Mismatch')\n\
+    \n// for example (signature shortened for brevity)\nheader_value = 't=1602104227,uuid=5262fc90-eb99-4bd8-8712-ae50fc71ea92,v1=E9397...9C3332'\n\
+    request_body = '{\"event:\"value\"}'\n\nverify_fincura_header(header_value, request_body)\n\
+    ```"
+- name: EmbeddedDocument
+  description: Embedded Document Workflows enable a 3rd party user to use the Fincura
+    UI to complete a portion of our document parsing pipeline and then return to the
+    3rd parties website.
+- name: EmbeddedFinancials
+  description: Embedded Financials allows an API user to authenticate and embedded
+    borrower financials into a 3rd party workflow.
+- name: EmbeddedDscrAnalysis
+  description: Embedded DSCR Analysis allows an API user to authenticate and embedded
+    previously created DSCR analysis into a 3rd party workflow.
+- name: EmbeddedGlobalCashflowAnalysis
+  description: Embedded Global Cashflow Analysis allows an API user to authenticate
+    and embed                                   previously created Global Cashflow
+    analyses into a 3rd party applications.
+- name: SpreadingTemplate
+  description: Spreading Templates
+- name: DscrTemplate
+  description: DSCR Templates
+x-tagGroups:
+- name: Tenant
+  tags:
+  - Api-Key
+  - TenantSettings
+- name: Templates
+  tags:
+  - SpreadingTemplate
+  - DscrTemplate
+  - GlobalCashflowTemplate
+- name: Borrower
+  tags:
+  - Borrowers
+  - Files
+  - Loans
+  - Requirements
+  - Portfolios
+- name: Normalized Data
+  tags:
+  - DataViews
+  - Templates
+- name: Analysis
+  tags:
+  - DscrAnalysis
+  - GlobalCashflowAnalysis
+- name: Events
+  tags:
+  - Webhooks
+- name: Embedded UI
+  tags:
+  - EmbeddedDocument
+  - EmbeddedFinancials
+  - EmbeddedDscrAnalysis
+  - EmbeddedGlobalCashflowAnalysis

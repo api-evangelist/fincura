@@ -1,0 +1,36 @@
+generated: '2026-07-19'
+method: searched
+source: npm, PyPI, and the github.com/fincura organization
+packages:
+- language: javascript
+  registry: npm
+  name: fincura_api
+  url: https://www.npmjs.com/package/fincura_api
+  install: npm install fincura_api
+  version: 1.3.0
+  license: Unlicense
+  official: true
+  notes: OpenAPI-generated JavaScript client, published by the Fincura maintainer (fincura_sully).
+- language: python
+  registry: pypi
+  name: fincura-api-client
+  url: https://pypi.org/project/fincura-api-client/
+  install: pip install fincura-api-client
+  version: 1.0.2
+  author: Fincura Engineering
+  official: true
+  notes: OpenAPI-generated Python client authored by Fincura Engineering.
+- language: java
+  registry: github
+  name: fincura-api-java-client
+  url: https://github.com/fincura/fincura-api-java-client
+  install: mvn clean install
+  version: 1.3.0
+  official: true
+  notes: OpenAPI-generated Java client (source only, not published to Maven Central).
+- language: javascript
+  registry: npm
+  name: node-red-contrib-fincura
+  url: https://github.com/fincura/node-red-contrib-fincura
+  official: true
+  notes: First-party Node-RED nodes for the Fincura API.

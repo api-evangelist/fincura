@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/fincura-openapi-original.yml
+skills:
+- file: fincura-spread-financial-statement.md
+  name: Spread a borrower financial statement
+  api: openapi/fincura-openapi-original.yml
+  operations: [createBorrower, createDocumentFile, retrieveDocumentFile, retrieveDataViewFromDocumentFile]
+- file: fincura-run-dscr-analysis.md
+  name: Run a DSCR analysis for a borrower
+  api: openapi/fincura-openapi-original.yml
+  operations: [listDscrTemplates, createDscrAnalysis, retrieveDscrAnalysis, downloadPdfDscrAnalysis]
+- file: fincura-subscribe-webhooks.md
+  name: Subscribe to Fincura webhook events
+  api: openapi/fincura-openapi-original.yml
+  operations: [createWebhook, listWebhooks, retrieveWebhook, destroyWebhook]

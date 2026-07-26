@@ -1,0 +1,71 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/fincura-openapi-original.yml
+notes: Entities and relationships derived from schema properties and *_uuid reference fields.
+identifier_style: uuid
+entities:
+- name: Portfolio
+  key: uuid
+- name: Borrower
+  key: uuid
+  relationships:
+  - belongs_to: Portfolio
+    via: portfolio_uuid
+  - has_one: SpreadingTemplate
+    via: spreading_template_uuid
+- name: Loan
+  key: uuid
+  relationships:
+  - belongs_to: Borrower
+    via: borrower_uuid
+  - has_one: SpreadingTemplate
+    via: template_uuid
+  - has_many: DocumentFile
+    via: documents
+- name: DocumentFile
+  key: uuid
+  relationships:
+  - belongs_to: Borrower
+    via: borrower_uuid
+- name: DataView
+  relationships:
+  - belongs_to: Borrower
+    via: borrower_uuid
+  - has_one: SpreadingTemplate
+    via: template_uuid
+- name: DSCRAnalysis
+  key: uuid
+  relationships:
+  - belongs_to: Borrower
+    via: borrower_uuid
+  - has_one: DscrTemplate
+    via: template_uuid
+- name: GlobalCashflowAnalysis
+  key: uuid
+  relationships:
+  - belongs_to: Borrower
+    via: borrower_uuid
+  - has_one: GlobalCashflowTemplate
+    via: template_uuid
+- name: FinancialRequirement
+  key: uuid
+  relationships:
+  - belongs_to: Borrower
+    via: borrower_uuid
+  - belongs_to: Loan
+    via: loan_uuid
+- name: EmbeddedWorkflow
+  key: uuid
+  relationships:
+  - has_one: DocumentFile
+    via: document_file_uuid
+- name: Webhook
+  key: uuid
+- name: CustomAttributeDefinition
+  key: uuid
+- name: SpreadingTemplate
+  key: uuid
+- name: DscrTemplate
+  key: uuid
+- name: GlobalCashflowTemplate
+  key: uuid

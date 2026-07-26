@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/fincura-openapi-original.yml
+format: http-status
+notes: >-
+  The live spec declares explicit response codes 200/201/204 and a single error
+  response (429). It does not use application/problem+json. The 401/403 entries are
+  derived from the bearer-JWT security scheme rather than declared per-operation.
+  Error bodies are JSON (content_type application/json observed on gated endpoints).
+problems:
+- status: 429
+  title: Too Many Requests
+  description: Rate limit exceeded. The only error response explicitly declared in the OpenAPI.
+  declared_in_spec: true
+- status: 401
+  title: Unauthorized
+  description: Missing or invalid bearer JWT API key.
+  declared_in_spec: false
+  evidence: securityScheme API_Key (http bearer JWT) applied globally
+- status: 403
+  title: Forbidden
+  description: Authenticated but not permitted for the requested tenant resource.
+  declared_in_spec: false
+- status: 404
+  title: Not Found
+  description: Referenced resource (borrower, loan, document-file, analysis) does not exist.
+  declared_in_spec: false

@@ -1,0 +1,8 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/fincura-openapi-original.yml
+workflows:
+- file: fincura-spread-and-analyze.yml
+  workflowId: spreadAndAnalyze
+  title: Spread a borrower financial statement and run DSCR analysis
+  summary: Create a borrower, upload and spread a document, retrieve the data view, run and download a DSCR analysis.

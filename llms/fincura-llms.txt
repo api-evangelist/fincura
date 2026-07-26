@@ -1,0 +1,43 @@
+# Fincura — Automated Spreading and Analysis API
+
+> Fincura (now part of Abrigo) provides automated financial statement spreading and credit analysis for banks, credit unions, and lenders. Its REST API ingests borrower financial documents (PDF, Excel, images), spreads them into normalized data views, and runs DSCR and global cashflow analyses. Authentication is a bearer JWT API key issued per Fincura user account. API version 1.3.1.
+
+## APIs
+
+- [Automated Spreading and Analysis API (v1)](https://api.fincura.com/v1/redoc/): 67 operations across borrowers, loans, portfolios, document files, data views, DSCR analysis, global cashflow analysis, spreading templates, embedded workflows, custom attributes, and webhooks.
+
+## Specs
+
+- [OpenAPI 3.0.2 (live)](https://api.fincura.com/v1/openapi.json): the current machine-readable contract.
+- [OpenAPI (repo copy)](https://raw.githubusercontent.com/api-evangelist/fincura/refs/heads/main/openapi/fincura-openapi-original.yml)
+
+## Core resources
+
+- Borrowers: create and manage borrowing entities; link related entities; generate borrower portal links.
+- Document Files: upload financial statements (PDF/Excel/image) for automated spreading; poll processing status.
+- Data Views: retrieve normalized, spread financial data from a document file or the most recent view for a borrower.
+- Loans, Portfolios, Financial Requirements: organize and govern lending relationships.
+- Analyses: DSCR (debt service coverage ratio) and Global Cashflow analyses, with Excel/PDF downloads.
+- Templates: spreading, DSCR, and global cashflow templates.
+- Embedded Workflows: hosted, embeddable spreading / financials / analysis UI surfaces.
+- Webhooks: subscribe to 17 event types (document processing, spread complete, analysis saved, bulk file, template changed) with HMAC signing.
+
+## Conventions
+
+- Auth: HTTP bearer JWT API key (Authorization: Bearer <key>). Keys are refreshable via /v1/api-key/refresh.
+- Pagination: limit / offset query parameters on list endpoints.
+- Versioning: URI path (/v1).
+- Uploads: multipart with PDF, XLS/XLSX/XLSM, PNG/GIF/JPG content types.
+
+## SDKs
+
+- [JavaScript (npm: fincura_api)](https://www.npmjs.com/package/fincura_api)
+- [Python (PyPI: fincura-api-client)](https://pypi.org/project/fincura-api-client/)
+- [Java client](https://github.com/fincura/fincura-api-java-client)
+- [Node-RED nodes](https://github.com/fincura/node-red-contrib-fincura)
+
+## Links
+
+- [GitHub organization](https://github.com/fincura)
+- [Application (login)](https://app.fincura.com/)
+- [Python quickstart](https://github.com/fincura/fincura-api-quickstart-python)

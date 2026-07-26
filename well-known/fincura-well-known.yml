@@ -1,0 +1,26 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of /.well-known/ on Fincura hosts
+notes: >-
+  No public /.well-known/ discovery documents are served. The API host gates the
+  entire surface behind bearer-token auth (401), and the app host returns 403.
+  Absence is valid, recorded data.
+hosts:
+- host: https://api.fincura.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 401
+  - path: /.well-known/openid-configuration
+    status: 401
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+  - path: /.well-known/api-catalog
+    status: 401
+  - path: /.well-known/ai-plugin.json
+    status: 401
+- host: https://app.fincura.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403

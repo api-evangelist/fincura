@@ -1,0 +1,20 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/fincura-openapi-original.yml + live host probes
+versioning:
+  scheme: uri-path
+  current: v1
+  reference: https://api.fincura.com/v1/redoc/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation/Sunset policy found; no operations flagged deprecated in the spec.
+sla:
+  url: null
+status_page: null
+notes: >-
+  Fincura is now part of Abrigo. No public status page or dated changelog is served
+  on the reachable hosts (api.fincura.com is auth-gated; info./docs./developer.fincura.com
+  no longer resolve). Spec version advanced 1.3.0 -> 1.3.1 between the 2021 client and
+  the current live document.
+deprecated_operations: []
