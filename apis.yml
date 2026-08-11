@@ -340,6 +340,8 @@ apis:
   - type: APIReference
     url: https://api.fincura.com/v1/redoc/
 common:
+- type: Overlay
+  url: overlays/fincura-openapi-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/fincura-agentic-access.yml
 - type: DomainSecurity
