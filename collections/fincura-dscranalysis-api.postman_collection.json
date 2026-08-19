@@ -1,0 +1,747 @@
+{
+  "item": [
+    {
+      "id": "4dc596ff-a302-4d36-9a51-7d27600e8e5d",
+      "name": "DscrAnalysis",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f778de8d-af48-4b12-9fb8-0879516b75bc",
+          "name": "list Dscr Analyses",
+          "request": {
+            "name": "list Dscr Analyses",
+            "description": {
+              "content": "List DSCR Analysis",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "dscr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a874c79-dcdf-46e6-82f4-a921231bc8cb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "dscr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"analysis_name\": \"string\",\n      \"borrower_uuid\": \"bee3be3f-512d-e509-824d-b17c1de0e997\",\n      \"uuid\": \"5c5e3279-786a-a4dc-0c54-04f209845d4e\",\n      \"created_date\": \"1990-12-16T09:42:03.204Z\",\n      \"template_uuid\": \"4e9fe224-c347-1e84-9c45-c764000dea2d\"\n    },\n    {\n      \"analysis_name\": \"string\",\n      \"borrower_uuid\": \"9e877796-df4c-da6e-d64d-7c9ae531f34d\",\n      \"uuid\": \"656f696e-0327-982d-e09a-4da34007e5a7\",\n      \"created_date\": \"1958-03-12T05:21:34.902Z\",\n      \"template_uuid\": \"aee291ec-e4a5-2bc8-b20b-8ea115563157\"\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?offset=400&limit=100\",\n  \"previous\": \"http://api.example.org/accounts/?offset=200&limit=100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c158b6c-a654-473f-8121-b17185205430",
+          "name": "Create a new DSCR Analysis",
+          "request": {
+            "name": "Create a new DSCR Analysis",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "dscr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "analysis_name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the Borrower for this analysis"
+                },
+                {
+                  "disabled": false,
+                  "key": "template_uuid",
+                  "value": "<uuid>",
+                  "description": "UUID of the template to use for the analysis."
+                },
+                {
+                  "disabled": false,
+                  "key": "proposed_debts",
+                  "value": "{\"debt_name\":\"<string>\",\"principal\":\"<integer>\",\"term_months\":\"<integer>\",\"interest_rate\":\"<number>\",\"amortization_method\":\"<string>\",\"amortization_overrides\":{\"monthly_payment\":\"<number>\",\"basis\":\"<string>\",\"days_in_month\":\"<string>\",\"payment_day\":\"<integer>\",\"last_day_for_next_payment\":\"<integer>\"}}"
+                },
+                {
+                  "disabled": false,
+                  "key": "proposed_debts",
+                  "value": "{\"debt_name\":\"<string>\",\"principal\":\"<integer>\",\"term_months\":\"<integer>\",\"interest_rate\":\"<number>\",\"amortization_method\":\"<string>\",\"amortization_overrides\":{\"monthly_payment\":\"<number>\",\"basis\":\"<string>\",\"days_in_month\":\"<string>\",\"payment_day\":\"<integer>\",\"last_day_for_next_payment\":\"<integer>\"}}"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_user_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_user_label",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fd36b47c-c86c-4127-9d19-5536f89e4b91",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "dscr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "analysis_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the Borrower for this analysis",
+                        "type": "text/plain"
+                      },
+                      "key": "borrower_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "UUID of the template to use for the analysis.",
+                        "type": "text/plain"
+                      },
+                      "key": "template_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "proposed_debts",
+                      "value": "{\"debt_name\":\"<string>\",\"principal\":\"<integer>\",\"term_months\":\"<integer>\",\"interest_rate\":\"<number>\",\"amortization_method\":\"<string>\",\"amortization_overrides\":{\"monthly_payment\":\"<number>\",\"basis\":\"<string>\",\"days_in_month\":\"<string>\",\"payment_day\":\"<integer>\",\"last_day_for_next_payment\":\"<integer>\"}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "proposed_debts",
+                      "value": "{\"debt_name\":\"<string>\",\"principal\":\"<integer>\",\"term_months\":\"<integer>\",\"interest_rate\":\"<number>\",\"amortization_method\":\"<string>\",\"amortization_overrides\":{\"monthly_payment\":\"<number>\",\"basis\":\"<string>\",\"days_in_month\":\"<string>\",\"payment_day\":\"<integer>\",\"last_day_for_next_payment\":\"<integer>\"}}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "external_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "external_user_label",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"analysis_name\": \"<string>\",\n  \"borrower_uuid\": \"<uuid>\",\n  \"uuid\": \"4d7645b3-155b-ae31-8561-f03d173c7d94\",\n  \"created_date\": \"1968-11-26T13:54:59.619Z\",\n  \"template_uuid\": \"<uuid>\",\n  \"proposed_debts\": [\n    {\n      \"debt_name\": \"<string>\",\n      \"principal\": \"<integer>\",\n      \"term_months\": \"<integer>\",\n      \"interest_rate\": \"<number>\",\n      \"amortization_method\": \"<string>\",\n      \"amortization_overrides\": {\n        \"monthly_payment\": \"<number>\",\n        \"basis\": \"<string>\",\n        \"days_in_month\": \"<string>\",\n        \"payment_day\": \"<integer>\",\n        \"last_day_for_next_payment\": \"<integer>\"\n      }\n    },\n    {\n      \"debt_name\": \"<string>\",\n      \"principal\": \"<integer>\",\n      \"term_months\": \"<integer>\",\n      \"interest_rate\": \"<number>\",\n      \"amortization_method\": \"<string>\",\n      \"amortization_overrides\": {\n        \"monthly_payment\": \"<number>\",\n        \"basis\": \"<string>\",\n        \"days_in_month\": \"<string>\",\n        \"payment_day\": \"<integer>\",\n        \"last_day_for_next_payment\": \"<integer>\"\n      }\n    }\n  ],\n  \"columns\": [\n    {\n      \"label\": \"string\",\n      \"statement_date\": \"1980-11-01T20:24:48.519Z\",\n      \"reporting_interval\": \"string\",\n      \"preparation_type\": \"string\",\n      \"prepared_by\": \"string\",\n      \"months_in_interval\": 1814,\n      \"scenario\": \"string\",\n      \"cells\": [\n        {\n          \"calculated_value\": {\n            \"value\": 2996.56,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 6735,\n              \"label\": \"string\",\n              \"ref\": \"string\"\n            }\n          }\n        },\n        {\n          \"calculated_value\": {\n            \"value\": 6062.32,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 3415,\n              \"label\": \"string\",\n              \"ref\": \"string\"\n            }\n          }\n        }\n      ],\n      \"source_comments\": [\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1981-03-19T14:17:46.157Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"2007-05-17T17:29:29.590Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        },\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"2005-03-03T01:12:46.105Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"2001-04-17T00:38:21.459Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        }\n      ]\n    },\n    {\n      \"label\": \"string\",\n      \"statement_date\": \"1985-10-07T07:07:51.705Z\",\n      \"reporting_interval\": \"string\",\n      \"preparation_type\": \"string\",\n      \"prepared_by\": \"string\",\n      \"months_in_interval\": 5428,\n      \"scenario\": \"string\",\n      \"cells\": [\n        {\n          \"calculated_value\": {\n            \"value\": 2717.05,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 984,\n              \"label\": \"string\",\n              \"ref\": \"string\"\n            }\n          }\n        },\n        {\n          \"calculated_value\": {\n            \"value\": 105.34,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 7455,\n              \"label\": \"string\",\n              \"ref\": \"string\"\n            }\n          }\n        }\n      ],\n      \"source_comments\": [\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1978-10-05T13:42:42.805Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1991-06-07T21:55:53.850Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        },\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1970-07-04T02:39:02.927Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1947-03-25T17:05:21.222Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"commentary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34e16494-ff03-4ca6-a4fa-609d823cb316",
+          "name": "retrieve Dscr Analysis",
+          "request": {
+            "name": "retrieve Dscr Analysis",
+            "description": {
+              "content": "Retrieve DSCR analysis record",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "dscr",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "366c4b3c-55c1-41e3-8b67-05f051c230b8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "dscr",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"analysis_name\": \"<string>\",\n  \"borrower_uuid\": \"<uuid>\",\n  \"uuid\": \"7c41554a-d044-e368-9176-bc432e7aa88b\",\n  \"created_date\": \"1949-09-30T17:43:22.969Z\",\n  \"template_uuid\": \"<uuid>\",\n  \"proposed_debts\": [\n    {\n      \"debt_name\": \"<string>\",\n      \"principal\": \"<integer>\",\n      \"term_months\": \"<integer>\",\n      \"interest_rate\": \"<number>\",\n      \"amortization_method\": \"<string>\",\n      \"amortization_overrides\": {\n        \"monthly_payment\": \"<number>\",\n        \"basis\": \"<string>\",\n        \"days_in_month\": \"<string>\",\n        \"payment_day\": \"<integer>\",\n        \"last_day_for_next_payment\": \"<integer>\"\n      }\n    },\n    {\n      \"debt_name\": \"<string>\",\n      \"principal\": \"<integer>\",\n      \"term_months\": \"<integer>\",\n      \"interest_rate\": \"<number>\",\n      \"amortization_method\": \"<string>\",\n      \"amortization_overrides\": {\n        \"monthly_payment\": \"<number>\",\n        \"basis\": \"<string>\",\n        \"days_in_month\": \"<string>\",\n        \"payment_day\": \"<integer>\",\n        \"last_day_for_next_payment\": \"<integer>\"\n      }\n    }\n  ],\n  \"columns\": [\n    {\n      \"label\": \"string\",\n      \"statement_date\": \"1975-05-27T04:17:47.235Z\",\n      \"reporting_interval\": \"string\",\n      \"preparation_type\": \"string\",\n      \"prepared_by\": \"string\",\n      \"months_in_interval\": 7454,\n      \"scenario\": \"string\",\n      \"cells\": [\n        {\n          \"calculated_value\": {\n            \"value\": 832.96,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 909,\n              \"label\": \"string\",\n              \"ref\": \"string\"\n            }\n          }\n        },\n        {\n          \"calculated_value\": {\n            \"value\": 9431.49,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 4171,\n              \"label\": \"string\",\n              \"ref\": \"string\"\n            }\n          }\n        }\n      ],\n      \"source_comments\": [\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1978-09-23T02:24:10.780Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1999-07-27T22:35:07.153Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        },\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1960-11-14T14:07:52.473Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1957-03-12T17:47:30.009Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        }\n      ]\n    },\n    {\n      \"label\": \"string\",\n      \"statement_date\": \"1974-11-13T14:10:10.872Z\",\n      \"reporting_interval\": \"string\",\n      \"preparation_type\": \"string\",\n      \"prepared_by\": \"string\",\n      \"months_in_interval\": 4118,\n      \"scenario\": \"string\",\n      \"cells\": [\n        {\n          \"calculated_value\": {\n            \"value\": 2387.79,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 8352,\n              \"label\": \"string\",\n              \"ref\": \"string\"\n            }\n          }\n        },\n        {\n          \"calculated_value\": {\n            \"value\": 3284.01,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 1871,\n              \"label\": \"string\",\n              \"ref\": \"string\"\n            }\n          }\n        }\n      ],\n      \"source_comments\": [\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1980-10-28T23:48:26.361Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1984-08-28T11:57:10.124Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        },\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"2023-01-23T15:07:49.174Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1964-12-05T23:48:13.730Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"commentary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea214b8a-8355-47b8-8267-cdefdc7b672c",
+          "name": "Remove an existing DSCR Analysis",
+          "request": {
+            "name": "Remove an existing DSCR Analysis",
+            "description": {
+              "content": "Remove an existing DSCR analysis record",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "dscr",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8dd9628-ea0d-4fd7-93b9-35a459340c0e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "dscr",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32ed5678-bc7d-4a93-ba6e-1555dbd45e5b",
+          "name": "download Excel Dscr Analysis",
+          "request": {
+            "name": "download Excel Dscr Analysis",
+            "description": {
+              "content": "Download the DSCR analysis as an Excel file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "dscr",
+                ":uuid",
+                "download_excel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58ac99e0-a90d-441c-9a1f-05b8a1977021",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "dscr",
+                    ":uuid",
+                    "download_excel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dfb68f4-80e6-41e3-978a-e61e5790bed5",
+          "name": "download Pdf Dscr Analysis",
+          "request": {
+            "name": "download Pdf Dscr Analysis",
+            "description": {
+              "content": "Download the DSCR analysis as a PDF file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "dscr",
+                ":uuid",
+                "download_pdf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3859e962-54ef-4235-91c9-b9acd692b9d7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "dscr",
+                    ":uuid",
+                    "download_pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "70fbadf5-8279-4499-a9ad-a65672372c49",
+    "name": "Automated Spreading and Analysis Api-Key DscrAnalysis API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****\n\nContact Support:\n Name: Moody's Automated Spreading Customer Support\n Email: MA_NMR_Support@moodys.com",
+      "type": "text/plain"
+    }
+  }
+}

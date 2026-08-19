@@ -1,0 +1,275 @@
+{
+  "item": [
+    {
+      "id": "2eb0735f-b9a3-4a82-bbf7-6375a3661818",
+      "name": "EmbeddedDscrAnalysis",
+      "description": {
+        "content": "Embedded DSCR Analysis allows an API user to authenticate and embedded previously created DSCR analysis into a 3rd party workflow.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d5dcee57-d70c-44a0-b190-1fb278c584e7",
+          "name": "retrieve Embedded Dscr Analysis",
+          "request": {
+            "name": "retrieve Embedded Dscr Analysis",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "embedded-dscr-analysis",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "308821de-433c-4f57-a087-be6d5118dc27",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embedded-dscr-analysis",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a1a588e-bf00-46b7-a25f-bf53fecb9cd4",
+          "name": "create Embedded Dscr Analysis",
+          "request": {
+            "name": "create Embedded Dscr Analysis",
+            "description": {
+              "content": "Returns a URL to an HTML webapp to view and modify a particular dscr analysis",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "embedded-dscr-analysis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "dscr_analysis_uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the Analysis for this view"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_user_id",
+                  "value": "<string>",
+                  "description": "Id to identify the user performing the work (e.g. email or username)"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_user_label",
+                  "value": "<string>",
+                  "description": "Human readable label to identify the user performing the work (e.g. name)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "de5cdd36-a969-437c-a524-3d07944dd00e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embedded-dscr-analysis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the Analysis for this view",
+                        "type": "text/plain"
+                      },
+                      "key": "dscr_analysis_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Id to identify the user performing the work (e.g. email or username)",
+                        "type": "text/plain"
+                      },
+                      "key": "external_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Human readable label to identify the user performing the work (e.g. name)",
+                        "type": "text/plain"
+                      },
+                      "key": "external_user_label",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bba1ef63-6559-41ab-b468-eaa41606d786",
+    "name": "Automated Spreading and Analysis Api-Key EmbeddedDscrAnalysis API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****\n\nContact Support:\n Name: Moody's Automated Spreading Customer Support\n Email: MA_NMR_Support@moodys.com",
+      "type": "text/plain"
+    }
+  }
+}

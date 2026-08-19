@@ -1,0 +1,933 @@
+{
+  "item": [
+    {
+      "id": "ac772e35-7c1f-472a-9bd4-78f81a2497df",
+      "name": "Files",
+      "description": {
+        "content": "Files serve as the source input data for our insights engine. They are represented by a `DocumentFile` record.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78408063-7beb-4591-bbd9-8877f79077a4",
+          "name": "List DocumentFile records",
+          "request": {
+            "name": "List DocumentFile records",
+            "description": {
+              "content": "List files submitted to Fincura",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "document-file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e383a0e3-7c10-4db2-ad80-daa234bd1eed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document-file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"borrower_uuid\": \"df0454e2-dd5c-3116-b915-b25176db2cf2\",\n      \"uuid\": \"8e25b3ff-ecf6-8aaf-f824-bbb6a659f2af\",\n      \"status\": \"string\",\n      \"pipeline_step\": \"string\",\n      \"created_date\": \"2001-06-30T15:13:35.561Z\",\n      \"borrower_name\": \"string\",\n      \"filename\": \"string\",\n      \"statement_types\": [\n        \"OTHER\"\n      ],\n      \"custom_attributes\": {},\n      \"document_type\": \"TAX_RETURN\",\n      \"review_queue_item_status\": \"string\",\n      \"review_queue_item_status_code\": \"string\",\n      \"review_queue_item_exception_message\": \"string\",\n      \"review_queue_item_exception_class\": \"string\",\n      \"tax_form_type\": \"string\"\n    },\n    {\n      \"borrower_uuid\": \"6773c6ae-0d1a-a361-8ebb-ce995c2933e6\",\n      \"uuid\": \"7e50f8bd-3d02-daaa-daa8-bb333afc9bb2\",\n      \"status\": \"string\",\n      \"pipeline_step\": \"string\",\n      \"created_date\": \"2001-04-29T06:11:11.535Z\",\n      \"borrower_name\": \"string\",\n      \"filename\": \"string\",\n      \"statement_types\": [\n        \"OTHER\"\n      ],\n      \"custom_attributes\": {},\n      \"document_type\": \"TAX_RETURN\",\n      \"review_queue_item_status\": \"string\",\n      \"review_queue_item_status_code\": \"string\",\n      \"review_queue_item_exception_message\": \"string\",\n      \"review_queue_item_exception_class\": \"string\",\n      \"tax_form_type\": \"string\"\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?offset=400&limit=100\",\n  \"previous\": \"http://api.example.org/accounts/?offset=200&limit=100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "455f55e8-df5c-4a15-b6fb-609a4384ab55",
+          "name": "Submit a new DocumentFile",
+          "request": {
+            "name": "Submit a new DocumentFile",
+            "description": {
+              "content": "Add a new file to Fincura for processing.\n\nThe minimal document creation request requires just a `borrower_uuid` and the `media_type` of the file to process.\n\n\n    POST /v1/document-file HTTP/1.1\n    Host: api.amer.spreading.moodysanalytics.com\n    Accept: application/json\n    Authorization: Bearer eyJ0e...nFTRKTbcg\n    Content-Type: application/json\n\n    {\n        \"borrower_uuid\": \"6e64724a-25fc-4e1a-8071-1ef29845ab1d\",\n        \"media_type\": \"application/pdf\"\n    }\n    \n\nThe above request will create a new document record in Fincura and return a url to send the file to, as seen below.\n\n    {\n        \"uuid\": \"f67a21dd-32a0-4664-9cd4-4181640be400\",\n        \"upload_url\": \"https://upload.fincura.com/f67a21dd-32a0-4664-9cd4-4181640be400/document.pdf?signature=mWFg4xsgm4EtFEt\"\n    }\n\nIn a subsequent request, the file can be sent to the `upload_url` via [HTTP PUT](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT). The `Content-Length` and `Content-Type` headers are required. The `Content-Type` should match the `media_type` from the previous request.\n\n    PUT /f67a21dd-32a0-4664-9cd4-4181640be400/document.pdf?signature=mWFg4xsgm4EtFEt HTTP/1.1\n    Host: upload.fincura.com\n    Content-Length: 18828\n    Content-Type: application/pdf\n    \n    {FILE  DATA}\n\nFincura will begin processing the file once it has been completely uploaded.\n\nAdditional fields described below:",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "document-file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the borrower for this file. (see [Borrowers](#tag/Borrowers))"
+                },
+                {
+                  "disabled": false,
+                  "key": "media_type",
+                  "value": "<string>",
+                  "description": "(Required) [MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the file"
+                },
+                {
+                  "disabled": false,
+                  "key": "filename",
+                  "value": "<string>",
+                  "description": "Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf"
+                },
+                {
+                  "disabled": false,
+                  "key": "statements",
+                  "value": "{\"form_type\":\"<string>\",\"start_date\":\"<date>\",\"end_date\":\"<date>\",\"tax_year\":\"<integer>\"}",
+                  "description": "\nBy default, any document submitted to Fincura will be scanned for Income Statement and Balance Sheet information.\n\nThe engine can also be pointed at Tax Returns by setting a statement object with a `form_type` and `tax_year`. Supported tax form types: \n\n```\n{\n    \"borrower_uuid\": \"6e...845ab1d\",\n    \"media_type\": \"application/pdf\",\n    \"statements\": [\n        {\n          \"form_type\": \"1065\"\n          \"tax_year\": 2019\n        }\n      ]\n}\n```\n    \n\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "statements",
+                  "value": "{\"form_type\":\"<string>\",\"start_date\":\"<date>\",\"end_date\":\"<date>\",\"tax_year\":\"<integer>\"}",
+                  "description": "\nBy default, any document submitted to Fincura will be scanned for Income Statement and Balance Sheet information.\n\nThe engine can also be pointed at Tax Returns by setting a statement object with a `form_type` and `tax_year`. Supported tax form types: \n\n```\n{\n    \"borrower_uuid\": \"6e...845ab1d\",\n    \"media_type\": \"application/pdf\",\n    \"statements\": [\n        {\n          \"form_type\": \"1065\"\n          \"tax_year\": 2019\n        }\n      ]\n}\n```\n    \n\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>",
+                  "description": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records."
+                },
+                {
+                  "disabled": false,
+                  "key": "custom_attributes",
+                  "value": "<object>"
+                },
+                {
+                  "disabled": false,
+                  "key": "document_type",
+                  "value": "TAX_RETURN"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "99819d58-c3ab-4546-83fa-5f07812225c3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document-file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the borrower for this file. (see [Borrowers](#tag/Borrowers))",
+                        "type": "text/plain"
+                      },
+                      "key": "borrower_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) [MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the file",
+                        "type": "text/plain"
+                      },
+                      "key": "media_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "\nBy default, any document submitted to Fincura will be scanned for Income Statement and Balance Sheet information.\n\nThe engine can also be pointed at Tax Returns by setting a statement object with a `form_type` and `tax_year`. Supported tax form types: \n\n```\n{\n    \"borrower_uuid\": \"6e...845ab1d\",\n    \"media_type\": \"application/pdf\",\n    \"statements\": [\n        {\n          \"form_type\": \"1065\"\n          \"tax_year\": 2019\n        }\n      ]\n}\n```\n    \n\n",
+                        "type": "text/plain"
+                      },
+                      "key": "statements",
+                      "value": "{\"form_type\":\"<string>\",\"start_date\":\"<date>\",\"end_date\":\"<date>\",\"tax_year\":\"<integer>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "\nBy default, any document submitted to Fincura will be scanned for Income Statement and Balance Sheet information.\n\nThe engine can also be pointed at Tax Returns by setting a statement object with a `form_type` and `tax_year`. Supported tax form types: \n\n```\n{\n    \"borrower_uuid\": \"6e...845ab1d\",\n    \"media_type\": \"application/pdf\",\n    \"statements\": [\n        {\n          \"form_type\": \"1065\"\n          \"tax_year\": 2019\n        }\n      ]\n}\n```\n    \n\n",
+                        "type": "text/plain"
+                      },
+                      "key": "statements",
+                      "value": "{\"form_type\":\"<string>\",\"start_date\":\"<date>\",\"end_date\":\"<date>\",\"tax_year\":\"<integer>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "custom_attributes",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "document_type",
+                      "value": "TAX_RETURN"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18e3df7a-96eb-4af4-80bd-f016f9a4a163",
+              "name": "Rate Limit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document-file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the borrower for this file. (see [Borrowers](#tag/Borrowers))",
+                        "type": "text/plain"
+                      },
+                      "key": "borrower_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "[MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the file",
+                        "type": "text/plain"
+                      },
+                      "key": "media_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "\nBy default, any document submitted to Fincura will be scanned for Income Statement and Balance Sheet information.\n\nThe engine can also be pointed at Tax Returns by setting a statement object with a `form_type` and `tax_year`. Supported tax form types: \n\n```\n{\n    \"borrower_uuid\": \"6e...845ab1d\",\n    \"media_type\": \"application/pdf\",\n    \"statements\": [\n        {\n          \"form_type\": \"1065\"\n          \"tax_year\": 2019\n        }\n      ]\n}\n```\n    \n\n",
+                        "type": "text/plain"
+                      },
+                      "key": "statements",
+                      "value": "{\"form_type\":\"<string>\",\"start_date\":\"<date>\",\"end_date\":\"<date>\",\"tax_year\":\"<integer>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "\nBy default, any document submitted to Fincura will be scanned for Income Statement and Balance Sheet information.\n\nThe engine can also be pointed at Tax Returns by setting a statement object with a `form_type` and `tax_year`. Supported tax form types: \n\n```\n{\n    \"borrower_uuid\": \"6e...845ab1d\",\n    \"media_type\": \"application/pdf\",\n    \"statements\": [\n        {\n          \"form_type\": \"1065\"\n          \"tax_year\": 2019\n        }\n      ]\n}\n```\n    \n\n",
+                        "type": "text/plain"
+                      },
+                      "key": "statements",
+                      "value": "{\"form_type\":\"<string>\",\"start_date\":\"<date>\",\"end_date\":\"<date>\",\"tax_year\":\"<integer>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "custom_attributes",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "document_type",
+                      "value": "TAX_RETURN"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": \"Request was throttled. Expected available in 35 seconds.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "538da45f-8576-4c93-babd-6f6ad6ba0935",
+          "name": "Get a DocumentFile",
+          "request": {
+            "name": "Get a DocumentFile",
+            "description": {
+              "content": "Retrieve a file submitted to Fincura",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "document-file",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f69846c-980a-461a-b45f-500dc04cbf2c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document-file",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"borrower_uuid\": \"4e11d0a7-0e97-aba2-b4f5-1b7cfe2508da\",\n  \"uuid\": \"426577ee-048a-e7ee-6c84-927566e55f69\",\n  \"status\": \"string\",\n  \"pipeline_step\": \"string\",\n  \"created_date\": \"1970-04-23T08:50:53.969Z\",\n  \"borrower_name\": \"string\",\n  \"filename\": \"string\",\n  \"statement_types\": [\n    \"OTHER\"\n  ],\n  \"custom_attributes\": {},\n  \"document_type\": \"TAX_RETURN\",\n  \"review_queue_item_status\": \"string\",\n  \"review_queue_item_status_code\": \"string\",\n  \"review_queue_item_exception_message\": \"string\",\n  \"review_queue_item_exception_class\": \"string\",\n  \"tax_form_type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9f1782a-f71e-4fba-a2c1-59b19524161b",
+          "name": "Delete a DocumentFile",
+          "request": {
+            "name": "Delete a DocumentFile",
+            "description": {
+              "content": "Delete a file from Fincura.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "document-file",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a755013-80a1-4f00-b3a6-514398af4a50",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document-file",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af775844-a2e6-49d9-ad7c-424ebffdd96a",
+          "name": "Retrieve a BulkFile",
+          "request": {
+            "name": "Retrieve a BulkFile",
+            "description": {
+              "content": "Retrieve a bulk file submitted to Fincura",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bulk-file",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2e3160e-e7e2-4167-8086-b9634f979e1e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bulk-file",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"f4d60f33-3cc1-67b2-7d3f-9d6bca2d2160\",\n  \"status\": \"string\",\n  \"created_date\": \"2014-01-12T05:24:27.114Z\",\n  \"filename\": \"string\",\n  \"document_files\": [\n    \"string\",\n    \"string\"\n  ],\n  \"processor_key\": \"string\",\n  \"external_id\": \"string\",\n  \"custom_attributes\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8835674-d655-4d06-aace-8372207c5e76",
+          "name": "Submit a new BulkFile",
+          "request": {
+            "name": "Submit a new BulkFile",
+            "description": {
+              "content": "Add a new file to Fincura that maps to many borrowers. Requires use of a specific file processor per file format. Speak with you Fincura account manager about available options on your account.\n\n\n    POST /v1/bulk-file HTTP/1.1\n    Host: api.amer.spreading.moodysanalytics.com\n    Accept: application/json\n    Authorization: Bearer eyJ0e...nFTRKTbcg\n    Content-Type: application/json\n\n    {\n        \"processor_key\": \"6e64724a-25fc-4e1a-8071-1ef29845ab1d\",\n        \"media_type\": \"application/pdf\"\"\n    }\n    \n\nThe above request will create a new document record in Fincura and return a url to send the file to, as seen below.\n\n    {\n        \"uuid\": \"d789dfd5-42ee-46df-99f2-e6725bee9678\",\n        \"upload_url\": \"https://upload.fincura.com/d789dfd5-42ee-46df-99f2-e6725bee9678/document.pdf?signature=mWFg4xsgm4EtFEt\"\n    }\n\nIn a subsequent request, the file can be sent to the `upload_url` via [HTTP PUT](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT). The `Content-Length` and `Content-Type` headers are required. The `Content-Type` should match the `media_type` from the previous request.\n\n    PUT /d789dfd5-42ee-46df-99f2-e6725bee9678/document.pdf?signature=mWFg4xsgm4EtFEt HTTP/1.1\n    Host: upload.fincura.com\n    Content-Length: 18828\n    Content-Type: application/pdf\n    \n    {FILE  DATA}\n\nFincura will begin processing the file once it has been completely uploaded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bulk-file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "media_type",
+                  "value": "<string>",
+                  "description": "(Required) [MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the file"
+                },
+                {
+                  "disabled": false,
+                  "key": "filename",
+                  "value": "<string>",
+                  "description": "Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf"
+                },
+                {
+                  "disabled": false,
+                  "key": "processor_key",
+                  "value": "<string>",
+                  "description": "Key of custom processor"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>",
+                  "description": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records."
+                },
+                {
+                  "disabled": false,
+                  "key": "custom_attributes",
+                  "value": "<object>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b7abce2e-05be-471c-ae8e-54d9e757f3a0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bulk-file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) [MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the file",
+                        "type": "text/plain"
+                      },
+                      "key": "media_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Key of custom processor",
+                        "type": "text/plain"
+                      },
+                      "key": "processor_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "custom_attributes",
+                      "value": "<object>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9c630434-097a-45f3-81f0-f6f56b753d08",
+    "name": "Automated Spreading and Analysis Api-Key Files API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****\n\nContact Support:\n Name: Moody's Automated Spreading Customer Support\n Email: MA_NMR_Support@moodys.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,335 @@
+{
+  "item": [
+    {
+      "id": "5bc02647-a9ca-4d25-b383-986df56c6395",
+      "name": "EmbeddedDocument",
+      "description": {
+        "content": "Embedded Document Workflows enable a 3rd party user to use the Fincura UI to complete a portion of our document parsing pipeline and then return to the 3rd parties website.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58ed8348-c62c-4960-96eb-6e7f08e22441",
+          "name": "retrieve Embedded Workflow",
+          "request": {
+            "name": "retrieve Embedded Workflow",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "embedded-workflow",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c67c2b7b-bf40-418a-a567-9202574ffe2e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embedded-workflow",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d358a0b-6f61-4d2b-8ad4-e1d07fff96d1",
+          "name": "create Embedded Workflow",
+          "request": {
+            "name": "create Embedded Workflow",
+            "description": {
+              "content": "Returns a URL to an HTML webapp to complete document parsing pipeline flow",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "embedded-workflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "document_file_uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the DocumentFile for this workflow"
+                },
+                {
+                  "disabled": false,
+                  "key": "embed_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "exit_step",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_url",
+                  "value": "<uri>"
+                },
+                {
+                  "disabled": false,
+                  "key": "primary_button_color",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "complete_button_label",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_exit_button",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_user_id",
+                  "value": "<string>",
+                  "description": "Id to identify the user performing the work (e.g. email or username)"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_user_label",
+                  "value": "<string>",
+                  "description": "Human readable label to identify the user performing the work (e.g. name)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "097c7445-d874-439b-b485-d9cc258bca1c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "embedded-workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the DocumentFile for this workflow",
+                        "type": "text/plain"
+                      },
+                      "key": "document_file_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "embed_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "exit_step",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "redirect_url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "primary_button_color",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "complete_button_label",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "show_exit_button",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Id to identify the user performing the work (e.g. email or username)",
+                        "type": "text/plain"
+                      },
+                      "key": "external_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Human readable label to identify the user performing the work (e.g. name)",
+                        "type": "text/plain"
+                      },
+                      "key": "external_user_label",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d843d105-0122-4138-bccd-5683485f13c9",
+    "name": "Automated Spreading and Analysis Api-Key EmbeddedDocument API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****\n\nContact Support:\n Name: Moody's Automated Spreading Customer Support\n Email: MA_NMR_Support@moodys.com",
+      "type": "text/plain"
+    }
+  }
+}

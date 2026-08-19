@@ -1,0 +1,1824 @@
+{
+  "item": [
+    {
+      "id": "1f1a40fa-bc64-4519-87f8-04d4c73d2c92",
+      "name": "Loans",
+      "description": {
+        "content": "A Borrower loan record in our system.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d30953b6-14b9-4f10-9702-5c8df760550f",
+          "name": "List Loans",
+          "request": {
+            "name": "List Loans",
+            "description": {
+              "content": "List Loan records",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5fe08e42-2438-44e2-9825-df3c91b534bb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"title\": \"string\",\n      \"borrower_uuid\": \"8e7f3b6a-6ed3-a107-1846-a808042bacef\",\n      \"borrower_info\": {\n        \"name\": \"string\",\n        \"industry\": \"MANUFACTURING\",\n        \"naics_code\": 249267,\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zipcode\": \"string\",\n        \"country\": \"string\",\n        \"email\": \"3XM2MBjrzGkYU@qDrizYZQtRGKQKDgmdhDDHNoOTth.qjgy\",\n        \"company_notes\": \"string\",\n        \"dun_bradstreet_score\": 62,\n        \"paynet_score\": \"string\"\n      },\n      \"principal\": 493220140392663000,\n      \"term_months\": 3779,\n      \"uuid\": \"2b038466-9e9a-fc8d-0133-21d45852ca02\",\n      \"description\": \"string\",\n      \"created_date\": \"1953-01-16T06:47:35.074Z\",\n      \"external_id\": \"string\",\n      \"loan_id\": \"string\",\n      \"contract_type\": \"LEASE\",\n      \"interest_rate\": 84.2677,\n      \"interest_type\": \"FIXED\",\n      \"payment_type\": \"PRINCIPAL_PLUS_INTEREST\",\n      \"state\": \"PAID_OFF\",\n      \"payment_status\": \"CURRENT\",\n      \"start_date\": \"1958-04-12\",\n      \"end_date\": \"2006-07-05\",\n      \"monthly_payment\": 1291439724358672000,\n      \"payments_remaining\": 6161,\n      \"outstanding_principal\": 30240574786649430,\n      \"interest_accrued\": 1720578981963932700,\n      \"loan_to_value\": 16667.27,\n      \"scorecard\": \"FAILED\",\n      \"collateral_type\": \"REAL_ESTATE\",\n      \"collateral_value\": 691321627452357600,\n      \"collateral_life_months\": 6793,\n      \"residual_value\": 200220972726979600,\n      \"balloon_payment\": 513343619510364700,\n      \"last_payment_date\": \"2019-01-25\",\n      \"compliance_info\": {\n        \"ofac_sanctions\": true,\n        \"pacer_bankruptcies\": false,\n        \"state_court_claims\": true,\n        \"divisions_of_corp_report\": false\n      },\n      \"documents\": [\n        {\n          \"uuid\": \"3f79ba22-e132-ca33-9d2a-26eab7e4d5d3\",\n          \"status\": \"string\",\n          \"created_date\": \"1978-01-08T04:04:48.347Z\",\n          \"filename\": \"string\",\n          \"statement_types\": [\n            \"OTHER\"\n          ],\n          \"custom_attributes\": {}\n        },\n        {\n          \"uuid\": \"7719da8e-8236-41cd-69f1-c351ebf3059d\",\n          \"status\": \"string\",\n          \"created_date\": \"2002-10-05T07:52:49.342Z\",\n          \"filename\": \"string\",\n          \"statement_types\": [\n            \"OTHER\"\n          ],\n          \"custom_attributes\": {}\n        }\n      ],\n      \"financials\": {\n        \"data_overrides\": [\n          [\n            \"string\",\n            \"string\"\n          ],\n          [\n            \"string\",\n            \"string\"\n          ]\n        ],\n        \"template_items\": [\n          {\n            \"ref\": \"string\",\n            \"label\": \"string\",\n            \"item_type\": \"string\",\n            \"text_format\": \"PERCENT\",\n            \"original_equation\": \"string\",\n            \"equation_override\": \"string\",\n            \"line_item_id\": 365,\n            \"display_bold\": true,\n            \"num_decimals\": 5805\n          },\n          {\n            \"ref\": \"string\",\n            \"label\": \"string\",\n            \"item_type\": \"string\",\n            \"text_format\": \"RATIO\",\n            \"original_equation\": \"string\",\n            \"equation_override\": \"string\",\n            \"line_item_id\": 9469,\n            \"display_bold\": false,\n            \"num_decimals\": 6002\n          }\n        ],\n        \"data_columns\": [\n          {\n            \"header\": \"string\",\n            \"statement_date\": \"1977-06-14\",\n            \"reporting_period\": \"string\",\n            \"preparation_type\": \"string\",\n            \"months_in_interval\": 5383,\n            \"reporting_interval\": \"string\",\n            \"prepared_by\": \"string\",\n            \"cells\": [\n              {\n                \"line_item_id\": 3983,\n                \"ref\": \"string\",\n                \"calculated_value\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              {\n                \"line_item_id\": 8330,\n                \"ref\": \"string\",\n                \"calculated_value\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"header\": \"string\",\n            \"statement_date\": \"1957-05-21\",\n            \"reporting_period\": \"string\",\n            \"preparation_type\": \"string\",\n            \"months_in_interval\": 1647,\n            \"reporting_interval\": \"string\",\n            \"prepared_by\": \"string\",\n            \"cells\": [\n              {\n                \"line_item_id\": 363,\n                \"ref\": \"string\",\n                \"calculated_value\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              {\n                \"line_item_id\": 2711,\n                \"ref\": \"string\",\n                \"calculated_value\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      },\n      \"analysis_commentary\": \"string\",\n      \"guarantors\": [\n        {\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"credit_score\": \"string\",\n          \"credit_score_source\": \"string\"\n        },\n        {\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"credit_score\": \"string\",\n          \"credit_score_source\": \"string\"\n        }\n      ],\n      \"prior_year_financials\": {\n        \"statement_date\": \"1976-10-08\",\n        \"preparation_type\": \"string\",\n        \"net_income\": 1524209144168178700\n      },\n      \"custom_attributes\": {}\n    },\n    {\n      \"title\": \"string\",\n      \"borrower_uuid\": \"6ed0ad17-2442-0ab3-c397-011f38efc7ea\",\n      \"borrower_info\": {\n        \"name\": \"string\",\n        \"industry\": \"MINING\",\n        \"naics_code\": 861359,\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zipcode\": \"string\",\n        \"country\": \"string\",\n        \"email\": \"iazLW4tlnWV64@jKvdjXAN.gw\",\n        \"company_notes\": \"string\",\n        \"dun_bradstreet_score\": 74,\n        \"paynet_score\": \"string\"\n      },\n      \"principal\": 34207331640975668,\n      \"term_months\": 1790,\n      \"uuid\": \"8e7080f6-41c0-9020-e061-bab8f33ae76b\",\n      \"description\": \"string\",\n      \"created_date\": \"1975-03-24T21:29:06.052Z\",\n      \"external_id\": \"string\",\n      \"loan_id\": \"string\",\n      \"contract_type\": \"LEASE\",\n      \"interest_rate\": 16.0931,\n      \"interest_type\": \"ADJUSTABLE\",\n      \"payment_type\": \"IO_PERIOD\",\n      \"state\": \"DECLINED\",\n      \"payment_status\": \"GRACE_PERIOD\",\n      \"start_date\": \"1985-11-17\",\n      \"end_date\": \"1981-06-15\",\n      \"monthly_payment\": 597012948072736500,\n      \"payments_remaining\": 3703,\n      \"outstanding_principal\": 1603734294577327400,\n      \"interest_accrued\": 963022955867483900,\n      \"loan_to_value\": 11035.07,\n      \"scorecard\": \"FAILED\",\n      \"collateral_type\": \"REAL_ESTATE\",\n      \"collateral_value\": 838462164429781200,\n      \"collateral_life_months\": 3864,\n      \"residual_value\": 424371782699493440,\n      \"balloon_payment\": 159752402680396700,\n      \"last_payment_date\": \"1997-09-09\",\n      \"compliance_info\": {\n        \"ofac_sanctions\": false,\n        \"pacer_bankruptcies\": true,\n        \"state_court_claims\": false,\n        \"divisions_of_corp_report\": true\n      },\n      \"documents\": [\n        {\n          \"uuid\": \"9d04a722-0115-3322-4c6a-a5312a9729ae\",\n          \"status\": \"string\",\n          \"created_date\": \"2000-02-12T00:34:07.395Z\",\n          \"filename\": \"string\",\n          \"statement_types\": [\n            \"OTHER\"\n          ],\n          \"custom_attributes\": {}\n        },\n        {\n          \"uuid\": \"b5943f4f-d255-3a77-b351-425395b64e16\",\n          \"status\": \"string\",\n          \"created_date\": \"1952-07-19T03:27:14.405Z\",\n          \"filename\": \"string\",\n          \"statement_types\": [\n            \"OTHER\"\n          ],\n          \"custom_attributes\": {}\n        }\n      ],\n      \"financials\": {\n        \"data_overrides\": [\n          [\n            \"string\",\n            \"string\"\n          ],\n          [\n            \"string\",\n            \"string\"\n          ]\n        ],\n        \"template_items\": [\n          {\n            \"ref\": \"string\",\n            \"label\": \"string\",\n            \"item_type\": \"string\",\n            \"text_format\": \"PERCENT\",\n            \"original_equation\": \"string\",\n            \"equation_override\": \"string\",\n            \"line_item_id\": 3763,\n            \"display_bold\": false,\n            \"num_decimals\": 9158\n          },\n          {\n            \"ref\": \"string\",\n            \"label\": \"string\",\n            \"item_type\": \"string\",\n            \"text_format\": \"NUMBER\",\n            \"original_equation\": \"string\",\n            \"equation_override\": \"string\",\n            \"line_item_id\": 9572,\n            \"display_bold\": false,\n            \"num_decimals\": 2137\n          }\n        ],\n        \"data_columns\": [\n          {\n            \"header\": \"string\",\n            \"statement_date\": \"1956-04-19\",\n            \"reporting_period\": \"string\",\n            \"preparation_type\": \"string\",\n            \"months_in_interval\": 7913,\n            \"reporting_interval\": \"string\",\n            \"prepared_by\": \"string\",\n            \"cells\": [\n              {\n                \"line_item_id\": 3250,\n                \"ref\": \"string\",\n                \"calculated_value\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              {\n                \"line_item_id\": 8574,\n                \"ref\": \"string\",\n                \"calculated_value\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"header\": \"string\",\n            \"statement_date\": \"2025-12-02\",\n            \"reporting_period\": \"string\",\n            \"preparation_type\": \"string\",\n            \"months_in_interval\": 9571,\n            \"reporting_interval\": \"string\",\n            \"prepared_by\": \"string\",\n            \"cells\": [\n              {\n                \"line_item_id\": 8436,\n                \"ref\": \"string\",\n                \"calculated_value\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              {\n                \"line_item_id\": 3242,\n                \"ref\": \"string\",\n                \"calculated_value\": {\n                  \"value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      },\n      \"analysis_commentary\": \"string\",\n      \"guarantors\": [\n        {\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"credit_score\": \"string\",\n          \"credit_score_source\": \"string\"\n        },\n        {\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"credit_score\": \"string\",\n          \"credit_score_source\": \"string\"\n        }\n      ],\n      \"prior_year_financials\": {\n        \"statement_date\": \"1986-10-07\",\n        \"preparation_type\": \"string\",\n        \"net_income\": 723709265327942300\n      },\n      \"custom_attributes\": {}\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?offset=400&limit=100\",\n  \"previous\": \"http://api.example.org/accounts/?offset=200&limit=100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b756d3e4-36d9-43d8-92af-c66ad974b4f8",
+          "name": "Create a new Loan",
+          "request": {
+            "name": "Create a new Loan",
+            "description": {
+              "content": "Create a new Loan record",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>",
+                  "description": "(Required) Title of the Loan. Must be unique for the Borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the borrower for this loan. (see [Borrowers](#tag/Borrowers))"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "naics_code",
+                  "value": "<integer>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "zipcode",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_notes",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dun_bradstreet_score",
+                  "value": "<integer>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "paynet_score",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "principal",
+                  "value": "<number>",
+                  "description": "(Required) Original principal value"
+                },
+                {
+                  "disabled": false,
+                  "key": "term_months",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>",
+                  "description": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records."
+                },
+                {
+                  "disabled": false,
+                  "key": "loan_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "contract_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "interest_rate",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "interest_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "payment_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "payment_status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "scorecard",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "collateral_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "collateral_value",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "collateral_life_months",
+                  "value": "<integer>",
+                  "description": "The life of the collateral in months"
+                },
+                {
+                  "disabled": false,
+                  "key": "residual_value",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "balloon_payment",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_payment_date",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ofac_sanctions",
+                  "value": "<boolean>",
+                  "description": "Compliance information for this loan and borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "pacer_bankruptcies",
+                  "value": "<boolean>",
+                  "description": "Compliance information for this loan and borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "state_court_claims",
+                  "value": "<boolean>",
+                  "description": "Compliance information for this loan and borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "divisions_of_corp_report",
+                  "value": "<boolean>",
+                  "description": "Compliance information for this loan and borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "template_uuid",
+                  "value": "<uuid>",
+                  "description": "DSRC template to use for finanical information"
+                },
+                {
+                  "disabled": false,
+                  "key": "periods",
+                  "value": "{\"reporting_period\":\"<string>\",\"preparation_type\":\"<string>\"}",
+                  "description": "ReportingPeriod's to include in the loan financial information"
+                },
+                {
+                  "disabled": false,
+                  "key": "periods",
+                  "value": "{\"reporting_period\":\"<string>\",\"preparation_type\":\"<string>\"}",
+                  "description": "ReportingPeriod's to include in the loan financial information"
+                },
+                {
+                  "disabled": false,
+                  "key": "documents",
+                  "value": "{\"uuid\":\"<uuid>\"}",
+                  "description": "Additional DocumentFile's to be included with loan information"
+                },
+                {
+                  "disabled": false,
+                  "key": "documents",
+                  "value": "{\"uuid\":\"<uuid>\"}",
+                  "description": "Additional DocumentFile's to be included with loan information"
+                },
+                {
+                  "disabled": false,
+                  "key": "data_overrides",
+                  "value": "[[\"<string>\",\"<string>\"],[\"<string>\",\"<string>\"]]"
+                },
+                {
+                  "disabled": false,
+                  "key": "analysis_commentary",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "guarantors",
+                  "value": "{\"first_name\":\"<string>\",\"last_name\":\"<string>\",\"credit_score\":\"<string>\",\"credit_score_source\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "guarantors",
+                  "value": "{\"first_name\":\"<string>\",\"last_name\":\"<string>\",\"credit_score\":\"<string>\",\"credit_score_source\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "custom_attributes",
+                  "value": "<object>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "046bdebf-5151-43bc-85ae-01511d6bc8e1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Title of the Loan. Must be unique for the Borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the borrower for this loan. (see [Borrowers](#tag/Borrowers))",
+                        "type": "text/plain"
+                      },
+                      "key": "borrower_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "naics_code",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "zipcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "company_notes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "dun_bradstreet_score",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "paynet_score",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Original principal value",
+                        "type": "text/plain"
+                      },
+                      "key": "principal",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "term_months",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "loan_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contract_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "interest_rate",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "interest_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "payment_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "payment_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "scorecard",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "collateral_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "collateral_value",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The life of the collateral in months",
+                        "type": "text/plain"
+                      },
+                      "key": "collateral_life_months",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "residual_value",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "balloon_payment",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "last_payment_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Compliance information for this loan and borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "ofac_sanctions",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Compliance information for this loan and borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "pacer_bankruptcies",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Compliance information for this loan and borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "state_court_claims",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Compliance information for this loan and borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "divisions_of_corp_report",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "DSRC template to use for finanical information",
+                        "type": "text/plain"
+                      },
+                      "key": "template_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "ReportingPeriod's to include in the loan financial information",
+                        "type": "text/plain"
+                      },
+                      "key": "periods",
+                      "value": "{\"reporting_period\":\"<string>\",\"preparation_type\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "ReportingPeriod's to include in the loan financial information",
+                        "type": "text/plain"
+                      },
+                      "key": "periods",
+                      "value": "{\"reporting_period\":\"<string>\",\"preparation_type\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Additional DocumentFile's to be included with loan information",
+                        "type": "text/plain"
+                      },
+                      "key": "documents",
+                      "value": "{\"uuid\":\"<uuid>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Additional DocumentFile's to be included with loan information",
+                        "type": "text/plain"
+                      },
+                      "key": "documents",
+                      "value": "{\"uuid\":\"<uuid>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "data_overrides",
+                      "value": "[[\"<string>\",\"<string>\"],[\"<string>\",\"<string>\"]]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "analysis_commentary",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "guarantors",
+                      "value": "{\"first_name\":\"<string>\",\"last_name\":\"<string>\",\"credit_score\":\"<string>\",\"credit_score_source\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "guarantors",
+                      "value": "{\"first_name\":\"<string>\",\"last_name\":\"<string>\",\"credit_score\":\"<string>\",\"credit_score_source\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "custom_attributes",
+                      "value": "<object>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"<string>\",\n  \"borrower_uuid\": \"<uuid>\",\n  \"borrower_info\": {\n    \"name\": \"<string>\",\n    \"industry\": \"<string>\",\n    \"naics_code\": \"<integer>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<email>\",\n    \"company_notes\": \"<string>\",\n    \"dun_bradstreet_score\": \"<integer>\",\n    \"paynet_score\": \"<string>\"\n  },\n  \"principal\": \"<number>\",\n  \"term_months\": \"<integer>\",\n  \"uuid\": \"d76e3e4a-b437-e8b1-e536-3e52f6ffea4a\",\n  \"description\": \"<string>\",\n  \"created_date\": \"1989-08-02T17:01:27.169Z\",\n  \"external_id\": \"<string>\",\n  \"loan_id\": \"<string>\",\n  \"contract_type\": \"<string>\",\n  \"interest_rate\": \"<number>\",\n  \"interest_type\": \"<string>\",\n  \"payment_type\": \"<string>\",\n  \"state\": \"<string>\",\n  \"payment_status\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"1997-09-11\",\n  \"monthly_payment\": 278477333320484640,\n  \"payments_remaining\": 4864,\n  \"outstanding_principal\": 841059433915331100,\n  \"interest_accrued\": 1756653920981209900,\n  \"loan_to_value\": 10075.66,\n  \"scorecard\": \"<string>\",\n  \"collateral_type\": \"<string>\",\n  \"collateral_value\": \"<number>\",\n  \"collateral_life_months\": \"<integer>\",\n  \"residual_value\": \"<number>\",\n  \"balloon_payment\": \"<number>\",\n  \"last_payment_date\": \"<date>\",\n  \"compliance_info\": {\n    \"ofac_sanctions\": \"<boolean>\",\n    \"pacer_bankruptcies\": \"<boolean>\",\n    \"state_court_claims\": \"<boolean>\",\n    \"divisions_of_corp_report\": \"<boolean>\"\n  },\n  \"documents\": [\n    {\n      \"uuid\": \"<uuid>\",\n      \"status\": \"string\",\n      \"created_date\": \"1961-08-08T23:35:35.631Z\",\n      \"filename\": \"string\",\n      \"statement_types\": [\n        \"OTHER\"\n      ],\n      \"custom_attributes\": {}\n    },\n    {\n      \"uuid\": \"<uuid>\",\n      \"status\": \"string\",\n      \"created_date\": \"1965-10-29T02:47:54.534Z\",\n      \"filename\": \"string\",\n      \"statement_types\": [\n        \"OTHER\"\n      ],\n      \"custom_attributes\": {}\n    }\n  ],\n  \"financials\": {\n    \"data_overrides\": [\n      [\n        \"<string>\",\n        \"<string>\"\n      ],\n      [\n        \"<string>\",\n        \"<string>\"\n      ]\n    ],\n    \"template_items\": [\n      {\n        \"ref\": \"string\",\n        \"label\": \"string\",\n        \"item_type\": \"string\",\n        \"text_format\": \"DAYS\",\n        \"original_equation\": \"string\",\n        \"equation_override\": \"string\",\n        \"line_item_id\": 2562,\n        \"display_bold\": false,\n        \"num_decimals\": 27\n      },\n      {\n        \"ref\": \"string\",\n        \"label\": \"string\",\n        \"item_type\": \"string\",\n        \"text_format\": \"RATIO\",\n        \"original_equation\": \"string\",\n        \"equation_override\": \"string\",\n        \"line_item_id\": 7425,\n        \"display_bold\": true,\n        \"num_decimals\": 7217\n      }\n    ],\n    \"data_columns\": [\n      {\n        \"header\": \"string\",\n        \"statement_date\": \"2014-12-27\",\n        \"reporting_period\": \"string\",\n        \"preparation_type\": \"string\",\n        \"months_in_interval\": 55,\n        \"reporting_interval\": \"string\",\n        \"prepared_by\": \"string\",\n        \"cells\": [\n          {\n            \"line_item_id\": 4653,\n            \"ref\": \"string\",\n            \"calculated_value\": {\n              \"value\": 137975308755302180\n            }\n          },\n          {\n            \"line_item_id\": 9650,\n            \"ref\": \"string\",\n            \"calculated_value\": {\n              \"value\": 801068558281220100\n            }\n          }\n        ]\n      },\n      {\n        \"header\": \"string\",\n        \"statement_date\": \"1955-12-01\",\n        \"reporting_period\": \"string\",\n        \"preparation_type\": \"string\",\n        \"months_in_interval\": 552,\n        \"reporting_interval\": \"string\",\n        \"prepared_by\": \"string\",\n        \"cells\": [\n          {\n            \"line_item_id\": 8729,\n            \"ref\": \"string\",\n            \"calculated_value\": {\n              \"value\": 1046209864960675800\n            }\n          },\n          {\n            \"line_item_id\": 8099,\n            \"ref\": \"string\",\n            \"calculated_value\": {\n              \"value\": 1378212439174110700\n            }\n          }\n        ]\n      }\n    ]\n  },\n  \"analysis_commentary\": \"<string>\",\n  \"guarantors\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"credit_score\": \"<string>\",\n      \"credit_score_source\": \"<string>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"credit_score\": \"<string>\",\n      \"credit_score_source\": \"<string>\"\n    }\n  ],\n  \"prior_year_financials\": {\n    \"statement_date\": \"1963-01-30\",\n    \"preparation_type\": \"string\",\n    \"net_income\": 1441699384151734000\n  },\n  \"custom_attributes\": \"<object>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04e976e2-8c3f-4963-b649-3d91d8a265bf",
+          "name": "Retrieve a Loan",
+          "request": {
+            "name": "Retrieve a Loan",
+            "description": {
+              "content": "Retrieve a Loan",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loan",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e857c51b-8de8-4048-a73c-0bead2d04b04",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loan",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"<string>\",\n  \"borrower_uuid\": \"<uuid>\",\n  \"borrower_info\": {\n    \"name\": \"<string>\",\n    \"industry\": \"<string>\",\n    \"naics_code\": \"<integer>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<email>\",\n    \"company_notes\": \"<string>\",\n    \"dun_bradstreet_score\": \"<integer>\",\n    \"paynet_score\": \"<string>\"\n  },\n  \"principal\": \"<number>\",\n  \"term_months\": \"<integer>\",\n  \"uuid\": \"d76e3e4a-b437-e8b1-e536-3e52f6ffea4a\",\n  \"description\": \"<string>\",\n  \"created_date\": \"1989-08-02T17:01:27.169Z\",\n  \"external_id\": \"<string>\",\n  \"loan_id\": \"<string>\",\n  \"contract_type\": \"<string>\",\n  \"interest_rate\": \"<number>\",\n  \"interest_type\": \"<string>\",\n  \"payment_type\": \"<string>\",\n  \"state\": \"<string>\",\n  \"payment_status\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"1997-09-11\",\n  \"monthly_payment\": 278477333320484640,\n  \"payments_remaining\": 4864,\n  \"outstanding_principal\": 841059433915331100,\n  \"interest_accrued\": 1756653920981209900,\n  \"loan_to_value\": 10075.66,\n  \"scorecard\": \"<string>\",\n  \"collateral_type\": \"<string>\",\n  \"collateral_value\": \"<number>\",\n  \"collateral_life_months\": \"<integer>\",\n  \"residual_value\": \"<number>\",\n  \"balloon_payment\": \"<number>\",\n  \"last_payment_date\": \"<date>\",\n  \"compliance_info\": {\n    \"ofac_sanctions\": \"<boolean>\",\n    \"pacer_bankruptcies\": \"<boolean>\",\n    \"state_court_claims\": \"<boolean>\",\n    \"divisions_of_corp_report\": \"<boolean>\"\n  },\n  \"documents\": [\n    {\n      \"uuid\": \"<uuid>\",\n      \"status\": \"string\",\n      \"created_date\": \"1961-08-08T23:35:35.631Z\",\n      \"filename\": \"string\",\n      \"statement_types\": [\n        \"OTHER\"\n      ],\n      \"custom_attributes\": {}\n    },\n    {\n      \"uuid\": \"<uuid>\",\n      \"status\": \"string\",\n      \"created_date\": \"1965-10-29T02:47:54.534Z\",\n      \"filename\": \"string\",\n      \"statement_types\": [\n        \"OTHER\"\n      ],\n      \"custom_attributes\": {}\n    }\n  ],\n  \"financials\": {\n    \"data_overrides\": [\n      [\n        \"<string>\",\n        \"<string>\"\n      ],\n      [\n        \"<string>\",\n        \"<string>\"\n      ]\n    ],\n    \"template_items\": [\n      {\n        \"ref\": \"string\",\n        \"label\": \"string\",\n        \"item_type\": \"string\",\n        \"text_format\": \"DAYS\",\n        \"original_equation\": \"string\",\n        \"equation_override\": \"string\",\n        \"line_item_id\": 2562,\n        \"display_bold\": false,\n        \"num_decimals\": 27\n      },\n      {\n        \"ref\": \"string\",\n        \"label\": \"string\",\n        \"item_type\": \"string\",\n        \"text_format\": \"RATIO\",\n        \"original_equation\": \"string\",\n        \"equation_override\": \"string\",\n        \"line_item_id\": 7425,\n        \"display_bold\": true,\n        \"num_decimals\": 7217\n      }\n    ],\n    \"data_columns\": [\n      {\n        \"header\": \"string\",\n        \"statement_date\": \"2014-12-27\",\n        \"reporting_period\": \"string\",\n        \"preparation_type\": \"string\",\n        \"months_in_interval\": 55,\n        \"reporting_interval\": \"string\",\n        \"prepared_by\": \"string\",\n        \"cells\": [\n          {\n            \"line_item_id\": 4653,\n            \"ref\": \"string\",\n            \"calculated_value\": {\n              \"value\": 137975308755302180\n            }\n          },\n          {\n            \"line_item_id\": 9650,\n            \"ref\": \"string\",\n            \"calculated_value\": {\n              \"value\": 801068558281220100\n            }\n          }\n        ]\n      },\n      {\n        \"header\": \"string\",\n        \"statement_date\": \"1955-12-01\",\n        \"reporting_period\": \"string\",\n        \"preparation_type\": \"string\",\n        \"months_in_interval\": 552,\n        \"reporting_interval\": \"string\",\n        \"prepared_by\": \"string\",\n        \"cells\": [\n          {\n            \"line_item_id\": 8729,\n            \"ref\": \"string\",\n            \"calculated_value\": {\n              \"value\": 1046209864960675800\n            }\n          },\n          {\n            \"line_item_id\": 8099,\n            \"ref\": \"string\",\n            \"calculated_value\": {\n              \"value\": 1378212439174110700\n            }\n          }\n        ]\n      }\n    ]\n  },\n  \"analysis_commentary\": \"<string>\",\n  \"guarantors\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"credit_score\": \"<string>\",\n      \"credit_score_source\": \"<string>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"credit_score\": \"<string>\",\n      \"credit_score_source\": \"<string>\"\n    }\n  ],\n  \"prior_year_financials\": {\n    \"statement_date\": \"1963-01-30\",\n    \"preparation_type\": \"string\",\n    \"net_income\": 1441699384151734000\n  },\n  \"custom_attributes\": \"<object>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5744da2c-b031-43e8-b07f-547f469d63a9",
+          "name": "Update a Loan",
+          "request": {
+            "name": "Update a Loan",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loan",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>",
+                  "description": "(Required) Title of the Loan. Must be unique for the Borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the borrower for this loan. (see [Borrowers](#tag/Borrowers))"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "naics_code",
+                  "value": "<integer>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "zipcode",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_notes",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dun_bradstreet_score",
+                  "value": "<integer>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "paynet_score",
+                  "value": "<string>",
+                  "description": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)"
+                },
+                {
+                  "disabled": false,
+                  "key": "principal",
+                  "value": "<number>",
+                  "description": "(Required) Original principal value"
+                },
+                {
+                  "disabled": false,
+                  "key": "term_months",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>",
+                  "description": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records."
+                },
+                {
+                  "disabled": false,
+                  "key": "loan_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "contract_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "interest_rate",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "interest_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "payment_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "payment_status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "scorecard",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "collateral_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "collateral_value",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "collateral_life_months",
+                  "value": "<integer>",
+                  "description": "The life of the collateral in months"
+                },
+                {
+                  "disabled": false,
+                  "key": "residual_value",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "balloon_payment",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_payment_date",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ofac_sanctions",
+                  "value": "<boolean>",
+                  "description": "Compliance information for this loan and borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "pacer_bankruptcies",
+                  "value": "<boolean>",
+                  "description": "Compliance information for this loan and borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "state_court_claims",
+                  "value": "<boolean>",
+                  "description": "Compliance information for this loan and borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "divisions_of_corp_report",
+                  "value": "<boolean>",
+                  "description": "Compliance information for this loan and borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "template_uuid",
+                  "value": "<uuid>",
+                  "description": "DSRC template to use for finanical information"
+                },
+                {
+                  "disabled": false,
+                  "key": "periods",
+                  "value": "{\"reporting_period\":\"<string>\",\"preparation_type\":\"<string>\"}",
+                  "description": "ReportingPeriod's to include in the loan financial information"
+                },
+                {
+                  "disabled": false,
+                  "key": "periods",
+                  "value": "{\"reporting_period\":\"<string>\",\"preparation_type\":\"<string>\"}",
+                  "description": "ReportingPeriod's to include in the loan financial information"
+                },
+                {
+                  "disabled": false,
+                  "key": "documents",
+                  "value": "{\"uuid\":\"<uuid>\"}",
+                  "description": "Additional DocumentFile's to be included with loan information"
+                },
+                {
+                  "disabled": false,
+                  "key": "documents",
+                  "value": "{\"uuid\":\"<uuid>\"}",
+                  "description": "Additional DocumentFile's to be included with loan information"
+                },
+                {
+                  "disabled": false,
+                  "key": "data_overrides",
+                  "value": "[[\"<string>\",\"<string>\"],[\"<string>\",\"<string>\"]]"
+                },
+                {
+                  "disabled": false,
+                  "key": "analysis_commentary",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "guarantors",
+                  "value": "{\"first_name\":\"<string>\",\"last_name\":\"<string>\",\"credit_score\":\"<string>\",\"credit_score_source\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "guarantors",
+                  "value": "{\"first_name\":\"<string>\",\"last_name\":\"<string>\",\"credit_score\":\"<string>\",\"credit_score_source\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "custom_attributes",
+                  "value": "<object>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e7f1b7fe-9a6f-459e-95fc-70982751bae2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loan",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Title of the Loan. Must be unique for the Borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the borrower for this loan. (see [Borrowers](#tag/Borrowers))",
+                        "type": "text/plain"
+                      },
+                      "key": "borrower_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "naics_code",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "zipcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "company_notes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "dun_bradstreet_score",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Borrower information specific to this loan (does not update the underlying Borrower)",
+                        "type": "text/plain"
+                      },
+                      "key": "paynet_score",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Original principal value",
+                        "type": "text/plain"
+                      },
+                      "key": "principal",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "term_months",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "loan_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "contract_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "interest_rate",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "interest_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "payment_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "payment_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "scorecard",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "collateral_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "collateral_value",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The life of the collateral in months",
+                        "type": "text/plain"
+                      },
+                      "key": "collateral_life_months",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "residual_value",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "balloon_payment",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "last_payment_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Compliance information for this loan and borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "ofac_sanctions",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Compliance information for this loan and borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "pacer_bankruptcies",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Compliance information for this loan and borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "state_court_claims",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Compliance information for this loan and borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "divisions_of_corp_report",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "DSRC template to use for finanical information",
+                        "type": "text/plain"
+                      },
+                      "key": "template_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "ReportingPeriod's to include in the loan financial information",
+                        "type": "text/plain"
+                      },
+                      "key": "periods",
+                      "value": "{\"reporting_period\":\"<string>\",\"preparation_type\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "ReportingPeriod's to include in the loan financial information",
+                        "type": "text/plain"
+                      },
+                      "key": "periods",
+                      "value": "{\"reporting_period\":\"<string>\",\"preparation_type\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Additional DocumentFile's to be included with loan information",
+                        "type": "text/plain"
+                      },
+                      "key": "documents",
+                      "value": "{\"uuid\":\"<uuid>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Additional DocumentFile's to be included with loan information",
+                        "type": "text/plain"
+                      },
+                      "key": "documents",
+                      "value": "{\"uuid\":\"<uuid>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "data_overrides",
+                      "value": "[[\"<string>\",\"<string>\"],[\"<string>\",\"<string>\"]]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "analysis_commentary",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "guarantors",
+                      "value": "{\"first_name\":\"<string>\",\"last_name\":\"<string>\",\"credit_score\":\"<string>\",\"credit_score_source\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "guarantors",
+                      "value": "{\"first_name\":\"<string>\",\"last_name\":\"<string>\",\"credit_score\":\"<string>\",\"credit_score_source\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "custom_attributes",
+                      "value": "<object>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"<string>\",\n  \"borrower_uuid\": \"<uuid>\",\n  \"borrower_info\": {\n    \"name\": \"<string>\",\n    \"industry\": \"<string>\",\n    \"naics_code\": \"<integer>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<email>\",\n    \"company_notes\": \"<string>\",\n    \"dun_bradstreet_score\": \"<integer>\",\n    \"paynet_score\": \"<string>\"\n  },\n  \"principal\": \"<number>\",\n  \"term_months\": \"<integer>\",\n  \"uuid\": \"d76e3e4a-b437-e8b1-e536-3e52f6ffea4a\",\n  \"description\": \"<string>\",\n  \"created_date\": \"1989-08-02T17:01:27.169Z\",\n  \"external_id\": \"<string>\",\n  \"loan_id\": \"<string>\",\n  \"contract_type\": \"<string>\",\n  \"interest_rate\": \"<number>\",\n  \"interest_type\": \"<string>\",\n  \"payment_type\": \"<string>\",\n  \"state\": \"<string>\",\n  \"payment_status\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"1997-09-11\",\n  \"monthly_payment\": 278477333320484640,\n  \"payments_remaining\": 4864,\n  \"outstanding_principal\": 841059433915331100,\n  \"interest_accrued\": 1756653920981209900,\n  \"loan_to_value\": 10075.66,\n  \"scorecard\": \"<string>\",\n  \"collateral_type\": \"<string>\",\n  \"collateral_value\": \"<number>\",\n  \"collateral_life_months\": \"<integer>\",\n  \"residual_value\": \"<number>\",\n  \"balloon_payment\": \"<number>\",\n  \"last_payment_date\": \"<date>\",\n  \"compliance_info\": {\n    \"ofac_sanctions\": \"<boolean>\",\n    \"pacer_bankruptcies\": \"<boolean>\",\n    \"state_court_claims\": \"<boolean>\",\n    \"divisions_of_corp_report\": \"<boolean>\"\n  },\n  \"documents\": [\n    {\n      \"uuid\": \"<uuid>\",\n      \"status\": \"string\",\n      \"created_date\": \"1961-08-08T23:35:35.631Z\",\n      \"filename\": \"string\",\n      \"statement_types\": [\n        \"OTHER\"\n      ],\n      \"custom_attributes\": {}\n    },\n    {\n      \"uuid\": \"<uuid>\",\n      \"status\": \"string\",\n      \"created_date\": \"1965-10-29T02:47:54.534Z\",\n      \"filename\": \"string\",\n      \"statement_types\": [\n        \"OTHER\"\n      ],\n      \"custom_attributes\": {}\n    }\n  ],\n  \"financials\": {\n    \"data_overrides\": [\n      [\n        \"<string>\",\n        \"<string>\"\n      ],\n      [\n        \"<string>\",\n        \"<string>\"\n      ]\n    ],\n    \"template_items\": [\n      {\n        \"ref\": \"string\",\n        \"label\": \"string\",\n        \"item_type\": \"string\",\n        \"text_format\": \"DAYS\",\n        \"original_equation\": \"string\",\n        \"equation_override\": \"string\",\n        \"line_item_id\": 2562,\n        \"display_bold\": false,\n        \"num_decimals\": 27\n      },\n      {\n        \"ref\": \"string\",\n        \"label\": \"string\",\n        \"item_type\": \"string\",\n        \"text_format\": \"RATIO\",\n        \"original_equation\": \"string\",\n        \"equation_override\": \"string\",\n        \"line_item_id\": 7425,\n        \"display_bold\": true,\n        \"num_decimals\": 7217\n      }\n    ],\n    \"data_columns\": [\n      {\n        \"header\": \"string\",\n        \"statement_date\": \"2014-12-27\",\n        \"reporting_period\": \"string\",\n        \"preparation_type\": \"string\",\n        \"months_in_interval\": 55,\n        \"reporting_interval\": \"string\",\n        \"prepared_by\": \"string\",\n        \"cells\": [\n          {\n            \"line_item_id\": 4653,\n            \"ref\": \"string\",\n            \"calculated_value\": {\n              \"value\": 137975308755302180\n            }\n          },\n          {\n            \"line_item_id\": 9650,\n            \"ref\": \"string\",\n            \"calculated_value\": {\n              \"value\": 801068558281220100\n            }\n          }\n        ]\n      },\n      {\n        \"header\": \"string\",\n        \"statement_date\": \"1955-12-01\",\n        \"reporting_period\": \"string\",\n        \"preparation_type\": \"string\",\n        \"months_in_interval\": 552,\n        \"reporting_interval\": \"string\",\n        \"prepared_by\": \"string\",\n        \"cells\": [\n          {\n            \"line_item_id\": 8729,\n            \"ref\": \"string\",\n            \"calculated_value\": {\n              \"value\": 1046209864960675800\n            }\n          },\n          {\n            \"line_item_id\": 8099,\n            \"ref\": \"string\",\n            \"calculated_value\": {\n              \"value\": 1378212439174110700\n            }\n          }\n        ]\n      }\n    ]\n  },\n  \"analysis_commentary\": \"<string>\",\n  \"guarantors\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"credit_score\": \"<string>\",\n      \"credit_score_source\": \"<string>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"credit_score\": \"<string>\",\n      \"credit_score_source\": \"<string>\"\n    }\n  ],\n  \"prior_year_financials\": {\n    \"statement_date\": \"1963-01-30\",\n    \"preparation_type\": \"string\",\n    \"net_income\": 1441699384151734000\n  },\n  \"custom_attributes\": \"<object>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3a7045e-14a0-4535-bf04-76faa38fdfac",
+          "name": "Delete a Loan",
+          "request": {
+            "name": "Delete a Loan",
+            "description": {
+              "content": "Delete a loan from Fincura.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loan",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0db0a297-54dd-47ae-85e7-36d30793989b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loan",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "14eec621-a16d-40e3-95f4-8365c1e9a97c",
+    "name": "Automated Spreading and Analysis Api-Key Loans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****\n\nContact Support:\n Name: Moody's Automated Spreading Customer Support\n Email: MA_NMR_Support@moodys.com",
+      "type": "text/plain"
+    }
+  }
+}

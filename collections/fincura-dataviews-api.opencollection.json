@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automated Spreading and Analysis Api-Key DataViews API",
+    "version": "1.3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DataViews",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get DataView from a DocumentFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/data-view/from_document_file/:document_file_uuid",
+            "params": [
+              {
+                "name": "document_file_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a DataView from the standardized output of a DocumentFile submitted to Fincura"
+        },
+        {
+          "info": {
+            "name": "Get DataView from a DocumentFile in CreditLens format",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/data-view/from_document_file/:document_file_uuid/creditlens",
+            "params": [
+              {
+                "name": "document_file_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a DataView from the standardized output of a DocumentFile submitted to Fincura in CreditLens format"
+        },
+        {
+          "info": {
+            "name": "Get the most recent period of data for a Borrower",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/data-view/most_recent/:borrower_uuid",
+            "params": [
+              {
+                "name": "borrower_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "reporting_interval",
+                "value": "",
+                "type": "query",
+                "description": "Reporting Interval of the financial data"
+              },
+              {
+                "name": "preparation_type",
+                "value": "",
+                "type": "query",
+                "description": "Preparation Type of the finanical data"
+              },
+              {
+                "name": "column_limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of columns of dataview data to return. Defaults to 1 if not provided"
+              }
+            ]
+          },
+          "docs": "Retrieve a DataView from the most recent standardized data for a borrower"
+        },
+        {
+          "info": {
+            "name": "Get all dataviews for a specific borrower, using a primary or secondary key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/data-view/all/:uuid_or_labeled_key",
+            "params": [
+              {
+                "name": "uuid_or_labeled_key",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "reporting_interval",
+                "value": "",
+                "type": "query",
+                "description": "Reporting Interval of the financial data"
+              },
+              {
+                "name": "preparation_type",
+                "value": "",
+                "type": "query",
+                "description": "Preparation Type of the finanical data"
+              },
+              {
+                "name": "period_key_uuid",
+                "value": "",
+                "type": "query",
+                "description": "Period in a dataview to return."
+              }
+            ]
+          },
+          "docs": "Retrieve DataViews for all standardized data for a borrower, by primary or secondary key\n\nThe path variable `uuid_or_labeled_key`, can either be a uuid or a label:key (label=key is also accepted).\nThe labels `borrower_uuid` and `external_id` are supported.\n\nexamples of path variables:\n1. 2dfefa9c-c91e-4cc1-b783-363659e596f5\n2. borrower_uuid:2dfefa9c-c91e-4cc1-b783-363659e596f5\n3. borrower_uuid=2dfefa9c-c91e-4cc1-b783-363659e596f5\n4. external_id=1000882211\n\nvalues 1..3 are equivalent, and if the "
+        },
+        {
+          "info": {
+            "name": "Get a PDF for all dataviews for a specific borrower, using a primary or secondary key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/data-view/all/:uuid_or_labeled_key/download_pdf",
+            "params": [
+              {
+                "name": "uuid_or_labeled_key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download a PDF overview summarizing all standardized data for a borrower, by primary or secondary key\n\nThis supports the same label:key scheme as the method above."
+        },
+        {
+          "info": {
+            "name": "Get a list of metadata for all dataview periods for a specific borrower",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/data-view/metadata/:borrower_uuid/periods",
+            "params": [
+              {
+                "name": "borrower_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the metadata for all periods for a borrower"
+        },
+        {
+          "info": {
+            "name": "Create DataView from Orbis company data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/data-view/create-dataview-from-orbis",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a DataView by fetching financial data from Orbis API.\n\nAccepts an Orbis company ID and returns annual financial statements \nin standardized DataView format.\n\n**Request Parameters:**\n\n- **orbis_id** (required): The Orbis company identifier to fetch financial data for.\n\n- **spreading_template_uuid** (optional): UUID of the spreading template to use for calculations.\n  If not provided, the borrower's default template is used.\n\n- **num_periods** (optional, default=1): Number of annual periods"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automated Spreading and Analysis Api-Key GlobalCashflowAnalysis API",
+    "version": "1.3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GlobalCashflowAnalysis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Global Cashflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/analysis/global-cashflow",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              },
+              {
+                "name": "borrower_uuid",
+                "value": "",
+                "type": "query",
+                "description": "Borrower to filter results for"
+              }
+            ]
+          },
+          "docs": "List Global Cashflow analyses"
+        },
+        {
+          "info": {
+            "name": "Create a new Global Cashflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/analysis/global-cashflow",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Global Cashflow"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Global Cashflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/analysis/global-cashflow/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "borrower_uuid",
+                "value": "",
+                "type": "query",
+                "description": "Borrower to filter results for"
+              }
+            ]
+          },
+          "docs": "Retrieve Global Cashflow analysis record"
+        },
+        {
+          "info": {
+            "name": "Delete a Global Cashflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/analysis/global-cashflow/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "borrower_uuid",
+                "value": "",
+                "type": "query",
+                "description": "Borrower to filter results for"
+              }
+            ]
+          },
+          "docs": "Remove an existing Global Cashflow analysis record"
+        },
+        {
+          "info": {
+            "name": "Download an excel for a Global Cashflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/analysis/global-cashflow/:uuid/download_excel",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download the Global Cashflow analysis as an Excel file"
+        },
+        {
+          "info": {
+            "name": "Download a PDF for a Global Cashflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/analysis/global-cashflow/:uuid/download_pdf",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download the Global Cashflow analysis as a PDF file"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Global Cashflow with extra borrower details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/analysis/global-cashflow/:uuid/retrieve-with-entity-detail",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve Global Cashflow analysis record"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

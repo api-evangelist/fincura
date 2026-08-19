@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automated Spreading and Analysis Api-Key SpreadingTemplate API",
+    "version": "1.3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SpreadingTemplate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Spreading Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/template/spreading",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              }
+            ]
+          },
+          "docs": "List Spreading templates"
+        },
+        {
+          "info": {
+            "name": "Get Spreading Template with Flattened Taxonomy Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/template/spreading/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a Borrower"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

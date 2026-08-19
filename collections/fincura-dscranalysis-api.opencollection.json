@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automated Spreading and Analysis Api-Key DscrAnalysis API",
+    "version": "1.3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DscrAnalysis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "listDscrAnalyses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/analysis/dscr",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              },
+              {
+                "name": "borrower_uuid",
+                "value": "",
+                "type": "query",
+                "description": "Borrower to filter results for"
+              }
+            ]
+          },
+          "docs": "List DSCR Analysis"
+        },
+        {
+          "info": {
+            "name": "Create a new DSCR Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/analysis/dscr",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new DSCR Analysis"
+        },
+        {
+          "info": {
+            "name": "retrieveDscrAnalysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/analysis/dscr/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "borrower_uuid",
+                "value": "",
+                "type": "query",
+                "description": "Borrower to filter results for"
+              }
+            ]
+          },
+          "docs": "Retrieve DSCR analysis record"
+        },
+        {
+          "info": {
+            "name": "Remove an existing DSCR Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/analysis/dscr/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "borrower_uuid",
+                "value": "",
+                "type": "query",
+                "description": "Borrower to filter results for"
+              }
+            ]
+          },
+          "docs": "Remove an existing DSCR analysis record"
+        },
+        {
+          "info": {
+            "name": "downloadExcelDscrAnalysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/analysis/dscr/:uuid/download_excel",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download the DSCR analysis as an Excel file"
+        },
+        {
+          "info": {
+            "name": "downloadPdfDscrAnalysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/analysis/dscr/:uuid/download_pdf",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download the DSCR analysis as a PDF file"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

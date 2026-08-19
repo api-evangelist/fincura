@@ -1,0 +1,258 @@
+{
+  "item": [
+    {
+      "id": "17b7916f-0c29-46b2-865d-318fd5906d6b",
+      "name": "FinancialStatementSubmission",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e10f52f-ec90-47c3-9fda-aa5c4677386c",
+          "name": "Submit structured financial statements (JSON)",
+          "request": {
+            "name": "Submit structured financial statements (JSON)",
+            "description": {
+              "content": "Submit structured financial statement data (JSON body); file is stored in S3 and processing is queued.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "financial-statement-submission"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "statements",
+                  "value": "{\"statement_type\":\"<string>\",\"columns\":[{\"statement_date\":\"<string>\",\"reporting_interval\":\"<string>\",\"scenario_type\":\"<string>\",\"preparation_type\":\"<string>\",\"prepared_by\":\"\"},{\"statement_date\":\"<string>\",\"reporting_interval\":\"<string>\",\"scenario_type\":\"<string>\",\"preparation_type\":\"<string>\",\"prepared_by\":\"\"}],\"rows\":[{\"label\":\"<string>\",\"values\":[\"<object>\",\"<object>\"],\"spreading_template_line_item_id\":\"<integer>\",\"spreading_template_line_item_ref\":\"<string>\"},{\"label\":\"<string>\",\"values\":[\"<object>\",\"<object>\"],\"spreading_template_line_item_id\":\"<integer>\",\"spreading_template_line_item_ref\":\"<string>\"}]}",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "statements",
+                  "value": "{\"statement_type\":\"<string>\",\"columns\":[{\"statement_date\":\"<string>\",\"reporting_interval\":\"<string>\",\"scenario_type\":\"<string>\",\"preparation_type\":\"<string>\",\"prepared_by\":\"\"},{\"statement_date\":\"<string>\",\"reporting_interval\":\"<string>\",\"scenario_type\":\"<string>\",\"preparation_type\":\"<string>\",\"prepared_by\":\"\"}],\"rows\":[{\"label\":\"<string>\",\"values\":[\"<object>\",\"<object>\"],\"spreading_template_line_item_id\":\"<integer>\",\"spreading_template_line_item_ref\":\"<string>\"},{\"label\":\"<string>\",\"values\":[\"<object>\",\"<object>\"],\"spreading_template_line_item_id\":\"<integer>\",\"spreading_template_line_item_ref\":\"<string>\"}]}",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "schema_version",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_uuid",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_company_id",
+                  "value": "<string>",
+                  "description": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records."
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "USD"
+                },
+                {
+                  "disabled": false,
+                  "key": "multiply_by_factor",
+                  "value": "<object>"
+                },
+                {
+                  "disabled": false,
+                  "key": "spreading_template_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "original_document_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "push_to_completion",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "152114f5-1f66-43e4-acac-d8f5bf9e557c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "financial-statement-submission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "statements",
+                      "value": "{\"statement_type\":\"<string>\",\"columns\":[{\"statement_date\":\"<string>\",\"reporting_interval\":\"<string>\",\"scenario_type\":\"<string>\",\"preparation_type\":\"<string>\",\"prepared_by\":\"\"},{\"statement_date\":\"<string>\",\"reporting_interval\":\"<string>\",\"scenario_type\":\"<string>\",\"preparation_type\":\"<string>\",\"prepared_by\":\"\"}],\"rows\":[{\"label\":\"<string>\",\"values\":[\"<object>\",\"<object>\"],\"spreading_template_line_item_id\":\"<integer>\",\"spreading_template_line_item_ref\":\"<string>\"},{\"label\":\"<string>\",\"values\":[\"<object>\",\"<object>\"],\"spreading_template_line_item_id\":\"<integer>\",\"spreading_template_line_item_ref\":\"<string>\"}]}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "statements",
+                      "value": "{\"statement_type\":\"<string>\",\"columns\":[{\"statement_date\":\"<string>\",\"reporting_interval\":\"<string>\",\"scenario_type\":\"<string>\",\"preparation_type\":\"<string>\",\"prepared_by\":\"\"},{\"statement_date\":\"<string>\",\"reporting_interval\":\"<string>\",\"scenario_type\":\"<string>\",\"preparation_type\":\"<string>\",\"prepared_by\":\"\"}],\"rows\":[{\"label\":\"<string>\",\"values\":[\"<object>\",\"<object>\"],\"spreading_template_line_item_id\":\"<integer>\",\"spreading_template_line_item_ref\":\"<string>\"},{\"label\":\"<string>\",\"values\":[\"<object>\",\"<object>\"],\"spreading_template_line_item_id\":\"<integer>\",\"spreading_template_line_item_ref\":\"<string>\"}]}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "schema_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "company_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "company_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_company_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "multiply_by_factor",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "spreading_template_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "original_document_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "push_to_completion",
+                      "value": "false"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statements\": [\n    {\n      \"statement_type\": \"<string>\",\n      \"columns\": [\n        {\n          \"statement_date\": \"<string>\",\n          \"reporting_interval\": \"<string>\",\n          \"scenario_type\": \"<string>\",\n          \"preparation_type\": \"<string>\",\n          \"prepared_by\": \"\"\n        },\n        {\n          \"statement_date\": \"<string>\",\n          \"reporting_interval\": \"<string>\",\n          \"scenario_type\": \"<string>\",\n          \"preparation_type\": \"<string>\",\n          \"prepared_by\": \"\"\n        }\n      ],\n      \"rows\": [\n        {\n          \"label\": \"<string>\",\n          \"values\": [\n            \"<object>\",\n            \"<object>\"\n          ],\n          \"spreading_template_line_item_id\": \"<integer>\",\n          \"spreading_template_line_item_ref\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"values\": [\n            \"<object>\",\n            \"<object>\"\n          ],\n          \"spreading_template_line_item_id\": \"<integer>\",\n          \"spreading_template_line_item_ref\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"statement_type\": \"<string>\",\n      \"columns\": [\n        {\n          \"statement_date\": \"<string>\",\n          \"reporting_interval\": \"<string>\",\n          \"scenario_type\": \"<string>\",\n          \"preparation_type\": \"<string>\",\n          \"prepared_by\": \"\"\n        },\n        {\n          \"statement_date\": \"<string>\",\n          \"reporting_interval\": \"<string>\",\n          \"scenario_type\": \"<string>\",\n          \"preparation_type\": \"<string>\",\n          \"prepared_by\": \"\"\n        }\n      ],\n      \"rows\": [\n        {\n          \"label\": \"<string>\",\n          \"values\": [\n            \"<object>\",\n            \"<object>\"\n          ],\n          \"spreading_template_line_item_id\": \"<integer>\",\n          \"spreading_template_line_item_ref\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"values\": [\n            \"<object>\",\n            \"<object>\"\n          ],\n          \"spreading_template_line_item_id\": \"<integer>\",\n          \"spreading_template_line_item_ref\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"schema_version\": \"<string>\",\n  \"company_id\": \"<integer>\",\n  \"company_uuid\": \"<uuid>\",\n  \"external_company_id\": \"<string>\",\n  \"currency\": \"USD\",\n  \"multiply_by_factor\": \"<object>\",\n  \"spreading_template_id\": \"<integer>\",\n  \"original_document_name\": \"<string>\",\n  \"push_to_completion\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "abc81c39-427e-4453-a8df-52a41a90e2f7",
+    "name": "Automated Spreading and Analysis Api-Key FinancialStatementSubmission API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****\n\nContact Support:\n Name: Moody's Automated Spreading Customer Support\n Email: MA_NMR_Support@moodys.com",
+      "type": "text/plain"
+    }
+  }
+}

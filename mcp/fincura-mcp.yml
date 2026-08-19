@@ -2,212 +2,217 @@ generated: '2026-07-19'
 method: derived
 status: candidate
 source: openapi/fincura-openapi-original.yml
-notes: >-
-  No official hosted/remote MCP server was found. This is a candidate tool surface
-  derived one-to-one from the live OpenAPI operations, offered as a starting point
-  for exposing the Fincura Automated Spreading API to agents.
+notes: No official hosted/remote MCP server was found. This is a candidate tool surface derived one-to-one
+  from the live OpenAPI operations, offered as a starting point for exposing the Fincura Automated Spreading
+  API to agents.
 server:
   name: fincura
   transport: http
 tools:
 - name: retrieveDataViewFromDocumentFile
-  description: "Get DataView from a DocumentFile"
+  description: Get DataView from a DocumentFile
   source_operation: openapi/fincura-openapi-original.yml#retrieveDataViewFromDocumentFile
 - name: creditlensDataViewFromDocumentFile
-  description: "Get DataView from a DocumentFile in CreditLens format"
+  description: Get DataView from a DocumentFile in CreditLens format
   source_operation: openapi/fincura-openapi-original.yml#creditlensDataViewFromDocumentFile
 - name: retrieveMostRecentDataView
-  description: "Get the most recent period of data for a Borrower"
+  description: Get the most recent period of data for a Borrower
   source_operation: openapi/fincura-openapi-original.yml#retrieveMostRecentDataView
 - name: retrieveAllDataViews
-  description: "Get all dataviews for a specific borrower, using a primary or secondary key"
+  description: Get all dataviews for a specific borrower, using a primary or secondary key
   source_operation: openapi/fincura-openapi-original.yml#retrieveAllDataViews
 - name: downloadPdfAllDataViews
-  description: "Get a PDF for all dataviews for a specific borrower, using a primary or secondary key"
+  description: Get a PDF for all dataviews for a specific borrower, using a primary or secondary key
   source_operation: openapi/fincura-openapi-original.yml#downloadPdfAllDataViews
 - name: periodsDataViewMetadata
-  description: "Get a list of metadata for all dataview periods for a specific borrower"
+  description: Get a list of metadata for all dataview periods for a specific borrower
   source_operation: openapi/fincura-openapi-original.yml#periodsDataViewMetadata
 - name: listDocumentFiles
-  description: "List DocumentFile records"
+  description: List DocumentFile records
   source_operation: openapi/fincura-openapi-original.yml#listDocumentFiles
 - name: createDocumentFile
-  description: "Submit a new DocumentFile"
+  description: Submit a new DocumentFile
   source_operation: openapi/fincura-openapi-original.yml#createDocumentFile
 - name: retrieveDocumentFile
-  description: "Get a DocumentFile"
+  description: Get a DocumentFile
   source_operation: openapi/fincura-openapi-original.yml#retrieveDocumentFile
 - name: destroyDocumentFile
-  description: "Delete a DocumentFile"
+  description: Delete a DocumentFile
   source_operation: openapi/fincura-openapi-original.yml#destroyDocumentFile
 - name: retrieveBulkFile
-  description: "Retrieve a BulkFile"
+  description: Retrieve a BulkFile
   source_operation: openapi/fincura-openapi-original.yml#retrieveBulkFile
 - name: listBorrowers
-  description: "List Borrowers"
+  description: List Borrowers
   source_operation: openapi/fincura-openapi-original.yml#listBorrowers
 - name: createBorrower
-  description: "Create a new Borrower"
+  description: Create a new Borrower
   source_operation: openapi/fincura-openapi-original.yml#createBorrower
 - name: retrieveBorrower
-  description: "Retrieve a Borrower"
+  description: Retrieve a Borrower
   source_operation: openapi/fincura-openapi-original.yml#retrieveBorrower
 - name: partialUpdateBorrower
-  description: "Update a Borrower"
+  description: Update a Borrower
   source_operation: openapi/fincura-openapi-original.yml#partialUpdateBorrower
 - name: listPortfolios
-  description: "List Portfolios"
+  description: List Portfolios
   source_operation: openapi/fincura-openapi-original.yml#listPortfolios
 - name: createPortfolio
-  description: "Create a new Portfolio"
+  description: Create a new Portfolio
   source_operation: openapi/fincura-openapi-original.yml#createPortfolio
 - name: listLoans
-  description: "List Loans"
+  description: List Loans
   source_operation: openapi/fincura-openapi-original.yml#listLoans
 - name: createLoan
-  description: "Create a new Loan"
+  description: Create a new Loan
   source_operation: openapi/fincura-openapi-original.yml#createLoan
 - name: retrieveLoan
-  description: "Retrieve a Loan"
+  description: Retrieve a Loan
   source_operation: openapi/fincura-openapi-original.yml#retrieveLoan
 - name: partialUpdateLoan
-  description: "Update a Loan"
+  description: Update a Loan
   source_operation: openapi/fincura-openapi-original.yml#partialUpdateLoan
 - name: destroyLoan
-  description: "Delete a Loan"
+  description: Delete a Loan
   source_operation: openapi/fincura-openapi-original.yml#destroyLoan
 - name: listDscrAnalyses
-  description: "List DSCR Analysis"
+  description: List DSCR Analysis
   source_operation: openapi/fincura-openapi-original.yml#listDscrAnalyses
 - name: createDscrAnalysis
-  description: "Create a new DSCR Analysis"
+  description: Create a new DSCR Analysis
   source_operation: openapi/fincura-openapi-original.yml#createDscrAnalysis
 - name: retrieveDscrAnalysis
-  description: "Retrieve DSCR analysis record"
+  description: Retrieve DSCR analysis record
   source_operation: openapi/fincura-openapi-original.yml#retrieveDscrAnalysis
 - name: destroyDscrAnalysis
-  description: "Remove an existing DSCR Analysis"
+  description: Remove an existing DSCR Analysis
   source_operation: openapi/fincura-openapi-original.yml#destroyDscrAnalysis
 - name: downloadExcelDscrAnalysis
-  description: "Download the DSCR analysis as an Excel file"
+  description: Download the DSCR analysis as an Excel file
   source_operation: openapi/fincura-openapi-original.yml#downloadExcelDscrAnalysis
 - name: downloadPdfDscrAnalysis
-  description: "Download the DSCR analysis as a PDF file"
+  description: Download the DSCR analysis as a PDF file
   source_operation: openapi/fincura-openapi-original.yml#downloadPdfDscrAnalysis
 - name: listGlobalCashflowAnalyses
-  description: "List all Global Cashflows"
+  description: List all Global Cashflows
   source_operation: openapi/fincura-openapi-original.yml#listGlobalCashflowAnalyses
 - name: createGlobalCashflowAnalysis
-  description: "Create a new Global Cashflow"
+  description: Create a new Global Cashflow
   source_operation: openapi/fincura-openapi-original.yml#createGlobalCashflowAnalysis
 - name: retrieveGlobalCashflowAnalysis
-  description: "Retrieve a Global Cashflow"
+  description: Retrieve a Global Cashflow
   source_operation: openapi/fincura-openapi-original.yml#retrieveGlobalCashflowAnalysis
 - name: destroyGlobalCashflowAnalysis
-  description: "Delete a Global Cashflow"
+  description: Delete a Global Cashflow
   source_operation: openapi/fincura-openapi-original.yml#destroyGlobalCashflowAnalysis
 - name: downloadExcelGlobalCashflowAnalysis
-  description: "Download an excel for a Global Cashflow"
+  description: Download an excel for a Global Cashflow
   source_operation: openapi/fincura-openapi-original.yml#downloadExcelGlobalCashflowAnalysis
 - name: downloadPdfGlobalCashflowAnalysis
-  description: "Download a PDF for a Global Cashflow"
+  description: Download a PDF for a Global Cashflow
   source_operation: openapi/fincura-openapi-original.yml#downloadPdfGlobalCashflowAnalysis
 - name: retrieveV2GlobalCashflowAnalysis
-  description: "Retrieve a Global Cashflow with extra borrower details"
+  description: Retrieve a Global Cashflow with extra borrower details
   source_operation: openapi/fincura-openapi-original.yml#retrieveV2GlobalCashflowAnalysis
 - name: listFinancialRequirements
-  description: "List FinancialRequirements"
+  description: List FinancialRequirements
   source_operation: openapi/fincura-openapi-original.yml#listFinancialRequirements
 - name: createFinancialRequirement
-  description: "Create a new FinancialRequirement"
+  description: Create a new FinancialRequirement
   source_operation: openapi/fincura-openapi-original.yml#createFinancialRequirement
 - name: retrieveFinancialRequirement
-  description: "Retrieve a FinancialRequirement"
+  description: Retrieve a FinancialRequirement
   source_operation: openapi/fincura-openapi-original.yml#retrieveFinancialRequirement
 - name: partialUpdateFinancialRequirement
-  description: "Update a FinancialRequirement"
+  description: Update a FinancialRequirement
   source_operation: openapi/fincura-openapi-original.yml#partialUpdateFinancialRequirement
 - name: listWebhooks
-  description: "List webhooks"
+  description: List webhooks
   source_operation: openapi/fincura-openapi-original.yml#listWebhooks
 - name: createWebhook
-  description: "Create a webhook"
+  description: Create a webhook
   source_operation: openapi/fincura-openapi-original.yml#createWebhook
 - name: retrieveWebhook
-  description: "Get webhook info"
+  description: Get webhook info
   source_operation: openapi/fincura-openapi-original.yml#retrieveWebhook
 - name: destroyWebhook
-  description: "Delete a webhook"
+  description: Delete a webhook
   source_operation: openapi/fincura-openapi-original.yml#destroyWebhook
 - name: readTenantSettings
-  description: "Get Tenant Settings"
+  description: Get Tenant Settings
   source_operation: openapi/fincura-openapi-original.yml#readTenantSettings
 - name: listSpreadingTemplates
-  description: "List Spreading Templates"
+  description: List Spreading Templates
   source_operation: openapi/fincura-openapi-original.yml#listSpreadingTemplates
 - name: retrieveSpreadingTemplate
-  description: "Get Spreading Template with Flattened Taxonomy Items"
+  description: Get Spreading Template with Flattened Taxonomy Items
   source_operation: openapi/fincura-openapi-original.yml#retrieveSpreadingTemplate
 - name: listDscrTemplates
-  description: "List DSCR Templates"
+  description: List DSCR Templates
   source_operation: openapi/fincura-openapi-original.yml#listDscrTemplates
 - name: listGlobalCashflowTemplates
-  description: "List Global Cashflow Templates"
+  description: List Global Cashflow Templates
   source_operation: openapi/fincura-openapi-original.yml#listGlobalCashflowTemplates
 - name: listCustomAttributeDefinitions
-  description: "List CustomAttributeDefinitions"
+  description: List CustomAttributeDefinitions
   source_operation: openapi/fincura-openapi-original.yml#listCustomAttributeDefinitions
 - name: createCustomAttributeDefinition
-  description: "Create a CustomAttributeDefinition"
+  description: Create a CustomAttributeDefinition
   source_operation: openapi/fincura-openapi-original.yml#createCustomAttributeDefinition
 - name: retrieveCustomAttributeDefinition
-  description: "Get CustomAttributeDefinition info"
+  description: Get CustomAttributeDefinition info
   source_operation: openapi/fincura-openapi-original.yml#retrieveCustomAttributeDefinition
 - name: destroyCustomAttributeDefinition
-  description: "Delete a CustomAttributeDefinition"
+  description: Delete a CustomAttributeDefinition
   source_operation: openapi/fincura-openapi-original.yml#destroyCustomAttributeDefinition
 - name: retrieveEmbeddedWorkflow
-  description: "retrieveEmbeddedWorkflow"
+  description: retrieveEmbeddedWorkflow
   source_operation: openapi/fincura-openapi-original.yml#retrieveEmbeddedWorkflow
 - name: retrieveEmbeddedFinancials
-  description: "retrieveEmbeddedFinancials"
+  description: retrieveEmbeddedFinancials
   source_operation: openapi/fincura-openapi-original.yml#retrieveEmbeddedFinancials
 - name: retrieveEmbeddedDscrAnalysis
-  description: "retrieveEmbeddedDscrAnalysis"
+  description: retrieveEmbeddedDscrAnalysis
   source_operation: openapi/fincura-openapi-original.yml#retrieveEmbeddedDscrAnalysis
 - name: retrieveEmbeddedGlobalCashflowAnalysis
-  description: "retrieveEmbeddedGlobalCashflowAnalysis"
+  description: retrieveEmbeddedGlobalCashflowAnalysis
   source_operation: openapi/fincura-openapi-original.yml#retrieveEmbeddedGlobalCashflowAnalysis
 - name: refreshApiKey
-  description: "Refresh Api Key"
+  description: Refresh Api Key
   source_operation: openapi/fincura-openapi-original.yml#refreshApiKey
 - name: createDataViewFromOrbis
-  description: "Create DataView from Orbis company data"
+  description: Create DataView from Orbis company data
   source_operation: openapi/fincura-openapi-original.yml#createDataViewFromOrbis
 - name: createFinancialStatementSubmission
-  description: "Submit structured financial statements (JSON)"
+  description: Submit structured financial statements (JSON)
   source_operation: openapi/fincura-openapi-original.yml#createFinancialStatementSubmission
 - name: createBulkFile
-  description: "Submit a new BulkFile"
+  description: Submit a new BulkFile
   source_operation: openapi/fincura-openapi-original.yml#createBulkFile
 - name: linkEntityBorrower
-  description: "Link a secondary borrower to the Borrower"
+  description: Link a secondary borrower to the Borrower
   source_operation: openapi/fincura-openapi-original.yml#linkEntityBorrower
 - name: portalLinkBorrower
-  description: "Generate a Borrower portal link"
+  description: Generate a Borrower portal link
   source_operation: openapi/fincura-openapi-original.yml#portalLinkBorrower
 - name: createEmbeddedWorkflow
-  description: "Returns a URL to an HTML webapp to complete document parsing pipeline flow"
+  description: Returns a URL to an HTML webapp to complete document parsing pipeline flow
   source_operation: openapi/fincura-openapi-original.yml#createEmbeddedWorkflow
 - name: createEmbeddedFinancials
-  description: "Returns a URL to an HTML webapp to view the financials of a borrower"
+  description: Returns a URL to an HTML webapp to view the financials of a borrower
   source_operation: openapi/fincura-openapi-original.yml#createEmbeddedFinancials
 - name: createEmbeddedDscrAnalysis
-  description: "Returns a URL to an HTML webapp to view and modify a particular dscr analysis"
+  description: Returns a URL to an HTML webapp to view and modify a particular dscr analysis
   source_operation: openapi/fincura-openapi-original.yml#createEmbeddedDscrAnalysis
 - name: createEmbeddedGlobalCashflowAnalysis
-  description: "Returns a URL to an HTML webapp to view and modify a particular global cashflow analysis"
+  description: Returns a URL to an HTML webapp to view and modify a particular global cashflow analysis
   source_operation: openapi/fincura-openapi-original.yml#createEmbeddedGlobalCashflowAnalysis
 - name: partialUpdatePortfolio
-  description: "Update a Portfolio"
+  description: Update a Portfolio
   source_operation: openapi/fincura-openapi-original.yml#partialUpdatePortfolio
+deployment:
+  mode: none
+  verified: derived
+  tools: 67
+  checked: '2026-08-12'
+  source: catalog MCP census

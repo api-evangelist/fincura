@@ -1,0 +1,735 @@
+{
+  "item": [
+    {
+      "id": "fb39ca15-41c6-4cd7-a478-463157c6e9bf",
+      "name": "Requirements",
+      "description": {
+        "content": "Set rules/covenants for your borrowers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1e7c0705-1070-4fe6-b891-f642419645f1",
+          "name": "List FinancialRequirements",
+          "request": {
+            "name": "List FinancialRequirements",
+            "description": {
+              "content": "List FinancialRequirement records",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "financial-requirement"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa4bc90d-9798-4e99-a73b-1d7e7dbad7a4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "financial-requirement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"name\": \"string\",\n      \"borrower_uuid\": \"92d2d1d4-dace-d873-b34b-a264c5539534\",\n      \"input_equation\": \"string\",\n      \"uuid\": \"ad28e5dd-eded-2328-33ef-937f31fb29fb\",\n      \"description\": \"string\",\n      \"created_date\": \"1948-12-26T14:26:26.935Z\",\n      \"external_id\": \"string\",\n      \"loan_uuid\": \"db594c54-5190-2cd2-2efd-4fabb30fb01a\",\n      \"frequency\": \"TTM\",\n      \"rules\": [\n        {\n          \"threshold_value\": 1045819771705995600,\n          \"start_date\": \"2018-11-20\",\n          \"uuid\": \"2a3655f4-da39-b29c-2897-71f40dd45f45\",\n          \"comparer\": \">\",\n          \"end_date\": \"1957-08-25\"\n        },\n        {\n          \"threshold_value\": 196836279075145440,\n          \"start_date\": \"2023-03-16\",\n          \"uuid\": \"e7783408-7bc0-52bf-cdfc-6c7dee02df13\",\n          \"comparer\": \">=\",\n          \"end_date\": \"2023-04-13\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"borrower_uuid\": \"e0bcc819-8eee-1f2c-001e-84a4b01426b2\",\n      \"input_equation\": \"string\",\n      \"uuid\": \"99e7aa62-8f78-54d9-8e08-ef9bbba1cbcb\",\n      \"description\": \"string\",\n      \"created_date\": \"1995-02-11T19:24:39.355Z\",\n      \"external_id\": \"string\",\n      \"loan_uuid\": \"142c9b0f-48ce-4115-8083-04758a030f8f\",\n      \"frequency\": \"QUARTERLY\",\n      \"rules\": [\n        {\n          \"threshold_value\": 1771292728424390700,\n          \"start_date\": \"1975-11-01\",\n          \"uuid\": \"c6916f51-3b37-a0bc-e304-a7e2b3bd1ad6\",\n          \"comparer\": \"<\",\n          \"end_date\": \"1974-06-04\"\n        },\n        {\n          \"threshold_value\": 1647991200606531800,\n          \"start_date\": \"2012-03-30\",\n          \"uuid\": \"e4ffd586-619a-51e4-711a-79fad9cc6cfd\",\n          \"comparer\": \"<\",\n          \"end_date\": \"1980-12-31\"\n        }\n      ]\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?offset=400&limit=100\",\n  \"previous\": \"http://api.example.org/accounts/?offset=200&limit=100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8e4a2c8-4f70-459f-8753-f50128952343",
+          "name": "Create a new FinancialRequirement",
+          "request": {
+            "name": "Create a new FinancialRequirement",
+            "description": {
+              "content": "Create a new FinancialRequirement record",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "financial-requirement"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Title of the FinancialRequirement. Must be unique for the Borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the borrower for this loan. (see [Borrowers](#tag/Borrowers))"
+                },
+                {
+                  "disabled": false,
+                  "key": "input_equation",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>",
+                  "description": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records."
+                },
+                {
+                  "disabled": false,
+                  "key": "loan_uuid",
+                  "value": "<uuid>",
+                  "description": "UUID of the loan for this requirement. (see [Loans](#tag/Loans))"
+                },
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "rules",
+                  "value": "{\"threshold_value\":\"<number>\",\"start_date\":\"<date>\",\"comparer\":\"<string>\",\"end_date\":\"<date>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "rules",
+                  "value": "{\"threshold_value\":\"<number>\",\"start_date\":\"<date>\",\"comparer\":\"<string>\",\"end_date\":\"<date>\"}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2f7c7b59-7081-4379-849d-685c2e69b29d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "financial-requirement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Title of the FinancialRequirement. Must be unique for the Borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the borrower for this loan. (see [Borrowers](#tag/Borrowers))",
+                        "type": "text/plain"
+                      },
+                      "key": "borrower_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "input_equation",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "UUID of the loan for this requirement. (see [Loans](#tag/Loans))",
+                        "type": "text/plain"
+                      },
+                      "key": "loan_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rules",
+                      "value": "{\"threshold_value\":\"<number>\",\"start_date\":\"<date>\",\"comparer\":\"<string>\",\"end_date\":\"<date>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rules",
+                      "value": "{\"threshold_value\":\"<number>\",\"start_date\":\"<date>\",\"comparer\":\"<string>\",\"end_date\":\"<date>\"}"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"borrower_uuid\": \"<uuid>\",\n  \"input_equation\": \"<string>\",\n  \"uuid\": \"8a17986a-4d52-0ed3-d9cd-c53899d7ecbf\",\n  \"description\": \"<string>\",\n  \"created_date\": \"1992-04-14T13:33:54.218Z\",\n  \"external_id\": \"<string>\",\n  \"loan_uuid\": \"<uuid>\",\n  \"frequency\": \"<string>\",\n  \"rules\": [\n    {\n      \"threshold_value\": \"<number>\",\n      \"start_date\": \"<date>\",\n      \"uuid\": \"bd9312ba-c4ba-f80c-1481-270fb1cc8e69\",\n      \"comparer\": \"<string>\",\n      \"end_date\": \"<date>\"\n    },\n    {\n      \"threshold_value\": \"<number>\",\n      \"start_date\": \"<date>\",\n      \"uuid\": \"237761b4-cbc1-da60-af65-43be8de041a3\",\n      \"comparer\": \"<string>\",\n      \"end_date\": \"<date>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11e662e9-57d4-465e-91fd-0d8061b68e70",
+          "name": "Retrieve a FinancialRequirement",
+          "request": {
+            "name": "Retrieve a FinancialRequirement",
+            "description": {
+              "content": "Retrieve a FinancialRequirement",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "financial-requirement",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "662d6fa9-ddde-4ad4-a070-89e4bebed257",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "financial-requirement",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"borrower_uuid\": \"<uuid>\",\n  \"input_equation\": \"<string>\",\n  \"uuid\": \"8a17986a-4d52-0ed3-d9cd-c53899d7ecbf\",\n  \"description\": \"<string>\",\n  \"created_date\": \"1992-04-14T13:33:54.218Z\",\n  \"external_id\": \"<string>\",\n  \"loan_uuid\": \"<uuid>\",\n  \"frequency\": \"<string>\",\n  \"rules\": [\n    {\n      \"threshold_value\": \"<number>\",\n      \"start_date\": \"<date>\",\n      \"uuid\": \"bd9312ba-c4ba-f80c-1481-270fb1cc8e69\",\n      \"comparer\": \"<string>\",\n      \"end_date\": \"<date>\"\n    },\n    {\n      \"threshold_value\": \"<number>\",\n      \"start_date\": \"<date>\",\n      \"uuid\": \"237761b4-cbc1-da60-af65-43be8de041a3\",\n      \"comparer\": \"<string>\",\n      \"end_date\": \"<date>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85d8bf81-9310-47ca-98ed-49d4793b994b",
+          "name": "Update a FinancialRequirement",
+          "request": {
+            "name": "Update a FinancialRequirement",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "financial-requirement",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Title of the FinancialRequirement. Must be unique for the Borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the borrower for this loan. (see [Borrowers](#tag/Borrowers))"
+                },
+                {
+                  "disabled": false,
+                  "key": "input_equation",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>",
+                  "description": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records."
+                },
+                {
+                  "disabled": false,
+                  "key": "loan_uuid",
+                  "value": "<uuid>",
+                  "description": "UUID of the loan for this requirement. (see [Loans](#tag/Loans))"
+                },
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "rules",
+                  "value": "{\"threshold_value\":\"<number>\",\"start_date\":\"<date>\",\"comparer\":\"<string>\",\"end_date\":\"<date>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "rules",
+                  "value": "{\"threshold_value\":\"<number>\",\"start_date\":\"<date>\",\"comparer\":\"<string>\",\"end_date\":\"<date>\"}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2dfb19ae-077a-4954-a9f0-59db077f2c12",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "financial-requirement",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Title of the FinancialRequirement. Must be unique for the Borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the borrower for this loan. (see [Borrowers](#tag/Borrowers))",
+                        "type": "text/plain"
+                      },
+                      "key": "borrower_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "input_equation",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "UUID of the loan for this requirement. (see [Loans](#tag/Loans))",
+                        "type": "text/plain"
+                      },
+                      "key": "loan_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rules",
+                      "value": "{\"threshold_value\":\"<number>\",\"start_date\":\"<date>\",\"comparer\":\"<string>\",\"end_date\":\"<date>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rules",
+                      "value": "{\"threshold_value\":\"<number>\",\"start_date\":\"<date>\",\"comparer\":\"<string>\",\"end_date\":\"<date>\"}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"borrower_uuid\": \"<uuid>\",\n  \"input_equation\": \"<string>\",\n  \"uuid\": \"8a17986a-4d52-0ed3-d9cd-c53899d7ecbf\",\n  \"description\": \"<string>\",\n  \"created_date\": \"1992-04-14T13:33:54.218Z\",\n  \"external_id\": \"<string>\",\n  \"loan_uuid\": \"<uuid>\",\n  \"frequency\": \"<string>\",\n  \"rules\": [\n    {\n      \"threshold_value\": \"<number>\",\n      \"start_date\": \"<date>\",\n      \"uuid\": \"bd9312ba-c4ba-f80c-1481-270fb1cc8e69\",\n      \"comparer\": \"<string>\",\n      \"end_date\": \"<date>\"\n    },\n    {\n      \"threshold_value\": \"<number>\",\n      \"start_date\": \"<date>\",\n      \"uuid\": \"237761b4-cbc1-da60-af65-43be8de041a3\",\n      \"comparer\": \"<string>\",\n      \"end_date\": \"<date>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "23021d81-5401-43d6-861b-c7b7871c1986",
+    "name": "Automated Spreading and Analysis Api-Key Requirements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****\n\nContact Support:\n Name: Moody's Automated Spreading Customer Support\n Email: MA_NMR_Support@moodys.com",
+      "type": "text/plain"
+    }
+  }
+}

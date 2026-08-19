@@ -1,0 +1,1174 @@
+{
+  "item": [
+    {
+      "id": "fa1c8590-3a29-4e88-9ac4-be085ec61944",
+      "name": "Borrowers",
+      "description": {
+        "content": "A record in our system to link financials and analyses to.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c7275c7a-489e-4b77-b2ce-b7fcfdbbd379",
+          "name": "List Borrowers",
+          "request": {
+            "name": "List Borrowers",
+            "description": {
+              "content": "List Borrower records",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "borrower"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71fbb0dc-62da-4697-adf0-e68580929355",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "borrower"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"name\": \"string\",\n      \"uuid\": \"9e6b5169-0c95-bcbc-a9bc-8769fe35dbca\",\n      \"created_date\": \"1950-05-07T23:29:13.016Z\",\n      \"portfolio_uuid\": \"b5b1aaf9-4edb-8362-6873-c140025a546d\",\n      \"spreading_template_uuid\": \"6706cf52-c9ce-cbef-7894-ee6fe4ea54e9\",\n      \"external_id\": \"string\",\n      \"contact_email\": \"HMvRcXmZ@npmTC.ukxz\",\n      \"contact_person\": \"string\",\n      \"contact_phone\": \"string\",\n      \"sic_code\": \"stri\",\n      \"naics_code\": \"string\",\n      \"sic_industry\": \"UNKNOWN\",\n      \"custom_attributes\": {},\n      \"is_individual\": false,\n      \"region\": \"string\",\n      \"country\": \"string\",\n      \"default_spreading_template_subtype\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"uuid\": \"d3cc6819-e1d6-6a15-4fbe-dd01929d10d1\",\n      \"created_date\": \"2025-08-30T23:31:52.605Z\",\n      \"portfolio_uuid\": \"bdd3670f-a4a3-5878-556e-82f172f302f8\",\n      \"spreading_template_uuid\": \"a1881b01-fcd2-a581-2da8-8797478b1390\",\n      \"external_id\": \"string\",\n      \"contact_email\": \"cAmiE@iAaHJmEBrCNTOBKlBbstaG.ya\",\n      \"contact_person\": \"string\",\n      \"contact_phone\": \"string\",\n      \"sic_code\": \"stri\",\n      \"naics_code\": \"string\",\n      \"sic_industry\": \"SERVICES\",\n      \"custom_attributes\": {},\n      \"is_individual\": false,\n      \"region\": \"string\",\n      \"country\": \"string\",\n      \"default_spreading_template_subtype\": \"string\"\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?offset=400&limit=100\",\n  \"previous\": \"http://api.example.org/accounts/?offset=200&limit=100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9e02a33-e98f-4806-b016-e3e5ed09f640",
+          "name": "Create a new Borrower",
+          "request": {
+            "name": "Create a new Borrower",
+            "description": {
+              "content": "Create a new Borrower record",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "borrower"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the Borrower. Must be unique across Borrower records"
+                },
+                {
+                  "disabled": false,
+                  "key": "portfolio_uuid",
+                  "value": "<uuid>",
+                  "description": "UUID of the Portfolio for this Borrower. (see [Portfolios](#tag/Portfolios))"
+                },
+                {
+                  "disabled": false,
+                  "key": "spreading_template_uuid",
+                  "value": "<uuid>",
+                  "description": "UUID of the SpreadingTemplate for this Borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>",
+                  "description": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records."
+                },
+                {
+                  "disabled": false,
+                  "key": "contact_email",
+                  "value": "<email>",
+                  "description": "Borrower contact email"
+                },
+                {
+                  "disabled": false,
+                  "key": "contact_person",
+                  "value": "<string>",
+                  "description": "Borrower contact Full Name"
+                },
+                {
+                  "disabled": false,
+                  "key": "contact_phone",
+                  "value": "<string>",
+                  "description": "Borrower contact Phone Number"
+                },
+                {
+                  "disabled": false,
+                  "key": "sic_code",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "naics_code",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sic_industry",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "custom_attributes",
+                  "value": "<object>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_individual",
+                  "value": "false",
+                  "description": "If borrower is a person or individual, pass 'True'"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "Region of this Borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Country of this Borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "default_spreading_template_subtype",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "39701e2c-a511-4243-9eff-2ea63c9489a6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "borrower"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the Borrower. Must be unique across Borrower records",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "UUID of the Portfolio for this Borrower. (see [Portfolios](#tag/Portfolios))",
+                        "type": "text/plain"
+                      },
+                      "key": "portfolio_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "UUID of the SpreadingTemplate for this Borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "spreading_template_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Borrower contact email",
+                        "type": "text/plain"
+                      },
+                      "key": "contact_email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Borrower contact Full Name",
+                        "type": "text/plain"
+                      },
+                      "key": "contact_person",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Borrower contact Phone Number",
+                        "type": "text/plain"
+                      },
+                      "key": "contact_phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sic_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "naics_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sic_industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "custom_attributes",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If borrower is a person or individual, pass 'True'",
+                        "type": "text/plain"
+                      },
+                      "key": "is_individual",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Region of this Borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Country of this Borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "default_spreading_template_subtype",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"uuid\": \"b3b4e706-3cce-747a-39e4-5ce7546600ba\",\n  \"created_date\": \"1953-02-07T14:36:29.002Z\",\n  \"portfolio_uuid\": \"<uuid>\",\n  \"spreading_template_uuid\": \"<uuid>\",\n  \"external_id\": \"<string>\",\n  \"contact_email\": \"<email>\",\n  \"contact_person\": \"<string>\",\n  \"contact_phone\": \"<string>\",\n  \"sic_code\": \"<string>\",\n  \"naics_code\": \"<string>\",\n  \"sic_industry\": \"<string>\",\n  \"custom_attributes\": \"<object>\",\n  \"is_individual\": false,\n  \"region\": \"<string>\",\n  \"country\": \"<string>\",\n  \"default_spreading_template_subtype\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7fbd346-325a-4ff7-b808-5c3bcd185fdf",
+          "name": "Retrieve a Borrower",
+          "request": {
+            "name": "Retrieve a Borrower",
+            "description": {
+              "content": "Retrieve a Borrower",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "borrower",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f9ffdf3-bfd7-4c57-a18a-5fbdc65cb45e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "borrower",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"uuid\": \"b3b4e706-3cce-747a-39e4-5ce7546600ba\",\n  \"created_date\": \"1953-02-07T14:36:29.002Z\",\n  \"portfolio_uuid\": \"<uuid>\",\n  \"spreading_template_uuid\": \"<uuid>\",\n  \"external_id\": \"<string>\",\n  \"contact_email\": \"<email>\",\n  \"contact_person\": \"<string>\",\n  \"contact_phone\": \"<string>\",\n  \"sic_code\": \"<string>\",\n  \"naics_code\": \"<string>\",\n  \"sic_industry\": \"<string>\",\n  \"custom_attributes\": \"<object>\",\n  \"is_individual\": false,\n  \"region\": \"<string>\",\n  \"country\": \"<string>\",\n  \"default_spreading_template_subtype\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c8fe78f-4710-46d7-88b5-ae4d76307c15",
+          "name": "Update a Borrower",
+          "request": {
+            "name": "Update a Borrower",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "borrower",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the Borrower. Must be unique across Borrower records"
+                },
+                {
+                  "disabled": false,
+                  "key": "portfolio_uuid",
+                  "value": "<uuid>",
+                  "description": "UUID of the Portfolio for this Borrower. (see [Portfolios](#tag/Portfolios))"
+                },
+                {
+                  "disabled": false,
+                  "key": "spreading_template_uuid",
+                  "value": "<uuid>",
+                  "description": "UUID of the SpreadingTemplate for this Borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>",
+                  "description": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records."
+                },
+                {
+                  "disabled": false,
+                  "key": "contact_email",
+                  "value": "<email>",
+                  "description": "Borrower contact email"
+                },
+                {
+                  "disabled": false,
+                  "key": "contact_person",
+                  "value": "<string>",
+                  "description": "Borrower contact Full Name"
+                },
+                {
+                  "disabled": false,
+                  "key": "contact_phone",
+                  "value": "<string>",
+                  "description": "Borrower contact Phone Number"
+                },
+                {
+                  "disabled": false,
+                  "key": "sic_code",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "naics_code",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sic_industry",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "custom_attributes",
+                  "value": "<object>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_individual",
+                  "value": "false",
+                  "description": "If borrower is a person or individual, pass 'True'"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "Region of this Borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Country of this Borrower"
+                },
+                {
+                  "disabled": false,
+                  "key": "default_spreading_template_subtype",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4ec231ca-ddd2-4cb3-b1a0-e54463ec3198",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "borrower",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the Borrower. Must be unique across Borrower records",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "UUID of the Portfolio for this Borrower. (see [Portfolios](#tag/Portfolios))",
+                        "type": "text/plain"
+                      },
+                      "key": "portfolio_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "UUID of the SpreadingTemplate for this Borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "spreading_template_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "External ID is used to uniquely identify a record from your system in our system. Must be unique across records.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Borrower contact email",
+                        "type": "text/plain"
+                      },
+                      "key": "contact_email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Borrower contact Full Name",
+                        "type": "text/plain"
+                      },
+                      "key": "contact_person",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Borrower contact Phone Number",
+                        "type": "text/plain"
+                      },
+                      "key": "contact_phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sic_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "naics_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sic_industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "custom_attributes",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If borrower is a person or individual, pass 'True'",
+                        "type": "text/plain"
+                      },
+                      "key": "is_individual",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Region of this Borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Country of this Borrower",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "default_spreading_template_subtype",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"uuid\": \"b3b4e706-3cce-747a-39e4-5ce7546600ba\",\n  \"created_date\": \"1953-02-07T14:36:29.002Z\",\n  \"portfolio_uuid\": \"<uuid>\",\n  \"spreading_template_uuid\": \"<uuid>\",\n  \"external_id\": \"<string>\",\n  \"contact_email\": \"<email>\",\n  \"contact_person\": \"<string>\",\n  \"contact_phone\": \"<string>\",\n  \"sic_code\": \"<string>\",\n  \"naics_code\": \"<string>\",\n  \"sic_industry\": \"<string>\",\n  \"custom_attributes\": \"<object>\",\n  \"is_individual\": false,\n  \"region\": \"<string>\",\n  \"country\": \"<string>\",\n  \"default_spreading_template_subtype\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76758fad-334e-4139-b99d-b36f5ac3f00d",
+          "name": "Link a secondary borrower to the Borrower",
+          "request": {
+            "name": "Link a secondary borrower to the Borrower",
+            "description": {
+              "content": "Creates a link between a primary entity and a secondary entity",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "borrower",
+                ":uuid",
+                "link_entity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "linked_entity_uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the borrower for this DataView. (see [Borrowers](#tag/Borrowers))"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "076d352a-10ec-4e53-8fbb-9ec8e8a00de4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "borrower",
+                    ":uuid",
+                    "link_entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the borrower for this DataView. (see [Borrowers](#tag/Borrowers))",
+                        "type": "text/plain"
+                      },
+                      "key": "linked_entity_uuid",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"linked_entity_uuid\": \"<uuid>\",\n  \"primary_entity_uuid\": \"aa9e9787-e1f7-d5e2-0d9c-e4f10fd98ca7\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94e97bf4-8e4b-4655-96e9-8af25b76769e",
+          "name": "Generate a Borrower portal link",
+          "request": {
+            "name": "Generate a Borrower portal link",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "borrower",
+                ":uuid",
+                "portal_link"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "reporting_interval",
+                  "value": "MONTHLY"
+                },
+                {
+                  "disabled": false,
+                  "key": "from_date",
+                  "value": "<date>",
+                  "description": "Request statements from date"
+                },
+                {
+                  "disabled": false,
+                  "key": "to_date",
+                  "value": "<date>",
+                  "description": "Request statements to date"
+                },
+                {
+                  "disabled": false,
+                  "key": "statement_types",
+                  "value": "{\"form_type\":\"INCOME_STATEMENT\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "statement_types",
+                  "value": "{\"form_type\":\"INCOME_STATEMENT\"}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "023b1733-2f97-4a8d-b2ec-f85524a03ec6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "borrower",
+                    ":uuid",
+                    "portal_link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "reporting_interval",
+                      "value": "MONTHLY"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Request statements from date",
+                        "type": "text/plain"
+                      },
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Request statements to date",
+                        "type": "text/plain"
+                      },
+                      "key": "to_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "statement_types",
+                      "value": "{\"form_type\":\"INCOME_STATEMENT\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "statement_types",
+                      "value": "{\"form_type\":\"INCOME_STATEMENT\"}"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b03548b3-279b-49c4-afd2-a5e6103f8ee1",
+    "name": "Automated Spreading and Analysis Api-Key Borrowers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****\n\nContact Support:\n Name: Moody's Automated Spreading Customer Support\n Email: MA_NMR_Support@moodys.com",
+      "type": "text/plain"
+    }
+  }
+}

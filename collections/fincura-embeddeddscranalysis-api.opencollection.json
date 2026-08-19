@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automated Spreading and Analysis Api-Key EmbeddedDscrAnalysis API",
+    "version": "1.3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EmbeddedDscrAnalysis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "retrieveEmbeddedDscrAnalysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/embedded-dscr-analysis/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "createEmbeddedDscrAnalysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/embedded-dscr-analysis",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a URL to an HTML webapp to view and modify a particular dscr analysis"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

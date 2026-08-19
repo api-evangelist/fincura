@@ -1,0 +1,934 @@
+{
+  "item": [
+    {
+      "id": "9865c38a-c23e-40a9-b0f9-46cdbcf86bc7",
+      "name": "DataViews",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2f8385d3-7546-4216-9fd7-2eabea2d9b4c",
+          "name": "Get DataView from a DocumentFile",
+          "request": {
+            "name": "Get DataView from a DocumentFile",
+            "description": {
+              "content": "Retrieve a DataView from the standardized output of a DocumentFile submitted to Fincura",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "data-view",
+                "from_document_file",
+                ":document_file_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "document_file_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "641c0222-856b-4050-aa4c-54f3fa6d3dd9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data-view",
+                    "from_document_file",
+                    ":document_file_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_file_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"borrower_uuid\": \"c13c3354-6e7e-c638-d355-79217eb33d16\",\n  \"columns\": [\n    {\n      \"label\": \"string\",\n      \"statement_date\": \"2004-03-12T03:08:01.560Z\",\n      \"reporting_interval\": \"string\",\n      \"preparation_type\": \"string\",\n      \"prepared_by\": \"string\",\n      \"months_in_interval\": 2552,\n      \"scenario\": \"string\",\n      \"scenario_label\": \"string\",\n      \"fiscal_year_end\": \"string\",\n      \"currency_format\": \"string\",\n      \"cells\": [\n        {\n          \"calculated_value\": {\n            \"value\": 3844.01,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 4204,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 5516\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 6675\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2022-08-26T00:21:46.732Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1975-05-05T22:47:01.676Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1986-06-15T06:30:38.227Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2019-11-18T19:23:57.456Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"calculated_value\": {\n            \"value\": 6927.16,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 618,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 2646\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 4593\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1999-05-10T21:38:36.136Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1997-05-17T06:01:31.412Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1960-04-26T02:39:53.391Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2006-11-10T16:39:11.359Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        }\n      ],\n      \"modified_date\": \"1960-03-04\",\n      \"modified_by\": \"string\",\n      \"source_comments\": [\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"2006-09-18T21:28:42.600Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1959-06-23T02:23:21.783Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        },\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1972-12-21T05:38:54.401Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1952-05-19T16:53:45.779Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        }\n      ]\n    },\n    {\n      \"label\": \"string\",\n      \"statement_date\": \"2016-07-18T10:01:13.169Z\",\n      \"reporting_interval\": \"string\",\n      \"preparation_type\": \"string\",\n      \"prepared_by\": \"string\",\n      \"months_in_interval\": 8666,\n      \"scenario\": \"string\",\n      \"scenario_label\": \"string\",\n      \"fiscal_year_end\": \"string\",\n      \"currency_format\": \"string\",\n      \"cells\": [\n        {\n          \"calculated_value\": {\n            \"value\": 7125.33,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 8826,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 9322\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 6613\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1995-02-03T12:22:59.737Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2016-08-04T03:54:09.028Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1985-12-01T17:57:54.981Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1999-05-27T04:22:54.146Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"calculated_value\": {\n            \"value\": 9425.53,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 3990,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 4640\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 7495\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1991-01-27T02:33:36.281Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2013-03-15T11:16:56.217Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1953-12-29T16:47:58.209Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2005-09-11T03:47:03.025Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        }\n      ],\n      \"modified_date\": \"1994-08-17\",\n      \"modified_by\": \"string\",\n      \"source_comments\": [\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"2002-07-31T22:47:15.229Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1947-06-24T12:12:52.726Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        },\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1960-02-26T19:31:43.123Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1955-08-26T16:58:13.090Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"rows\": [\n    {\n      \"label\": \"string\",\n      \"line_item\": {\n        \"id\": 2938,\n        \"label\": \"string\",\n        \"ref\": \"string\"\n      },\n      \"indentation\": 9378,\n      \"row_format\": {\n        \"header\": true,\n        \"bold\": false,\n        \"is_parent\": false\n      },\n      \"cell_format\": {\n        \"text_format\": \"PERCENT\"\n      },\n      \"excludeFromRoundingAndMultiplication\": false\n    },\n    {\n      \"label\": \"string\",\n      \"line_item\": {\n        \"id\": 2494,\n        \"label\": \"string\",\n        \"ref\": \"string\"\n      },\n      \"indentation\": 8034,\n      \"row_format\": {\n        \"header\": false,\n        \"bold\": false,\n        \"is_parent\": true\n      },\n      \"cell_format\": {\n        \"text_format\": \"DAYS\"\n      },\n      \"excludeFromRoundingAndMultiplication\": false\n    }\n  ],\n  \"template_uuid\": \"8848c51d-ce59-1453-159f-9f166d18a1c2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0523802-3196-4508-b69d-3e87ad854d15",
+          "name": "Get DataView from a DocumentFile in CreditLens format",
+          "request": {
+            "name": "Get DataView from a DocumentFile in CreditLens format",
+            "description": {
+              "content": "Retrieve a DataView from the standardized output of a DocumentFile submitted to Fincura in CreditLens format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "data-view",
+                "from_document_file",
+                ":document_file_uuid",
+                "creditlens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "document_file_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de79d9ed-a7bd-4c87-89e4-4560d0a2b1ab",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data-view",
+                    "from_document_file",
+                    ":document_file_uuid",
+                    "creditlens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_file_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"borrower_uuid\": \"2620d8b8-7474-94aa-5789-cb127fd8575b\",\n  \"columns\": [\n    {\n      \"label\": \"string\",\n      \"statement_date\": \"2012-06-16T17:10:53.938Z\",\n      \"reporting_interval\": \"string\",\n      \"preparation_type\": \"string\",\n      \"prepared_by\": \"string\",\n      \"months_in_interval\": 2080,\n      \"scenario\": \"string\",\n      \"scenario_label\": \"string\",\n      \"fiscal_year_end\": \"string\",\n      \"currency_format\": \"string\",\n      \"cells\": [\n        {\n          \"calculated_value\": {\n            \"value\": 1132.7,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 9996,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 2226\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 3570\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2010-08-04T12:07:39.351Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2002-07-14T19:39:32.561Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1992-11-18T04:26:29.528Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2000-01-10T09:22:32.198Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"calculated_value\": {\n            \"value\": 1734.19,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 907,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 8795\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 8034\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1983-10-23T22:45:43.804Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2003-07-01T13:35:34.434Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1985-04-15T15:14:04.985Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2020-05-04T15:33:32.063Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        }\n      ],\n      \"modified_date\": \"2023-05-08\",\n      \"modified_by\": \"string\",\n      \"source_comments\": [\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1989-07-05T12:28:22.202Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"2024-07-04T08:11:18.027Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        },\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"2020-11-10T15:56:40.203Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"2012-09-12T09:18:51.460Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        }\n      ]\n    },\n    {\n      \"label\": \"string\",\n      \"statement_date\": \"1956-10-14T17:28:50.701Z\",\n      \"reporting_interval\": \"string\",\n      \"preparation_type\": \"string\",\n      \"prepared_by\": \"string\",\n      \"months_in_interval\": 3074,\n      \"scenario\": \"string\",\n      \"scenario_label\": \"string\",\n      \"fiscal_year_end\": \"string\",\n      \"currency_format\": \"string\",\n      \"cells\": [\n        {\n          \"calculated_value\": {\n            \"value\": 9521.44,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 8383,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 1368\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 3054\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2018-09-06T03:56:12.526Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2006-01-05T04:41:03.256Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1970-06-02T09:56:14.702Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2016-05-13T08:22:36.966Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"calculated_value\": {\n            \"value\": 2981.81,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 4577,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 0\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 5112\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1971-09-05T03:55:04.911Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2003-12-07T17:47:49.868Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1964-08-11T20:57:00.038Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1989-11-12T09:04:44.557Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        }\n      ],\n      \"modified_date\": \"2017-07-09\",\n      \"modified_by\": \"string\",\n      \"source_comments\": [\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1948-09-18T21:05:14.924Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"2008-01-30T14:34:02.876Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        },\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1980-08-13T10:45:43.045Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1987-08-10T19:17:08.016Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"rows\": [\n    {\n      \"label\": \"string\",\n      \"line_item\": {\n        \"id\": 8745,\n        \"label\": \"string\",\n        \"ref\": \"string\"\n      },\n      \"indentation\": 176,\n      \"row_format\": {\n        \"header\": false,\n        \"bold\": false,\n        \"is_parent\": false\n      },\n      \"cell_format\": {\n        \"text_format\": \"RATIO\"\n      },\n      \"excludeFromRoundingAndMultiplication\": false\n    },\n    {\n      \"label\": \"string\",\n      \"line_item\": {\n        \"id\": 7394,\n        \"label\": \"string\",\n        \"ref\": \"string\"\n      },\n      \"indentation\": 1211,\n      \"row_format\": {\n        \"header\": false,\n        \"bold\": false,\n        \"is_parent\": false\n      },\n      \"cell_format\": {\n        \"text_format\": \"RATIO\"\n      },\n      \"excludeFromRoundingAndMultiplication\": false\n    }\n  ],\n  \"template_uuid\": \"441383be-b38d-55a4-fe04-eaf5ff8f5e68\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3215d4f7-dfc4-4532-aa50-cf4a8c8abad0",
+          "name": "Get the most recent period of data for a Borrower",
+          "request": {
+            "name": "Get the most recent period of data for a Borrower",
+            "description": {
+              "content": "Retrieve a DataView from the most recent standardized data for a borrower",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "data-view",
+                "most_recent",
+                ":borrower_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reporting_interval",
+                  "value": "<string>",
+                  "description": "Reporting Interval of the financial data"
+                },
+                {
+                  "disabled": false,
+                  "key": "preparation_type",
+                  "value": "<string>",
+                  "description": "Preparation Type of the finanical data"
+                },
+                {
+                  "disabled": false,
+                  "key": "column_limit",
+                  "value": "<integer>",
+                  "description": "Number of columns of dataview data to return. Defaults to 1 if not provided"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "borrower_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b53e84d-7432-488e-bd4f-2208eee521d9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data-view",
+                    "most_recent",
+                    ":borrower_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reporting_interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "preparation_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "column_limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "borrower_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"borrower_uuid\": \"2620d8b8-7474-94aa-5789-cb127fd8575b\",\n  \"columns\": [\n    {\n      \"label\": \"string\",\n      \"statement_date\": \"2012-06-16T17:10:53.938Z\",\n      \"reporting_interval\": \"string\",\n      \"preparation_type\": \"string\",\n      \"prepared_by\": \"string\",\n      \"months_in_interval\": 2080,\n      \"scenario\": \"string\",\n      \"scenario_label\": \"string\",\n      \"fiscal_year_end\": \"string\",\n      \"currency_format\": \"string\",\n      \"cells\": [\n        {\n          \"calculated_value\": {\n            \"value\": 1132.7,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 9996,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 2226\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 3570\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2010-08-04T12:07:39.351Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2002-07-14T19:39:32.561Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1992-11-18T04:26:29.528Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2000-01-10T09:22:32.198Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"calculated_value\": {\n            \"value\": 1734.19,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 907,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 8795\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 8034\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1983-10-23T22:45:43.804Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2003-07-01T13:35:34.434Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1985-04-15T15:14:04.985Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2020-05-04T15:33:32.063Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        }\n      ],\n      \"modified_date\": \"2023-05-08\",\n      \"modified_by\": \"string\",\n      \"source_comments\": [\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1989-07-05T12:28:22.202Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"2024-07-04T08:11:18.027Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        },\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"2020-11-10T15:56:40.203Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"2012-09-12T09:18:51.460Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        }\n      ]\n    },\n    {\n      \"label\": \"string\",\n      \"statement_date\": \"1956-10-14T17:28:50.701Z\",\n      \"reporting_interval\": \"string\",\n      \"preparation_type\": \"string\",\n      \"prepared_by\": \"string\",\n      \"months_in_interval\": 3074,\n      \"scenario\": \"string\",\n      \"scenario_label\": \"string\",\n      \"fiscal_year_end\": \"string\",\n      \"currency_format\": \"string\",\n      \"cells\": [\n        {\n          \"calculated_value\": {\n            \"value\": 9521.44,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 8383,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 1368\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 3054\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2018-09-06T03:56:12.526Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2006-01-05T04:41:03.256Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1970-06-02T09:56:14.702Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2016-05-13T08:22:36.966Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"calculated_value\": {\n            \"value\": 2981.81,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 4577,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 0\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 5112\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1971-09-05T03:55:04.911Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2003-12-07T17:47:49.868Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1964-08-11T20:57:00.038Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1989-11-12T09:04:44.557Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        }\n      ],\n      \"modified_date\": \"2017-07-09\",\n      \"modified_by\": \"string\",\n      \"source_comments\": [\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1948-09-18T21:05:14.924Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"2008-01-30T14:34:02.876Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        },\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1980-08-13T10:45:43.045Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1987-08-10T19:17:08.016Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"rows\": [\n    {\n      \"label\": \"string\",\n      \"line_item\": {\n        \"id\": 8745,\n        \"label\": \"string\",\n        \"ref\": \"string\"\n      },\n      \"indentation\": 176,\n      \"row_format\": {\n        \"header\": false,\n        \"bold\": false,\n        \"is_parent\": false\n      },\n      \"cell_format\": {\n        \"text_format\": \"RATIO\"\n      },\n      \"excludeFromRoundingAndMultiplication\": false\n    },\n    {\n      \"label\": \"string\",\n      \"line_item\": {\n        \"id\": 7394,\n        \"label\": \"string\",\n        \"ref\": \"string\"\n      },\n      \"indentation\": 1211,\n      \"row_format\": {\n        \"header\": false,\n        \"bold\": false,\n        \"is_parent\": false\n      },\n      \"cell_format\": {\n        \"text_format\": \"RATIO\"\n      },\n      \"excludeFromRoundingAndMultiplication\": false\n    }\n  ],\n  \"template_uuid\": \"441383be-b38d-55a4-fe04-eaf5ff8f5e68\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43a7c309-c025-4d00-ab30-03de372d32ef",
+          "name": "Get all dataviews for a specific borrower, using a primary or secondary key",
+          "request": {
+            "name": "Get all dataviews for a specific borrower, using a primary or secondary key",
+            "description": {
+              "content": "Retrieve DataViews for all standardized data for a borrower, by primary or secondary key\n\nThe path variable `uuid_or_labeled_key`, can either be a uuid or a label:key (label=key is also accepted).\nThe labels `borrower_uuid` and `external_id` are supported.\n\nexamples of path variables:\n1. 2dfefa9c-c91e-4cc1-b783-363659e596f5\n2. borrower_uuid:2dfefa9c-c91e-4cc1-b783-363659e596f5\n3. borrower_uuid=2dfefa9c-c91e-4cc1-b783-363659e596f5\n4. external_id=1000882211\n\nvalues 1..3 are equivalent, and if the DataView has that external_id, so is 4.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "data-view",
+                "all",
+                ":uuid_or_labeled_key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reporting_interval",
+                  "value": "<string>",
+                  "description": "Reporting Interval of the financial data"
+                },
+                {
+                  "disabled": false,
+                  "key": "preparation_type",
+                  "value": "<string>",
+                  "description": "Preparation Type of the finanical data"
+                },
+                {
+                  "disabled": false,
+                  "key": "period_key_uuid",
+                  "value": "<string>",
+                  "description": "Period in a dataview to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid_or_labeled_key",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a5cf5ef-0ab6-4af4-92e9-112282eaba66",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data-view",
+                    "all",
+                    ":uuid_or_labeled_key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reporting_interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "preparation_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "period_key_uuid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid_or_labeled_key",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"borrower_uuid\": \"2620d8b8-7474-94aa-5789-cb127fd8575b\",\n  \"columns\": [\n    {\n      \"label\": \"string\",\n      \"statement_date\": \"2012-06-16T17:10:53.938Z\",\n      \"reporting_interval\": \"string\",\n      \"preparation_type\": \"string\",\n      \"prepared_by\": \"string\",\n      \"months_in_interval\": 2080,\n      \"scenario\": \"string\",\n      \"scenario_label\": \"string\",\n      \"fiscal_year_end\": \"string\",\n      \"currency_format\": \"string\",\n      \"cells\": [\n        {\n          \"calculated_value\": {\n            \"value\": 1132.7,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 9996,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 2226\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 3570\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2010-08-04T12:07:39.351Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2002-07-14T19:39:32.561Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1992-11-18T04:26:29.528Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2000-01-10T09:22:32.198Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"calculated_value\": {\n            \"value\": 1734.19,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 907,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 8795\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 8034\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1983-10-23T22:45:43.804Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2003-07-01T13:35:34.434Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1985-04-15T15:14:04.985Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2020-05-04T15:33:32.063Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        }\n      ],\n      \"modified_date\": \"2023-05-08\",\n      \"modified_by\": \"string\",\n      \"source_comments\": [\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1989-07-05T12:28:22.202Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"2024-07-04T08:11:18.027Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        },\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"2020-11-10T15:56:40.203Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"2012-09-12T09:18:51.460Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        }\n      ]\n    },\n    {\n      \"label\": \"string\",\n      \"statement_date\": \"1956-10-14T17:28:50.701Z\",\n      \"reporting_interval\": \"string\",\n      \"preparation_type\": \"string\",\n      \"prepared_by\": \"string\",\n      \"months_in_interval\": 3074,\n      \"scenario\": \"string\",\n      \"scenario_label\": \"string\",\n      \"fiscal_year_end\": \"string\",\n      \"currency_format\": \"string\",\n      \"cells\": [\n        {\n          \"calculated_value\": {\n            \"value\": 9521.44,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 8383,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 1368\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 3054\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2018-09-06T03:56:12.526Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2006-01-05T04:41:03.256Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1970-06-02T09:56:14.702Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2016-05-13T08:22:36.966Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"calculated_value\": {\n            \"value\": 2981.81,\n            \"error\": \"string\",\n            \"error_message\": \"string\",\n            \"line_item\": {\n              \"id\": 4577,\n              \"label\": \"string\",\n              \"ref\": \"string\",\n              \"standardized_name\": \"string\"\n            },\n            \"source_items\": [\n              {\n                \"label\": \"string\",\n                \"value\": 0\n              },\n              {\n                \"label\": \"string\",\n                \"value\": 5112\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1971-09-05T03:55:04.911Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2003-12-07T17:47:49.868Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1964-08-11T20:57:00.038Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1989-11-12T09:04:44.557Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        }\n      ],\n      \"modified_date\": \"2017-07-09\",\n      \"modified_by\": \"string\",\n      \"source_comments\": [\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1948-09-18T21:05:14.924Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"2008-01-30T14:34:02.876Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        },\n        {\n          \"comment\": \"string\",\n          \"created_by\": \"string\",\n          \"created_date\": \"1980-08-13T10:45:43.045Z\",\n          \"changed_by\": \"string\",\n          \"changed_date\": \"1987-08-10T19:17:08.016Z\",\n          \"stmt_name\": \"string\",\n          \"line_item_label\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"rows\": [\n    {\n      \"label\": \"string\",\n      \"line_item\": {\n        \"id\": 8745,\n        \"label\": \"string\",\n        \"ref\": \"string\"\n      },\n      \"indentation\": 176,\n      \"row_format\": {\n        \"header\": false,\n        \"bold\": false,\n        \"is_parent\": false\n      },\n      \"cell_format\": {\n        \"text_format\": \"RATIO\"\n      },\n      \"excludeFromRoundingAndMultiplication\": false\n    },\n    {\n      \"label\": \"string\",\n      \"line_item\": {\n        \"id\": 7394,\n        \"label\": \"string\",\n        \"ref\": \"string\"\n      },\n      \"indentation\": 1211,\n      \"row_format\": {\n        \"header\": false,\n        \"bold\": false,\n        \"is_parent\": false\n      },\n      \"cell_format\": {\n        \"text_format\": \"RATIO\"\n      },\n      \"excludeFromRoundingAndMultiplication\": false\n    }\n  ],\n  \"template_uuid\": \"441383be-b38d-55a4-fe04-eaf5ff8f5e68\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de6e3a40-6e3d-42bc-9e68-cc36c47c78ba",
+          "name": "Get a PDF for all dataviews for a specific borrower, using a primary or secondary key",
+          "request": {
+            "name": "Get a PDF for all dataviews for a specific borrower, using a primary or secondary key",
+            "description": {
+              "content": "Download a PDF overview summarizing all standardized data for a borrower, by primary or secondary key\n\nThis supports the same label:key scheme as the method above.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "data-view",
+                "all",
+                ":uuid_or_labeled_key",
+                "download_pdf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid_or_labeled_key",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8efbd56e-3446-452b-a76c-6d970720ae09",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data-view",
+                    "all",
+                    ":uuid_or_labeled_key",
+                    "download_pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid_or_labeled_key",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b069db5f-0f54-4ad5-a7a0-32b4acc51851",
+          "name": "Get a list of metadata for all dataview periods for a specific borrower",
+          "request": {
+            "name": "Get a list of metadata for all dataview periods for a specific borrower",
+            "description": {
+              "content": "Retrieve the metadata for all periods for a borrower",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "data-view",
+                "metadata",
+                ":borrower_uuid",
+                "periods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "borrower_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f1ec8d5-4e79-45cc-97fa-18c69f1e9b70",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data-view",
+                    "metadata",
+                    ":borrower_uuid",
+                    "periods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "borrower_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"borrower_uuid\": \"f8f6c955-5128-aab3-da82-ef464fb4a583\",\n  \"periods\": [\n    {\n      \"value\": \"string\",\n      \"label\": \"string\",\n      \"interval\": \"string\",\n      \"year\": 6435,\n      \"interval_index\": 9579,\n      \"preparation_type\": \"string\",\n      \"fiscal_year_end\": \"string\",\n      \"scenario\": \"string\",\n      \"projection_name\": \"string\",\n      \"period_key_uuid\": \"string\",\n      \"currency_format\": \"string\"\n    },\n    {\n      \"value\": \"string\",\n      \"label\": \"string\",\n      \"interval\": \"string\",\n      \"year\": 3902,\n      \"interval_index\": 977,\n      \"preparation_type\": \"string\",\n      \"fiscal_year_end\": \"string\",\n      \"scenario\": \"string\",\n      \"projection_name\": \"string\",\n      \"period_key_uuid\": \"string\",\n      \"currency_format\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d621c88e-8d47-4600-a1ef-3f30d60b6918",
+          "name": "Create DataView from Orbis company data",
+          "request": {
+            "name": "Create DataView from Orbis company data",
+            "description": {
+              "content": "Create a DataView by fetching financial data from Orbis API.\n\nAccepts an Orbis company ID and returns annual financial statements \nin standardized DataView format.\n\n**Request Parameters:**\n\n- **orbis_id** (required): The Orbis company identifier to fetch financial data for.\n\n- **spreading_template_uuid** (optional): UUID of the spreading template to use for calculations.\n  If not provided, the borrower's default template is used.\n\n- **num_periods** (optional, default=1): Number of annual periods to return (1-100). \n  Each period becomes a column in the DataView. Orbis returns all available periods \n  up to this number.\n\n- **lookback_window** (optional, default=12): Data freshness check in months (1-120). \n  If the most recent Orbis financial data is older than this window, an error is \n  returned. For example, with a 12-month lookback, data dated before 12 months ago \n  will be rejected.\n\n- **refs_to_exclude** (optional): List of REF names to exclude from calculations.\n\n**Response:**\n\n- **dataview**: Full DataView structure with calculated values and multiple columns \n  (one per period requested)\n- **metadata**: Orbis company information, fiscal period details, currency, etc.\n- **statistics**: Completeness metrics showing data coverage\n- **warnings**: Any validation warnings (optional)\n\n**Error Responses:**\n\n- **OrbisCompanyNotFoundError**: The Orbis ID does not exist or has no data\n- **OrbisDataTooStaleError**: Most recent data is older than the lookback window\n- **OrbisAPIKeyError**: API key is missing or invalid\n- **OrbisAPIConnectionError**: Unable to connect to Orbis API\n\nThis is an ephemeral operation - no data is persisted to the database.\nThe spreading calculations are performed in real-time using the Orbis data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "data-view",
+                "create-dataview-from-orbis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "orbis_id",
+                  "value": "<string>",
+                  "description": "(Required) Orbis company identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "spreading_template_uuid",
+                  "value": "<uuid>",
+                  "description": "Optional: UUID of the spreading template to use. If not provided, uses the borrower's default template."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_periods",
+                  "value": "1",
+                  "description": "Number of annual periods to fetch (1-100). Defaults to 1. Orbis returns all available periods up to this number."
+                },
+                {
+                  "disabled": false,
+                  "key": "lookback_window",
+                  "value": "12",
+                  "description": "Lookback window in months (1-120). Defaults to 12. If the most recent Orbis financial data is older than this window, an error is returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "refs_to_exclude",
+                  "value": "<string>",
+                  "description": "Optional: List of REF names to exclude from calculations"
+                },
+                {
+                  "disabled": false,
+                  "key": "refs_to_exclude",
+                  "value": "<string>",
+                  "description": "Optional: List of REF names to exclude from calculations"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_ephemeral",
+                  "value": "true",
+                  "description": "When true (default), returns an ephemeral DataView without persisting data. When false, translates Orbis data into a financial statement submission and pushes it through the spreading pipeline to completion. Requires external_company_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "external_company_id",
+                  "value": "<string>",
+                  "description": "Required when is_ephemeral=false. The borrower external identifier to attach the submission to."
+                },
+                {
+                  "disabled": false,
+                  "key": "preparation_type",
+                  "value": "UNQUALIFIED",
+                  "description": "Financial statement preparation type for the submission. Only used when is_ephemeral=false. Defaults to UNQUALIFIED."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0bf894ea-d609-4965-acc0-221dcba85188",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "data-view",
+                    "create-dataview-from-orbis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Orbis company identifier",
+                        "type": "text/plain"
+                      },
+                      "key": "orbis_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional: UUID of the spreading template to use. If not provided, uses the borrower's default template.",
+                        "type": "text/plain"
+                      },
+                      "key": "spreading_template_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of annual periods to fetch (1-100). Defaults to 1. Orbis returns all available periods up to this number.",
+                        "type": "text/plain"
+                      },
+                      "key": "num_periods",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Lookback window in months (1-120). Defaults to 12. If the most recent Orbis financial data is older than this window, an error is returned.",
+                        "type": "text/plain"
+                      },
+                      "key": "lookback_window",
+                      "value": "12"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional: List of REF names to exclude from calculations",
+                        "type": "text/plain"
+                      },
+                      "key": "refs_to_exclude",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional: List of REF names to exclude from calculations",
+                        "type": "text/plain"
+                      },
+                      "key": "refs_to_exclude",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "When true (default), returns an ephemeral DataView without persisting data. When false, translates Orbis data into a financial statement submission and pushes it through the spreading pipeline to completion. Requires external_company_id.",
+                        "type": "text/plain"
+                      },
+                      "key": "is_ephemeral",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Required when is_ephemeral=false. The borrower external identifier to attach the submission to.",
+                        "type": "text/plain"
+                      },
+                      "key": "external_company_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Financial statement preparation type for the submission. Only used when is_ephemeral=false. Defaults to UNQUALIFIED.",
+                        "type": "text/plain"
+                      },
+                      "key": "preparation_type",
+                      "value": "UNQUALIFIED"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orbis_id\": \"<string>\",\n  \"spreading_template_uuid\": \"<uuid>\",\n  \"num_periods\": 1,\n  \"lookback_window\": 12,\n  \"refs_to_exclude\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_ephemeral\": true,\n  \"external_company_id\": \"<string>\",\n  \"preparation_type\": \"UNQUALIFIED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "03cabca2-2a82-4741-8335-bb4aaa5fa1db",
+    "name": "Automated Spreading and Analysis Api-Key DataViews API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****\n\nContact Support:\n Name: Moody's Automated Spreading Customer Support\n Email: MA_NMR_Support@moodys.com",
+      "type": "text/plain"
+    }
+  }
+}

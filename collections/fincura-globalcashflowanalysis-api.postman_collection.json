@@ -1,0 +1,858 @@
+{
+  "item": [
+    {
+      "id": "a697d44a-36cc-4acc-8f94-89271916d154",
+      "name": "GlobalCashflowAnalysis",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff531cee-8c43-45af-a48a-e8767054bf09",
+          "name": "List all Global Cashflows",
+          "request": {
+            "name": "List all Global Cashflows",
+            "description": {
+              "content": "List Global Cashflow analyses",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "global-cashflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "765aecc7-f833-4b21-8b67-fe10704c2064",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "global-cashflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"analysis_name\": \"string\",\n      \"borrower_uuid\": \"91f85043-cbe4-3501-af0d-f2c7b64df647\",\n      \"uuid\": \"15e69b35-9fe2-14e1-8093-17a16803ec21\",\n      \"created_date\": \"1960-01-01T18:39:02.655Z\",\n      \"template_uuid\": \"6bc9c348-1965-460b-1504-ac83a8f767ac\"\n    },\n    {\n      \"analysis_name\": \"string\",\n      \"borrower_uuid\": \"84c83d4c-6c2d-3c6d-01f5-213280a416a1\",\n      \"uuid\": \"e60db9b0-7bbb-9248-dd82-a9c22963e7a8\",\n      \"created_date\": \"1991-06-22T00:41:06.322Z\",\n      \"template_uuid\": \"275c9784-7f09-6ec1-134d-30e44d72e577\"\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?offset=400&limit=100\",\n  \"previous\": \"http://api.example.org/accounts/?offset=200&limit=100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7899f552-e52e-4f2f-9611-f12d57f6de5b",
+          "name": "Create a new Global Cashflow",
+          "request": {
+            "name": "Create a new Global Cashflow",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "global-cashflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "analysis_name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the Borrower for this analysis"
+                },
+                {
+                  "disabled": false,
+                  "key": "entities_to_include",
+                  "value": "{\"borrower_uuid\":\"<uuid>\",\"is_primary\":false,\"is_blank_entity\":false}",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "entities_to_include",
+                  "value": "{\"borrower_uuid\":\"<uuid>\",\"is_primary\":false,\"is_blank_entity\":false}",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "template_uuid",
+                  "value": "<uuid>",
+                  "description": "UUID of the template to use for the analysis."
+                },
+                {
+                  "disabled": false,
+                  "key": "external_user_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_user_label",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "93984c90-7c08-4f77-9189-f514948c9d4c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "global-cashflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "analysis_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the Borrower for this analysis",
+                        "type": "text/plain"
+                      },
+                      "key": "borrower_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "entities_to_include",
+                      "value": "{\"borrower_uuid\":\"<uuid>\",\"is_primary\":false,\"is_blank_entity\":false}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "entities_to_include",
+                      "value": "{\"borrower_uuid\":\"<uuid>\",\"is_primary\":false,\"is_blank_entity\":false}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "UUID of the template to use for the analysis.",
+                        "type": "text/plain"
+                      },
+                      "key": "template_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "external_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "external_user_label",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"analysis_name\": \"<string>\",\n  \"borrower_uuid\": \"<uuid>\",\n  \"entities_to_include\": [\n    {\n      \"borrower_uuid\": \"<uuid>\",\n      \"is_primary\": false,\n      \"is_blank_entity\": false\n    },\n    {\n      \"borrower_uuid\": \"<uuid>\",\n      \"is_primary\": false,\n      \"is_blank_entity\": false\n    }\n  ],\n  \"uuid\": \"92f2a62b-11a5-1918-bb3c-69c09e8283ca\",\n  \"created_date\": \"1947-04-20T00:52:56.222Z\",\n  \"template_uuid\": \"<uuid>\",\n  \"data_view_columns\": {\n    \"primary_entity\": [\n      {\n        \"label\": \"string\",\n        \"statement_date\": \"2014-10-10T01:45:32.514Z\",\n        \"reporting_interval\": \"string\",\n        \"preparation_type\": \"string\",\n        \"prepared_by\": \"string\",\n        \"months_in_interval\": 3414,\n        \"scenario\": \"string\",\n        \"cells\": [\n          {\n            \"calculated_value\": {\n              \"value\": 5388.150000000001,\n              \"error\": \"string\",\n              \"error_message\": \"string\",\n              \"line_item\": {\n                \"id\": 8968,\n                \"label\": \"string\",\n                \"ref\": \"string\"\n              }\n            }\n          },\n          {\n            \"calculated_value\": {\n              \"value\": 2973.68,\n              \"error\": \"string\",\n              \"error_message\": \"string\",\n              \"line_item\": {\n                \"id\": 8175,\n                \"label\": \"string\",\n                \"ref\": \"string\"\n              }\n            }\n          }\n        ],\n        \"source_comments\": [\n          {\n            \"comment\": \"string\",\n            \"created_by\": \"string\",\n            \"created_date\": \"2016-01-03T12:38:42.952Z\",\n            \"changed_by\": \"string\",\n            \"changed_date\": \"1976-08-08T13:00:25.761Z\",\n            \"stmt_name\": \"string\",\n            \"line_item_label\": \"string\"\n          },\n          {\n            \"comment\": \"string\",\n            \"created_by\": \"string\",\n            \"created_date\": \"1956-07-22T23:22:15.012Z\",\n            \"changed_by\": \"string\",\n            \"changed_date\": \"2020-05-06T00:45:30.479Z\",\n            \"stmt_name\": \"string\",\n            \"line_item_label\": \"string\"\n          }\n        ]\n      },\n      {\n        \"label\": \"string\",\n        \"statement_date\": \"1998-02-20T12:36:12.284Z\",\n        \"reporting_interval\": \"string\",\n        \"preparation_type\": \"string\",\n        \"prepared_by\": \"string\",\n        \"months_in_interval\": 1324,\n        \"scenario\": \"string\",\n        \"cells\": [\n          {\n            \"calculated_value\": {\n              \"value\": 8363.42,\n              \"error\": \"string\",\n              \"error_message\": \"string\",\n              \"line_item\": {\n                \"id\": 3680,\n                \"label\": \"string\",\n                \"ref\": \"string\"\n              }\n            }\n          },\n          {\n            \"calculated_value\": {\n              \"value\": 5710.51,\n              \"error\": \"string\",\n              \"error_message\": \"string\",\n              \"line_item\": {\n                \"id\": 6539,\n                \"label\": \"string\",\n                \"ref\": \"string\"\n              }\n            }\n          }\n        ],\n        \"source_comments\": [\n          {\n            \"comment\": \"string\",\n            \"created_by\": \"string\",\n            \"created_date\": \"1989-08-21T05:26:10.998Z\",\n            \"changed_by\": \"string\",\n            \"changed_date\": \"1961-11-29T03:41:01.894Z\",\n            \"stmt_name\": \"string\",\n            \"line_item_label\": \"string\"\n          },\n          {\n            \"comment\": \"string\",\n            \"created_by\": \"string\",\n            \"created_date\": \"2023-11-26T15:25:22.564Z\",\n            \"changed_by\": \"string\",\n            \"changed_date\": \"1981-02-18T18:24:35.809Z\",\n            \"stmt_name\": \"string\",\n            \"line_item_label\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"linked_entities\": [\n      [\n        {\n          \"label\": \"string\",\n          \"statement_date\": \"1961-05-19T11:11:13.377Z\",\n          \"reporting_interval\": \"string\",\n          \"preparation_type\": \"string\",\n          \"prepared_by\": \"string\",\n          \"months_in_interval\": 9532,\n          \"scenario\": \"string\",\n          \"cells\": [\n            {\n              \"calculated_value\": {\n                \"value\": 6945.2300000000005,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 6904,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            },\n            {\n              \"calculated_value\": {\n                \"value\": 1744.93,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 1903,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            }\n          ],\n          \"source_comments\": [\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"2013-10-25T13:18:44.531Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1996-10-23T02:25:51.267Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            },\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"1956-03-09T13:36:49.798Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"2012-09-06T05:52:56.525Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            }\n          ]\n        },\n        {\n          \"label\": \"string\",\n          \"statement_date\": \"2004-11-16T01:20:35.153Z\",\n          \"reporting_interval\": \"string\",\n          \"preparation_type\": \"string\",\n          \"prepared_by\": \"string\",\n          \"months_in_interval\": 9636,\n          \"scenario\": \"string\",\n          \"cells\": [\n            {\n              \"calculated_value\": {\n                \"value\": 5251.03,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 2004,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            },\n            {\n              \"calculated_value\": {\n                \"value\": 3702.01,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 9203,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            }\n          ],\n          \"source_comments\": [\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"1971-07-09T14:19:29.538Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1973-09-10T20:33:45.217Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            },\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"2024-07-13T14:01:20.110Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1980-07-23T19:06:34.277Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            }\n          ]\n        }\n      ],\n      [\n        {\n          \"label\": \"string\",\n          \"statement_date\": \"1980-10-16T18:01:53.583Z\",\n          \"reporting_interval\": \"string\",\n          \"preparation_type\": \"string\",\n          \"prepared_by\": \"string\",\n          \"months_in_interval\": 2319,\n          \"scenario\": \"string\",\n          \"cells\": [\n            {\n              \"calculated_value\": {\n                \"value\": 3361.1800000000003,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 6170,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            },\n            {\n              \"calculated_value\": {\n                \"value\": 6599.13,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 1292,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            }\n          ],\n          \"source_comments\": [\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"2013-05-31T00:46:22.394Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1978-05-27T05:42:57.351Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            },\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"1960-02-08T09:30:56.701Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"2018-03-29T03:57:14.822Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            }\n          ]\n        },\n        {\n          \"label\": \"string\",\n          \"statement_date\": \"1955-12-30T19:54:36.876Z\",\n          \"reporting_interval\": \"string\",\n          \"preparation_type\": \"string\",\n          \"prepared_by\": \"string\",\n          \"months_in_interval\": 588,\n          \"scenario\": \"string\",\n          \"cells\": [\n            {\n              \"calculated_value\": {\n                \"value\": 8693.1,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 2712,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            },\n            {\n              \"calculated_value\": {\n                \"value\": 7507.58,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 6563,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            }\n          ],\n          \"source_comments\": [\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"2018-01-14T08:29:56.707Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1986-01-08T19:02:54.222Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            },\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"2017-07-19T11:45:59.136Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1954-01-10T16:55:45.130Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            }\n          ]\n        }\n      ]\n    ]\n  },\n  \"commentary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e0ac7e8-6d9f-4551-8683-2b706533cca0",
+          "name": "Retrieve a Global Cashflow",
+          "request": {
+            "name": "Retrieve a Global Cashflow",
+            "description": {
+              "content": "Retrieve Global Cashflow analysis record",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "global-cashflow",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3186a3e7-ca16-4c40-843f-1b7779504c29",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "global-cashflow",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"analysis_name\": \"string\",\n  \"borrower_uuid\": \"80d6f79f-ebf8-0ccc-0f97-3791d0bfad1f\",\n  \"uuid\": \"9f7a4f25-0a1c-ba05-9e35-4693c6d9be7b\",\n  \"created_date\": \"2000-08-29T18:18:59.440Z\",\n  \"template_uuid\": \"91d7d401-1340-6b8e-6947-3a26d05abf46\",\n  \"proposed_debts\": [\n    {\n      \"debt_name\": \"string\",\n      \"principal\": 1868,\n      \"term_months\": 7694,\n      \"interest_rate\": 129685416109.6781,\n      \"amortization_method\": \"PRINCIPAL_PLUS_INTEREST\",\n      \"amortization_overrides\": {\n        \"monthly_payment\": 18164155172550.11,\n        \"basis\": \"string\",\n        \"days_in_month\": \"string\",\n        \"payment_day\": 3931,\n        \"last_day_for_next_payment\": 603\n      }\n    },\n    {\n      \"debt_name\": \"string\",\n      \"principal\": 5041,\n      \"term_months\": 6983,\n      \"interest_rate\": 103785439892.06801,\n      \"amortization_method\": \"IO_PERIOD\",\n      \"amortization_overrides\": {\n        \"monthly_payment\": 4195644822357.87,\n        \"basis\": \"string\",\n        \"days_in_month\": \"string\",\n        \"payment_day\": 2654,\n        \"last_day_for_next_payment\": 5857\n      }\n    }\n  ],\n  \"data_view_columns\": {\n    \"primary_entity\": [\n      {\n        \"label\": \"string\",\n        \"statement_date\": \"2008-03-01T03:53:28.446Z\",\n        \"reporting_interval\": \"string\",\n        \"preparation_type\": \"string\",\n        \"prepared_by\": \"string\",\n        \"months_in_interval\": 4209,\n        \"scenario\": \"string\",\n        \"cells\": [\n          {\n            \"calculated_value\": {\n              \"value\": 3857.09,\n              \"error\": \"string\",\n              \"error_message\": \"string\",\n              \"line_item\": {\n                \"id\": 889,\n                \"label\": \"string\",\n                \"ref\": \"string\"\n              }\n            }\n          },\n          {\n            \"calculated_value\": {\n              \"value\": 3182.38,\n              \"error\": \"string\",\n              \"error_message\": \"string\",\n              \"line_item\": {\n                \"id\": 9486,\n                \"label\": \"string\",\n                \"ref\": \"string\"\n              }\n            }\n          }\n        ],\n        \"source_comments\": [\n          {\n            \"comment\": \"string\",\n            \"created_by\": \"string\",\n            \"created_date\": \"1985-10-25T12:04:14.637Z\",\n            \"changed_by\": \"string\",\n            \"changed_date\": \"2009-01-20T14:17:29.541Z\",\n            \"stmt_name\": \"string\",\n            \"line_item_label\": \"string\"\n          },\n          {\n            \"comment\": \"string\",\n            \"created_by\": \"string\",\n            \"created_date\": \"1988-09-16T23:33:04.712Z\",\n            \"changed_by\": \"string\",\n            \"changed_date\": \"2021-01-18T12:27:10.486Z\",\n            \"stmt_name\": \"string\",\n            \"line_item_label\": \"string\"\n          }\n        ]\n      },\n      {\n        \"label\": \"string\",\n        \"statement_date\": \"2014-02-24T06:41:51.547Z\",\n        \"reporting_interval\": \"string\",\n        \"preparation_type\": \"string\",\n        \"prepared_by\": \"string\",\n        \"months_in_interval\": 5233,\n        \"scenario\": \"string\",\n        \"cells\": [\n          {\n            \"calculated_value\": {\n              \"value\": 5757.1900000000005,\n              \"error\": \"string\",\n              \"error_message\": \"string\",\n              \"line_item\": {\n                \"id\": 2314,\n                \"label\": \"string\",\n                \"ref\": \"string\"\n              }\n            }\n          },\n          {\n            \"calculated_value\": {\n              \"value\": 2446.4,\n              \"error\": \"string\",\n              \"error_message\": \"string\",\n              \"line_item\": {\n                \"id\": 178,\n                \"label\": \"string\",\n                \"ref\": \"string\"\n              }\n            }\n          }\n        ],\n        \"source_comments\": [\n          {\n            \"comment\": \"string\",\n            \"created_by\": \"string\",\n            \"created_date\": \"1991-11-21T19:48:55.283Z\",\n            \"changed_by\": \"string\",\n            \"changed_date\": \"2015-09-09T09:32:16.655Z\",\n            \"stmt_name\": \"string\",\n            \"line_item_label\": \"string\"\n          },\n          {\n            \"comment\": \"string\",\n            \"created_by\": \"string\",\n            \"created_date\": \"1973-07-22T14:19:56.556Z\",\n            \"changed_by\": \"string\",\n            \"changed_date\": \"1977-12-10T08:04:52.943Z\",\n            \"stmt_name\": \"string\",\n            \"line_item_label\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"linked_entities\": [\n      [\n        {\n          \"label\": \"string\",\n          \"statement_date\": \"1961-02-11T19:53:33.505Z\",\n          \"reporting_interval\": \"string\",\n          \"preparation_type\": \"string\",\n          \"prepared_by\": \"string\",\n          \"months_in_interval\": 2403,\n          \"scenario\": \"string\",\n          \"cells\": [\n            {\n              \"calculated_value\": {\n                \"value\": 5399.49,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 1733,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            },\n            {\n              \"calculated_value\": {\n                \"value\": 3477.65,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 4452,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            }\n          ],\n          \"source_comments\": [\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"2026-04-14T21:41:11.509Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"2007-05-09T07:35:52.987Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            },\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"2001-04-25T06:16:21.264Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"2005-12-17T19:17:40.707Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            }\n          ]\n        },\n        {\n          \"label\": \"string\",\n          \"statement_date\": \"2010-06-13T23:19:42.545Z\",\n          \"reporting_interval\": \"string\",\n          \"preparation_type\": \"string\",\n          \"prepared_by\": \"string\",\n          \"months_in_interval\": 8829,\n          \"scenario\": \"string\",\n          \"cells\": [\n            {\n              \"calculated_value\": {\n                \"value\": 9928.58,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 8681,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            },\n            {\n              \"calculated_value\": {\n                \"value\": 9221.44,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 1898,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            }\n          ],\n          \"source_comments\": [\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"2011-08-10T13:49:18.941Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1974-06-16T11:46:20.106Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            },\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"1993-11-01T19:59:50.990Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1979-02-27T01:52:06.154Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            }\n          ]\n        }\n      ],\n      [\n        {\n          \"label\": \"string\",\n          \"statement_date\": \"1949-02-07T03:12:14.601Z\",\n          \"reporting_interval\": \"string\",\n          \"preparation_type\": \"string\",\n          \"prepared_by\": \"string\",\n          \"months_in_interval\": 7175,\n          \"scenario\": \"string\",\n          \"cells\": [\n            {\n              \"calculated_value\": {\n                \"value\": 2801.28,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 2247,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            },\n            {\n              \"calculated_value\": {\n                \"value\": 894.86,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 3843,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            }\n          ],\n          \"source_comments\": [\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"1960-04-15T17:58:53.808Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1948-11-11T16:05:15.077Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            },\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"1999-08-17T02:44:37.921Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"2011-04-02T05:44:57.906Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            }\n          ]\n        },\n        {\n          \"label\": \"string\",\n          \"statement_date\": \"2005-03-04T05:13:38.416Z\",\n          \"reporting_interval\": \"string\",\n          \"preparation_type\": \"string\",\n          \"prepared_by\": \"string\",\n          \"months_in_interval\": 8133,\n          \"scenario\": \"string\",\n          \"cells\": [\n            {\n              \"calculated_value\": {\n                \"value\": 2696.4900000000002,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 686,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            },\n            {\n              \"calculated_value\": {\n                \"value\": 6408.77,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 6051,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            }\n          ],\n          \"source_comments\": [\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"1947-07-08T21:08:59.695Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1965-02-26T21:14:00.132Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            },\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"1996-07-03T09:03:59.493Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1951-07-27T11:04:14.796Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            }\n          ]\n        }\n      ]\n    ]\n  },\n  \"commentary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0b7bc36-1357-46a3-acef-a64ba8209a05",
+          "name": "Delete a Global Cashflow",
+          "request": {
+            "name": "Delete a Global Cashflow",
+            "description": {
+              "content": "Remove an existing Global Cashflow analysis record",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "global-cashflow",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "borrower_uuid",
+                  "value": "<string>",
+                  "description": "Borrower to filter results for"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f9afd34-c6bc-485e-8534-5831a76d9219",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "global-cashflow",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "borrower_uuid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "313018ef-5f7e-4b01-9d4e-2e2a25768436",
+          "name": "Download an excel for a Global Cashflow",
+          "request": {
+            "name": "Download an excel for a Global Cashflow",
+            "description": {
+              "content": "Download the Global Cashflow analysis as an Excel file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "global-cashflow",
+                ":uuid",
+                "download_excel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a58122e-4076-48f1-b704-c5efe98f628d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "global-cashflow",
+                    ":uuid",
+                    "download_excel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "989d4a84-271c-4194-8b07-af831bc62c86",
+          "name": "Download a PDF for a Global Cashflow",
+          "request": {
+            "name": "Download a PDF for a Global Cashflow",
+            "description": {
+              "content": "Download the Global Cashflow analysis as a PDF file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "global-cashflow",
+                ":uuid",
+                "download_pdf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56444af1-b24b-416b-93ce-fab6ab15e446",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "global-cashflow",
+                    ":uuid",
+                    "download_pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db677851-e011-48ce-9921-f1bb063e534c",
+          "name": "Retrieve a Global Cashflow with extra borrower details",
+          "request": {
+            "name": "Retrieve a Global Cashflow with extra borrower details",
+            "description": {
+              "content": "Retrieve Global Cashflow analysis record",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analysis",
+                "global-cashflow",
+                ":uuid",
+                "retrieve-with-entity-detail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a10c9ef2-0771-49c8-869e-89343504629f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analysis",
+                    "global-cashflow",
+                    ":uuid",
+                    "retrieve-with-entity-detail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"analysis_name\": \"string\",\n  \"borrower_uuid\": \"386fe76c-00e8-47a0-3caa-f8411c390344\",\n  \"uuid\": \"a69207a6-415a-c276-2ce3-33611e61ed29\",\n  \"created_date\": \"1988-07-16T03:23:12.004Z\",\n  \"template_uuid\": \"7f75cd6e-c826-9fc6-d295-e150583be62e\",\n  \"proposed_debts\": [\n    {\n      \"debt_name\": \"string\",\n      \"principal\": 935,\n      \"term_months\": 5702,\n      \"interest_rate\": 180516145870.126,\n      \"amortization_method\": \"IO_PERIOD\",\n      \"amortization_overrides\": {\n        \"monthly_payment\": 19809266524972.59,\n        \"basis\": \"string\",\n        \"days_in_month\": \"string\",\n        \"payment_day\": 4216,\n        \"last_day_for_next_payment\": 3195\n      }\n    },\n    {\n      \"debt_name\": \"string\",\n      \"principal\": 9602,\n      \"term_months\": 7239,\n      \"interest_rate\": 149945768209.4619,\n      \"amortization_method\": \"IO_PERIOD\",\n      \"amortization_overrides\": {\n        \"monthly_payment\": 2223627615664.04,\n        \"basis\": \"string\",\n        \"days_in_month\": \"string\",\n        \"payment_day\": 7051,\n        \"last_day_for_next_payment\": 7610\n      }\n    }\n  ],\n  \"data_view_columns\": {\n    \"primary_entity\": {\n      \"entity_uuid\": \"11b82f87-4908-bd70-52fb-26b16babfc80\",\n      \"entity_name\": \"string\",\n      \"columns\": [\n        {\n          \"label\": \"string\",\n          \"statement_date\": \"2015-04-17T23:18:18.197Z\",\n          \"reporting_interval\": \"string\",\n          \"preparation_type\": \"string\",\n          \"prepared_by\": \"string\",\n          \"months_in_interval\": 1344,\n          \"scenario\": \"string\",\n          \"cells\": [\n            {\n              \"calculated_value\": {\n                \"value\": 7780.51,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 1375,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            },\n            {\n              \"calculated_value\": {\n                \"value\": 6172.08,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 1158,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            }\n          ],\n          \"source_comments\": [\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"2018-07-13T01:25:54.560Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1946-08-29T01:55:50.045Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            },\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"1950-11-25T12:11:16.171Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"2019-05-13T11:35:39.901Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            }\n          ]\n        },\n        {\n          \"label\": \"string\",\n          \"statement_date\": \"1998-12-01T15:31:10.714Z\",\n          \"reporting_interval\": \"string\",\n          \"preparation_type\": \"string\",\n          \"prepared_by\": \"string\",\n          \"months_in_interval\": 8286,\n          \"scenario\": \"string\",\n          \"cells\": [\n            {\n              \"calculated_value\": {\n                \"value\": 4619.6,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 8074,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            },\n            {\n              \"calculated_value\": {\n                \"value\": 4778.04,\n                \"error\": \"string\",\n                \"error_message\": \"string\",\n                \"line_item\": {\n                  \"id\": 2265,\n                  \"label\": \"string\",\n                  \"ref\": \"string\"\n                }\n              }\n            }\n          ],\n          \"source_comments\": [\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"1957-12-01T01:01:54.726Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"1992-07-02T19:22:39.310Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            },\n            {\n              \"comment\": \"string\",\n              \"created_by\": \"string\",\n              \"created_date\": \"2003-03-16T19:32:20.658Z\",\n              \"changed_by\": \"string\",\n              \"changed_date\": \"2014-02-08T11:10:55.561Z\",\n              \"stmt_name\": \"string\",\n              \"line_item_label\": \"string\"\n            }\n          ]\n        }\n      ]\n    },\n    \"linked_entities\": [\n      {\n        \"entity_uuid\": \"da9df071-9ef0-e83f-dfb1-83b444b8671e\",\n        \"entity_name\": \"string\",\n        \"columns\": [\n          {\n            \"label\": \"string\",\n            \"statement_date\": \"1979-04-22T00:10:19.758Z\",\n            \"reporting_interval\": \"string\",\n            \"preparation_type\": \"string\",\n            \"prepared_by\": \"string\",\n            \"months_in_interval\": 1497,\n            \"scenario\": \"string\",\n            \"cells\": [\n              {\n                \"calculated_value\": {\n                  \"value\": 1679.65,\n                  \"error\": \"string\",\n                  \"error_message\": \"string\",\n                  \"line_item\": {\n                    \"id\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"label\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"ref\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    }\n                  }\n                }\n              },\n              {\n                \"calculated_value\": {\n                  \"value\": 176.87,\n                  \"error\": \"string\",\n                  \"error_message\": \"string\",\n                  \"line_item\": {\n                    \"id\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"label\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"ref\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    }\n                  }\n                }\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2007-06-14T11:13:31.766Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1991-09-11T12:19:57.636Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2008-04-09T18:03:51.282Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1952-02-11T02:32:28.761Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          },\n          {\n            \"label\": \"string\",\n            \"statement_date\": \"1999-01-15T03:36:49.301Z\",\n            \"reporting_interval\": \"string\",\n            \"preparation_type\": \"string\",\n            \"prepared_by\": \"string\",\n            \"months_in_interval\": 4218,\n            \"scenario\": \"string\",\n            \"cells\": [\n              {\n                \"calculated_value\": {\n                  \"value\": 5512.64,\n                  \"error\": \"string\",\n                  \"error_message\": \"string\",\n                  \"line_item\": {\n                    \"id\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"label\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"ref\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    }\n                  }\n                }\n              },\n              {\n                \"calculated_value\": {\n                  \"value\": 398.2,\n                  \"error\": \"string\",\n                  \"error_message\": \"string\",\n                  \"line_item\": {\n                    \"id\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"label\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"ref\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    }\n                  }\n                }\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2001-01-25T02:34:59.015Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1981-03-27T07:56:57.302Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2013-08-19T20:00:51.208Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1967-04-23T09:54:47.260Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"entity_uuid\": \"7b9bbacd-342c-8557-cbf5-e8d7ab574dd1\",\n        \"entity_name\": \"string\",\n        \"columns\": [\n          {\n            \"label\": \"string\",\n            \"statement_date\": \"1960-02-07T09:06:31.972Z\",\n            \"reporting_interval\": \"string\",\n            \"preparation_type\": \"string\",\n            \"prepared_by\": \"string\",\n            \"months_in_interval\": 823,\n            \"scenario\": \"string\",\n            \"cells\": [\n              {\n                \"calculated_value\": {\n                  \"value\": 2558.81,\n                  \"error\": \"string\",\n                  \"error_message\": \"string\",\n                  \"line_item\": {\n                    \"id\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"label\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"ref\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    }\n                  }\n                }\n              },\n              {\n                \"calculated_value\": {\n                  \"value\": 2064.17,\n                  \"error\": \"string\",\n                  \"error_message\": \"string\",\n                  \"line_item\": {\n                    \"id\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"label\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"ref\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    }\n                  }\n                }\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2014-12-24T23:25:51.640Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1983-07-16T22:40:58.369Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"1993-01-13T12:39:46.325Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"2010-12-01T15:09:06.793Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          },\n          {\n            \"label\": \"string\",\n            \"statement_date\": \"2000-05-26T01:43:01.864Z\",\n            \"reporting_interval\": \"string\",\n            \"preparation_type\": \"string\",\n            \"prepared_by\": \"string\",\n            \"months_in_interval\": 6014,\n            \"scenario\": \"string\",\n            \"cells\": [\n              {\n                \"calculated_value\": {\n                  \"value\": 4614.96,\n                  \"error\": \"string\",\n                  \"error_message\": \"string\",\n                  \"line_item\": {\n                    \"id\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"label\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"ref\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    }\n                  }\n                }\n              },\n              {\n                \"calculated_value\": {\n                  \"value\": 5782.26,\n                  \"error\": \"string\",\n                  \"error_message\": \"string\",\n                  \"line_item\": {\n                    \"id\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"label\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    },\n                    \"ref\": {\n                      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                    }\n                  }\n                }\n              }\n            ],\n            \"source_comments\": [\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2019-01-15T18:43:17.219Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1966-12-26T13:19:34.074Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              },\n              {\n                \"comment\": \"string\",\n                \"created_by\": \"string\",\n                \"created_date\": \"2014-05-27T11:43:42.340Z\",\n                \"changed_by\": \"string\",\n                \"changed_date\": \"1990-11-23T00:26:15.456Z\",\n                \"stmt_name\": \"string\",\n                \"line_item_label\": \"string\"\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"commentary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7ba2c2fa-7a05-4d1b-bc07-1ef1c4b7d4e7",
+    "name": "Automated Spreading and Analysis Api-Key GlobalCashflowAnalysis API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****\n\nContact Support:\n Name: Moody's Automated Spreading Customer Support\n Email: MA_NMR_Support@moodys.com",
+      "type": "text/plain"
+    }
+  }
+}
