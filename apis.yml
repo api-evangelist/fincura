@@ -34,6 +34,15 @@ specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
 tags:
+- Financial-Services
+- Lending
+- Credit Analysis
+- Financial Spreading
+- Banking
+- Fintech
+- Underwriting
+- Company
+tags_raw:
 - Financial Services
 - Lending
 - Credit Analysis
@@ -54,6 +63,8 @@ apis:
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
+  - APIKeys
+  tags_raw:
   - Api-Key
   properties:
   - type: OpenAPI
@@ -78,6 +89,8 @@ apis:
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
+  - Custom Attributes
+  tags_raw:
   - CustomAttributes
   properties:
   - type: OpenAPI
@@ -184,6 +197,8 @@ apis:
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -245,6 +260,8 @@ apis:
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
+  - Portfolio
+  tags_raw:
   - Portfolios
   properties:
   - type: OpenAPI
@@ -333,6 +350,8 @@ apis:
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
