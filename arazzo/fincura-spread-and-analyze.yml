@@ -5,6 +5,17 @@ info:
   description: >-
     Creates a borrower, uploads a financial document for automated spreading,
     retrieves the normalized data view, then runs a DSCR analysis and downloads it.
+  x-realizes-capability-ids:
+  - BC-1320.20
+  x-capability-derivation:
+    method: 'deterministic join: sourceDescriptions -> per-tag OpenAPI -> tag/capability edge. No classification at this step.'
+    min_confidence: 0.7
+    sources:
+    - capability_id: BC-1320.20
+      capability_name: Credit Underwriting & Decisioning Management
+      spec: fincura-dscranalysis-api-openapi.yml
+      confidence: 0.85
+    model: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities, CC BY 4.0
 sourceDescriptions:
 - name: borrowersApi
   url: ../openapi/fincura-borrowers-api-openapi.yml
