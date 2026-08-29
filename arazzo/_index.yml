@@ -1,6 +1,6 @@
-generated: '2026-07-19'
-method: derived
-source: openapi/fincura-openapi-original.yml
+x-generated: '2026-07-19'
+x-method: derived
+x-source: openapi/fincura-openapi-original.yml
 workflows:
 - file: fincura-spread-and-analyze.yml
   workflowId: spreadAndAnalyze

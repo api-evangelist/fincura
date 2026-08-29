@@ -6,8 +6,17 @@ info:
     Creates a borrower, uploads a financial document for automated spreading,
     retrieves the normalized data view, then runs a DSCR analysis and downloads it.
 sourceDescriptions:
-- name: fincura
-  url: ../openapi/fincura-openapi-original.yml
+- name: borrowersApi
+  url: ../openapi/fincura-borrowers-api-openapi.yml
+  type: openapi
+- name: dataviewsApi
+  url: ../openapi/fincura-dataviews-api-openapi.yml
+  type: openapi
+- name: dscranalysisApi
+  url: ../openapi/fincura-dscranalysis-api-openapi.yml
+  type: openapi
+- name: filesApi
+  url: ../openapi/fincura-files-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: spreadAndAnalyze
