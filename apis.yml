@@ -371,6 +371,9 @@ apis:
   - type: APIReference
     url: https://api.fincura.com/v1/redoc/
 common:
+- type: CapabilityMap
+  url: capabilities/fincura-capability-edges.yml
+  name: Fincura Business Capability Map
 - type: Overlay
   url: overlays/fincura-openapi-overlay.yaml
 - type: AgenticAccess

@@ -1,0 +1,93 @@
+slug: fincura
+provider: Fincura
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 8
+edges:
+- tag: DscrAnalysis
+  spec_file: fincura-dscranalysis-api-openapi.yml
+  capability_id: BC-1320.20
+  capability_id_l1: BC-1320
+  capability_name: Credit Underwriting & Decisioning Management
+  confidence: 0.85
+  evidence: POST /v1/analysis/dscr  createDscrAnalysis  "Create a new DSCR Analysis"; schema DSCRAnalysisDetails
+  reason: Debt-service-coverage-ratio analysis on borrower financials is credit analysis/underwriting
+    support for lenders.
+- tag: GlobalCashflowAnalysis
+  spec_file: fincura-globalcashflowanalysis-api-openapi.yml
+  capability_id: BC-1320.20
+  capability_id_l1: BC-1320
+  capability_name: Credit Underwriting & Decisioning Management
+  confidence: 0.8
+  evidence: GET /v1/analysis/global-cashflow "List all Global Cashflows"; "Retrieve a Global Cashflow
+    with extra borrower details"
+  reason: Operations create, retrieve and export global cashflow analyses tied to borrowers — credit analysis
+    / financial spreading feeding underwriting decisions for banks and credit unions.
+- tag: EmbeddedGlobalCashflowAnalysis
+  spec_file: fincura-embeddedglobalcashflowanalysis-api-openapi.yml
+  capability_id: BC-1320.20
+  capability_id_l1: BC-1320
+  capability_name: Credit Underwriting & Decisioning Management
+  confidence: 0.75
+  evidence: 'POST /v1/embedded-global-cashflow-analysis createEmbeddedGlobalCashflowAnalysis; schema EmbeddedGlobalCashflowAnalysisWorkflow;
+    vendor: "runs debt-service-coverage-ratio (DSCR) and global cashflow analyses"'
+  reason: Global cashflow / DSCR analysis of borrower financials is credit analysis supporting underwriting
+    and decisioning for lenders. Embedded workflow variant of the same analysis surface.
+- tag: DataViews
+  spec_file: fincura-dataviews-api-openapi.yml
+  capability_id: BC-1320.20
+  capability_id_l1: BC-1320
+  capability_name: Credit Underwriting & Decisioning Management
+  confidence: 0.72
+  evidence: '"Get DataView from a DocumentFile"; "Get the most recent period of data for a Borrower";
+    vendor: "spreads them into normalized data views"'
+  reason: DataViews are the normalized spread of borrower financial statements — financial spreading,
+    explicitly named in the Credit Underwriting & Decisioning sub-capability.
+- tag: EmbeddedDscrAnalysis
+  spec_file: fincura-embeddeddscranalysis-api-openapi.yml
+  capability_id: BC-1320.20
+  capability_id_l1: BC-1320
+  capability_name: Credit Underwriting & Decisioning Management
+  confidence: 0.72
+  evidence: POST /v1/embedded-dscr-analysis  createEmbeddedDscrAnalysis (schema EmbeddedDscrAnalysisWorkflow)
+  reason: An embedded variant of the DSCR credit analysis workflow; same underwriting/credit-analysis
+    capability, delivered as an embeddable UI flow.
+- tag: FinancialStatementSubmission
+  spec_file: fincura-financialstatementsubmission-api-openapi.yml
+  capability_id: BC-1320.20
+  capability_id_l1: BC-1320
+  capability_name: Credit Underwriting & Decisioning Management
+  confidence: 0.7
+  evidence: POST /v1/financial-statement-submission  "Submit structured financial statements (JSON)"
+  reason: Ingestion of borrower financial statements into the spreading/insights engine is financial spreading
+    input, the core of credit underwriting analysis at a lender. Single operation, so evidence is somewhat
+    thin.
+- tag: Loans
+  spec_file: fincura-loans-api-openapi.yml
+  capability_id: BC-1320
+  capability_id_l1: BC-1320
+  capability_name: Credit & Lending Management
+  confidence: 0.7
+  evidence: 'POST /v1/loan createLoan "Create a new Loan"; schema Loan; vendor: "The REST API (v1) covers
+    borrowers, lo[ans]"'
+  reason: Loan records maintained for credit analysis at lenders — clearly within Credit & Lending Management,
+    but the operations do not disclose whether they serve origination, servicing or portfolio analytics,
+    so no L2 is asserted.
+- tag: SpreadingTemplate
+  spec_file: fincura-spreadingtemplate-api-openapi.yml
+  capability_id: BC-1320.20
+  capability_id_l1: BC-1320
+  capability_name: Credit Underwriting & Decisioning Management
+  confidence: 0.7
+  evidence: GET /v1/template/spreading/{uuid} "Get Spreading Template with Flattened Taxonomy Items"
+  reason: Spreading templates define the normalized taxonomy used to spread borrower financial statements
+    — directly supporting financial spreading within credit underwriting.
