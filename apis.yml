@@ -75,7 +75,7 @@ apis:
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
-  - APIKeys
+  - Api-Key
   tags_raw:
   - Api-Key
   properties:
@@ -101,7 +101,7 @@ apis:
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
-  - Custom Attributes
+  - CustomAttributes
   tags_raw:
   - CustomAttributes
   properties:
