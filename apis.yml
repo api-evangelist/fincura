@@ -1,15 +1,13 @@
 aid: fincura
 name: Fincura
-description: >-
-  Fincura (now part of Abrigo) provides automated financial statement spreading and
-  credit analysis for banks, credit unions, and other lenders. Its Automated Spreading
-  and Analysis API ingests borrower financial documents (PDF, Excel, and images),
-  spreads them into normalized data views, and runs debt-service-coverage-ratio (DSCR)
-  and global cashflow analyses. The REST API (v1) covers borrowers, loans, portfolios,
-  document files, data views, spreading/DSCR/global-cashflow templates, financial
-  requirements, custom attributes, embeddable workflow UIs, and HMAC-signed webhooks.
-  Authentication is a bearer JWT API key issued per Fincura user account. Originally a
-  Techstars-backed startup, Fincura was acquired by Abrigo.
+description: Fincura (now part of Abrigo) provides automated financial statement spreading and credit
+  analysis for banks, credit unions, and other lenders. Its Automated Spreading and Analysis API ingests
+  borrower financial documents (PDF, Excel, and images), spreads them into normalized data views, and
+  runs debt-service-coverage-ratio (DSCR) and global cashflow analyses. The REST API (v1) covers borrowers,
+  loans, portfolios, document files, data views, spreading/DSCR/global-cashflow templates, financial requirements,
+  custom attributes, embeddable workflow UIs, and HMAC-signed webhooks. Authentication is a bearer JWT
+  API key issued per Fincura user account. Originally a Techstars-backed startup, Fincura was acquired
+  by Abrigo.
 url: https://raw.githubusercontent.com/api-evangelist/fincura/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -148,9 +146,8 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-embeddeddocument-api
   name: Fincura EmbeddedDocument API
-  description: >-
-    Embedded Document Workflows enable a 3rd party user to use the Fincura UI to complete a portion of
-    our document parsing pipeline and then return to the 3rd parties website.
+  description: Embedded Document Workflows enable a 3rd party user to use the Fincura UI to complete a
+    portion of our document parsing pipeline and then return to the 3rd parties website.
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
@@ -162,9 +159,8 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-embeddeddscranalysis-api
   name: Fincura EmbeddedDscrAnalysis API
-  description: >-
-    Embedded DSCR Analysis allows an API user to authenticate and embedded previously created DSCR analysis
-    into a 3rd party workflow.
+  description: Embedded DSCR Analysis allows an API user to authenticate and embedded previously created
+    DSCR analysis into a 3rd party workflow.
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
@@ -176,9 +172,8 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-embeddedfinancials-api
   name: Fincura EmbeddedFinancials API
-  description: >-
-    Embedded Financials allows an API user to authenticate and embedded borrower financials into a 3rd
-    party workflow.
+  description: Embedded Financials allows an API user to authenticate and embedded borrower financials
+    into a 3rd party workflow.
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
@@ -190,8 +185,7 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-embeddedglobalcashflowanalysis-api
   name: Fincura EmbeddedGlobalCashflowAnalysis API
-  description: >-
-    Embedded Global Cashflow Analysis allows an API user to authenticate and embed                                   previously
+  description: Embedded Global Cashflow Analysis allows an API user to authenticate and embed                                   previously
     created Global Cashflow analyses into a 3rd party applications.
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
@@ -204,9 +198,8 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-files-api
   name: Fincura Files API
-  description: >-
-    Files serve as the source input data for our insights engine. They are represented by a `DocumentFile`
-    record.
+  description: Files serve as the source input data for our insights engine. They are represented by a
+    `DocumentFile` record.
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
@@ -220,8 +213,7 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-financialstatementsubmission-api
   name: Fincura FinancialStatementSubmission API
-  description: >-
-    The FinancialStatementSubmission API from Fincura — 1 operation(s) for financialstatementsubmission.
+  description: The FinancialStatementSubmission API from Fincura — 1 operation(s) for financialstatementsubmission.
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
@@ -319,7 +311,7 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-webhooks-api
   name: Fincura Webhooks API
-  description: "## Supported Events\n\nThe following are events you can listen to via webhooks.\n\n| Event&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
+  description: "## Supported Events\n\nThe following are events you can listen to via webhooks.\n\n| Event Type     \
     \ | Description     | \n| --------------------------------------------- | --------------------------\
     \ |\n| GlobalCashflow.Saved | A global cashflow analysis has been saved by the user | \n| Analysis.Saved\
     \ | An analysis has been saved by the user | \n| DocumentFile.Received | File saved/received to the\
@@ -389,7 +381,10 @@ common:
   url: packages/fincura-packages.yml
 - type: X-MCPServerCandidate
   url: mcp/fincura-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: LLMsTxt
   url: llms/fincura-llms.txt
 - type: Conformance
