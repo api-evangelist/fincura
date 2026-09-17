@@ -94,32 +94,6 @@ apis:
     url: openapi/fincura-borrowers-api-openapi.yml
   - type: APIReference
     url: https://api.fincura.com/v1/redoc/
-- aid: fincura:fincura-customattributes-api
-  name: Fincura CustomAttributes API
-  description: The CustomAttributes API from Fincura — 2 operation(s) for customattributes.
-  humanURL: https://api.fincura.com/v1/redoc/
-  baseURL: https://api.fincura.com
-  tags:
-  - Custom Attributes
-  tags_raw:
-  - CustomAttributes
-  properties:
-  - type: OpenAPI
-    url: openapi/fincura-customattributes-api-openapi.yml
-  - type: APIReference
-    url: https://api.fincura.com/v1/redoc/
-- aid: fincura:fincura-dataviews-api
-  name: Fincura DataViews API
-  description: The DataViews API from Fincura — 7 operation(s) for dataviews.
-  humanURL: https://api.fincura.com/v1/redoc/
-  baseURL: https://api.fincura.com
-  tags:
-  - DataViews
-  properties:
-  - type: OpenAPI
-    url: openapi/fincura-dataviews-api-openapi.yml
-  - type: APIReference
-    url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-dscranalysis-api
   name: Fincura DscrAnalysis API
   description: The DscrAnalysis API from Fincura — 4 operation(s) for dscranalysis.
@@ -146,8 +120,9 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-embeddeddocument-api
   name: Fincura EmbeddedDocument API
-  description: Embedded Document Workflows enable a 3rd party user to use the Fincura UI to complete a
-    portion of our document parsing pipeline and then return to the 3rd parties website.
+  description: >-
+    Embedded Document Workflows enable a 3rd party user to use the Fincura UI to complete a portion of
+    our document parsing pipeline and then return to the 3rd parties website.
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
@@ -159,8 +134,9 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-embeddeddscranalysis-api
   name: Fincura EmbeddedDscrAnalysis API
-  description: Embedded DSCR Analysis allows an API user to authenticate and embedded previously created
-    DSCR analysis into a 3rd party workflow.
+  description: >-
+    Embedded DSCR Analysis allows an API user to authenticate and embedded previously created DSCR analysis
+    into a 3rd party workflow.
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
@@ -172,8 +148,9 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-embeddedfinancials-api
   name: Fincura EmbeddedFinancials API
-  description: Embedded Financials allows an API user to authenticate and embedded borrower financials
-    into a 3rd party workflow.
+  description: >-
+    Embedded Financials allows an API user to authenticate and embedded borrower financials into a 3rd
+    party workflow.
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
@@ -185,7 +162,8 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-embeddedglobalcashflowanalysis-api
   name: Fincura EmbeddedGlobalCashflowAnalysis API
-  description: Embedded Global Cashflow Analysis allows an API user to authenticate and embed                                   previously
+  description: >-
+    Embedded Global Cashflow Analysis allows an API user to authenticate and embed                                   previously
     created Global Cashflow analyses into a 3rd party applications.
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
@@ -198,8 +176,9 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-files-api
   name: Fincura Files API
-  description: Files serve as the source input data for our insights engine. They are represented by a
-    `DocumentFile` record.
+  description: >-
+    Files serve as the source input data for our insights engine. They are represented by a `DocumentFile`
+    record.
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
@@ -213,7 +192,8 @@ apis:
     url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-financialstatementsubmission-api
   name: Fincura FinancialStatementSubmission API
-  description: The FinancialStatementSubmission API from Fincura — 1 operation(s) for financialstatementsubmission.
+  description: >-
+    The FinancialStatementSubmission API from Fincura — 1 operation(s) for financialstatementsubmission.
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
@@ -297,18 +277,6 @@ apis:
     url: openapi/fincura-spreadingtemplate-api-openapi.yml
   - type: APIReference
     url: https://api.fincura.com/v1/redoc/
-- aid: fincura:fincura-tenantsettings-api
-  name: Fincura TenantSettings API
-  description: The TenantSettings API from Fincura — 1 operation(s) for tenantsettings.
-  humanURL: https://api.fincura.com/v1/redoc/
-  baseURL: https://api.fincura.com
-  tags:
-  - TenantSettings
-  properties:
-  - type: OpenAPI
-    url: openapi/fincura-tenantsettings-api-openapi.yml
-  - type: APIReference
-    url: https://api.fincura.com/v1/redoc/
 - aid: fincura:fincura-webhooks-api
   name: Fincura Webhooks API
   description: "## Supported Events\n\nThe following are events you can listen to via webhooks.\n\n| Event Type     \
@@ -361,6 +329,42 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fincura-webhooks-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-custom-attributes-api
+  name: Fincura Custom Attributes API
+  description: The Custom Attributes API from Fincura — 2 operation(s) for custom attributes.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - Custom Attributes
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-custom-attributes-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-data-views-api
+  name: Fincura data views API
+  description: The data views API from Fincura — 7 operation(s) for data views.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - data views
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-data-views-api-openapi.yml
+  - type: APIReference
+    url: https://api.fincura.com/v1/redoc/
+- aid: fincura:fincura-tenant-settings-api
+  name: Fincura Tenant Settings API
+  description: The Tenant Settings API from Fincura — 1 operation(s) for tenant settings.
+  humanURL: https://api.fincura.com/v1/redoc/
+  baseURL: https://api.fincura.com
+  tags:
+  - Tenant Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/fincura-tenant-settings-api-openapi.yml
   - type: APIReference
     url: https://api.fincura.com/v1/redoc/
 common:
