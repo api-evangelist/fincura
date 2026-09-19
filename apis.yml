@@ -349,6 +349,8 @@ apis:
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
+  - DataViews
+  tags_raw:
   - data views
   properties:
   - type: OpenAPI
