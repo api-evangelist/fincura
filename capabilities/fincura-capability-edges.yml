@@ -43,7 +43,8 @@ edges:
   reason: Global cashflow / DSCR analysis of borrower financials is credit analysis supporting underwriting
     and decisioning for lenders. Embedded workflow variant of the same analysis surface.
 - tag: DataViews
-  spec_file: fincura-dataviews-api-openapi.yml
+  spec_file: fincura-data-views-api-openapi.yml
+  reanchored_from: fincura-dataviews-api-openapi.yml
   capability_id: BC-1320.20
   capability_id_l1: BC-1320
   capability_name: Credit Underwriting & Decisioning Management
