@@ -1,8 +1,8 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Automated Spreading and Analysis Api-Key GlobalCashflowAnalysis API
+  title: Automated Spreading and Analysis Global Cashflow Analysis…
   version: 1.3.1
-  description: "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****"
+  description: This REST API allows you to interact with the Automated Spreading processing and insights engine.
   x-logo:
     url: https://manual-public-web-static-resources.s3.amazonaws.com/public-api/Moodys-icon.svg
   contact:
@@ -50,13 +50,15 @@ paths:
                     type: integer
                     example: 123
                   next:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     format: uri
                     example: http://api.example.org/accounts/?offset=400&limit=100
                   previous:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     format: uri
                     example: http://api.example.org/accounts/?offset=200&limit=100
                   results:
@@ -206,7 +208,31 @@ paths:
       summary: Retrieve a Global Cashflow with extra borrower details
 components:
   schemas:
-    GlobalCashflowAnalysisRetrieve:
+    GlobalCashflowAnalysis:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+      required:
+      - analysis_name
+      - borrower_uuid
+    GlobalCashflowAnalysisCreate:
       type: object
       properties:
         uuid:
@@ -278,6 +304,7 @@ components:
             - term_months
             - interest_rate
             - amortization_method
+          default: []
         data_view_columns:
           type: object
           properties:
@@ -344,25 +371,31 @@ components:
                         comment:
                           type: string
                         created_by:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                         created_date:
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                           format: date-time
-                          nullable: true
                         changed_by:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                         changed_date:
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                           format: date-time
-                          nullable: true
                         stmt_name:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                         line_item_label:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                       required:
                       - comment
                 required:
@@ -439,25 +472,31 @@ components:
                           comment:
                             type: string
                           created_by:
-                            type: string
-                            nullable: true
+                            type:
+                            - string
+                            - 'null'
                           created_date:
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                             format: date-time
-                            nullable: true
                           changed_by:
-                            type: string
-                            nullable: true
+                            type:
+                            - string
+                            - 'null'
                           changed_date:
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                             format: date-time
-                            nullable: true
                           stmt_name:
-                            type: string
-                            nullable: true
+                            type:
+                            - string
+                            - 'null'
                           line_item_label:
-                            type: string
-                            nullable: true
+                            type:
+                            - string
+                            - 'null'
                         required:
                         - comment
                   required:
@@ -473,13 +512,110 @@ components:
           - primary_entity
           - linked_entities
           readOnly: true
+        entities_to_include:
+          type: array
+          items:
+            type: object
+            properties:
+              borrower_uuid:
+                type: string
+                format: uuid
+                description: UUID of the Borrower the metadata belongs to
+              is_primary:
+                type: boolean
+                default: false
+                description: Used to designate the entity as the primary entity of the analysis
+              is_blank_entity:
+                type: boolean
+                default: false
+                description: Set to true if you wish to include the borrower in the analysis without adding any spread periods for the borrower
+              periods_to_include:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                    label:
+                      type: string
+                    interval:
+                      type: string
+                    year:
+                      type: integer
+                    interval_index:
+                      type: integer
+                    preparation_type:
+                      type: string
+                    fiscal_year_end:
+                      type: string
+                    scenario:
+                      type: string
+                    projection_name:
+                      type: string
+                    period_key_uuid:
+                      type: string
+                    currency_format:
+                      type: string
+                  required:
+                  - value
+                  - label
+                  - interval
+                  - year
+                  - interval_index
+                  - preparation_type
+                  - fiscal_year_end
+                  - scenario
+                default: []
+              open_tradelines:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    display_name:
+                      type: string
+                      description: The name to be displayed for the tradeline
+                    tradeline_type:
+                      type: string
+                      description: The category of the tradeline
+                    revolving_or_installment:
+                      enum:
+                      - revolving
+                      - installment
+                      type: string
+                      description: The type of the tradeline. Can either be revolving or an installment
+                    tradeline_installment_monthly_amount:
+                      type:
+                      - integer
+                      - 'null'
+                      description: for installment payments, the monthly installment amount
+                    tradeline_revolving_amount:
+                      type:
+                      - integer
+                      - 'null'
+                      description: for revolving type tradelines, the total available amount or outstanding balance
+                  required:
+                  - display_name
+                  - tradeline_type
+                  - revolving_or_installment
+                default: []
+            required:
+            - borrower_uuid
         commentary:
-          type: string
+          type:
+          - string
+          - 'null'
           readOnly: true
-          nullable: true
+          description: The commentary associated with a given GCF Analysis. This will will be `null` if not commentary exists
+        external_user_id:
+          type: string
+          writeOnly: true
+        external_user_label:
+          type: string
+          writeOnly: true
       required:
       - analysis_name
       - borrower_uuid
+      - entities_to_include
     GlobalCashflowAnalysisRetrieveV2:
       type: object
       properties:
@@ -626,25 +762,31 @@ components:
                             comment:
                               type: string
                             created_by:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             created_date:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               format: date-time
-                              nullable: true
                             changed_by:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             changed_date:
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                               format: date-time
-                              nullable: true
                             stmt_name:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             line_item_label:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                           required:
                           - comment
                     required:
@@ -733,25 +875,31 @@ components:
                               comment:
                                 type: string
                               created_by:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                               created_date:
-                                type: string
+                                type:
+                                - string
+                                - 'null'
                                 format: date-time
-                                nullable: true
                               changed_by:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                               changed_date:
-                                type: string
+                                type:
+                                - string
+                                - 'null'
                                 format: date-time
-                                nullable: true
                               stmt_name:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                               line_item_label:
-                                type: string
-                                nullable: true
+                                type:
+                                - string
+                                - 'null'
                             required:
                             - comment
                       required:
@@ -772,13 +920,14 @@ components:
           - linked_entities
           readOnly: true
         commentary:
-          type: string
+          type:
+          - string
+          - 'null'
           readOnly: true
-          nullable: true
       required:
       - analysis_name
       - borrower_uuid
-    GlobalCashflowAnalysisCreate:
+    GlobalCashflowAnalysisRetrieve:
       type: object
       properties:
         uuid:
@@ -850,7 +999,6 @@ components:
             - term_months
             - interest_rate
             - amortization_method
-          default: []
         data_view_columns:
           type: object
           properties:
@@ -917,25 +1065,31 @@ components:
                         comment:
                           type: string
                         created_by:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                         created_date:
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                           format: date-time
-                          nullable: true
                         changed_by:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                         changed_date:
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                           format: date-time
-                          nullable: true
                         stmt_name:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                         line_item_label:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                       required:
                       - comment
                 required:
@@ -1012,25 +1166,31 @@ components:
                           comment:
                             type: string
                           created_by:
-                            type: string
-                            nullable: true
+                            type:
+                            - string
+                            - 'null'
                           created_date:
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                             format: date-time
-                            nullable: true
                           changed_by:
-                            type: string
-                            nullable: true
+                            type:
+                            - string
+                            - 'null'
                           changed_date:
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                             format: date-time
-                            nullable: true
                           stmt_name:
-                            type: string
-                            nullable: true
+                            type:
+                            - string
+                            - 'null'
                           line_item_label:
-                            type: string
-                            nullable: true
+                            type:
+                            - string
+                            - 'null'
                         required:
                         - comment
                   required:
@@ -1046,128 +1206,11 @@ components:
           - primary_entity
           - linked_entities
           readOnly: true
-        entities_to_include:
-          type: array
-          items:
-            type: object
-            properties:
-              borrower_uuid:
-                type: string
-                format: uuid
-                description: UUID of the Borrower the metadata belongs to
-              is_primary:
-                type: boolean
-                default: false
-                description: Used to designate the entity as the primary entity of the analysis
-              is_blank_entity:
-                type: boolean
-                default: false
-                description: Set to true if you wish to include the borrower in the analysis without adding any spread periods for the borrower
-              periods_to_include:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    value:
-                      type: string
-                    label:
-                      type: string
-                    interval:
-                      type: string
-                    year:
-                      type: integer
-                    interval_index:
-                      type: integer
-                    preparation_type:
-                      type: string
-                    fiscal_year_end:
-                      type: string
-                    scenario:
-                      type: string
-                    projection_name:
-                      type: string
-                    period_key_uuid:
-                      type: string
-                    currency_format:
-                      type: string
-                  required:
-                  - value
-                  - label
-                  - interval
-                  - year
-                  - interval_index
-                  - preparation_type
-                  - fiscal_year_end
-                  - scenario
-                default: []
-              open_tradelines:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    display_name:
-                      type: string
-                      description: The name to be displayed for the tradeline
-                    tradeline_type:
-                      type: string
-                      description: The category of the tradeline
-                    revolving_or_installment:
-                      enum:
-                      - revolving
-                      - installment
-                      type: string
-                      description: The type of the tradeline. Can either be revolving or an installment
-                    tradeline_installment_monthly_amount:
-                      type: integer
-                      nullable: true
-                      description: for installment payments, the monthly installment amount
-                    tradeline_revolving_amount:
-                      type: integer
-                      nullable: true
-                      description: for revolving type tradelines, the total available amount or outstanding balance
-                  required:
-                  - display_name
-                  - tradeline_type
-                  - revolving_or_installment
-                default: []
-            required:
-            - borrower_uuid
         commentary:
-          type: string
+          type:
+          - string
+          - 'null'
           readOnly: true
-          nullable: true
-          description: The commentary associated with a given GCF Analysis. This will will be `null` if not commentary exists
-        external_user_id:
-          type: string
-          writeOnly: true
-        external_user_label:
-          type: string
-          writeOnly: true
-      required:
-      - analysis_name
-      - borrower_uuid
-      - entities_to_include
-    GlobalCashflowAnalysis:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        created_date:
-          type: string
-          format: date-time
-          readOnly: true
-        analysis_name:
-          type: string
-        borrower_uuid:
-          type: string
-          format: uuid
-          description: UUID of the Borrower for this analysis
-        template_uuid:
-          type: string
-          format: uuid
-          description: UUID of the template to use for the analysis.
       required:
       - analysis_name
       - borrower_uuid

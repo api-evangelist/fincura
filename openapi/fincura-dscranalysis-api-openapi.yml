@@ -1,8 +1,8 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Automated Spreading and Analysis Api-Key DscrAnalysis API
+  title: Automated Spreading and Analysis Dscr Analysis API
   version: 1.3.1
-  description: "This [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) allows you to interact with the Automated Spreading processing and insights engine. \n\n# Authentication\n\nThis API uses API keys generated from a Automated Spreading User account. To get access to your User account, speak with your Automated Spreading account manager.\n\n# Accepted Media Types\n\n| File&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Extension(s)     | Content-Type(s) |\n| -------------------------------- |-------------- | ------------ |\n| PDF File | .pdf | `application/pdf` , `application/x-pdf` |\n| Excel File | .xls | `application/vnd.ms-excel`  |\n| Excel File | .xlsx | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`  |\n| Excel File | .xlsm | `application/vnd.ms-excel.sheet.macroEnabled.12`  |\n| PNG Image | .png | `image/png`  |\n| GIF Image | .gif | `image/gif`  |\n| JPG Image | .jpg, .jpeg | `image/jpeg`  |\n| GIF Image | .gif | `image/gif`  |\n| JSON File | .json | `application/json`  |\n\n\n# Getting Started\n\n1. [Create a Borrower](#operation/createBorrower) \n2. [Add a file](#operation/createDocumentFile) for that Borrower.\n3. Analyze in the Automated Spreading App\n\n****"
+  description: This REST API allows you to interact with the Automated Spreading processing and insights engine.
   x-logo:
     url: https://manual-public-web-static-resources.s3.amazonaws.com/public-api/Moodys-icon.svg
   contact:
@@ -50,13 +50,15 @@ paths:
                     type: integer
                     example: 123
                   next:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     format: uri
                     example: http://api.example.org/accounts/?offset=400&limit=100
                   previous:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     format: uri
                     example: http://api.example.org/accounts/?offset=200&limit=100
                   results:
@@ -66,6 +68,8 @@ paths:
           description: ''
       tags:
       - DscrAnalysis
+      summary: List dscr analyses
+      x-summary-source: derived
     post:
       operationId: createDscrAnalysis
       description: ''
@@ -117,6 +121,8 @@ paths:
           description: ''
       tags:
       - DscrAnalysis
+      summary: Retrieve dscr analysis
+      x-summary-source: derived
     delete:
       operationId: destroyDscrAnalysis
       description: Remove an existing DSCR analysis record
@@ -159,6 +165,8 @@ paths:
           description: ''
       tags:
       - DscrAnalysis
+      summary: Download excel dscr analysis
+      x-summary-source: derived
   /v1/analysis/dscr/{uuid}/download_pdf:
     get:
       operationId: downloadPdfDscrAnalysis
@@ -179,8 +187,40 @@ paths:
           description: ''
       tags:
       - DscrAnalysis
+      summary: Download pdf dscr analysis
+      x-summary-source: derived
 components:
   schemas:
+    DSCRAnalysis:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+        external_user_id:
+          type: string
+          writeOnly: true
+        external_user_label:
+          type: string
+          writeOnly: true
+      required:
+      - analysis_name
+      - borrower_uuid
     DSCRAnalysisDetails:
       type: object
       properties:
@@ -316,25 +356,31 @@ components:
                     comment:
                       type: string
                     created_by:
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                     created_date:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       format: date-time
-                      nullable: true
                     changed_by:
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                     changed_date:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       format: date-time
-                      nullable: true
                     stmt_name:
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                     line_item_label:
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                   required:
                   - comment
             required:
@@ -385,40 +431,11 @@ components:
             - scenario
           default: []
         commentary:
-          type: string
+          type:
+          - string
+          - 'null'
           readOnly: true
-          nullable: true
           description: The commentary associated with a given DSCR Analysis. This will will be `null` if not commentary exists
-        external_user_id:
-          type: string
-          writeOnly: true
-        external_user_label:
-          type: string
-          writeOnly: true
-      required:
-      - analysis_name
-      - borrower_uuid
-    DSCRAnalysis:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        created_date:
-          type: string
-          format: date-time
-          readOnly: true
-        analysis_name:
-          type: string
-        borrower_uuid:
-          type: string
-          format: uuid
-          description: UUID of the Borrower for this analysis
-        template_uuid:
-          type: string
-          format: uuid
-          description: UUID of the template to use for the analysis.
         external_user_id:
           type: string
           writeOnly: true

@@ -1,26 +1,7 @@
 {
   "provider": "fincura",
   "sources": [
-    "fincura-api-key-api-openapi.yml",
-    "fincura-borrowers-api-openapi.yml",
-    "fincura-customattributes-api-openapi.yml",
-    "fincura-dataviews-api-openapi.yml",
-    "fincura-dscranalysis-api-openapi.yml",
-    "fincura-dscrtemplate-api-openapi.yml",
-    "fincura-embeddeddocument-api-openapi.yml",
-    "fincura-embeddeddscranalysis-api-openapi.yml",
-    "fincura-embeddedfinancials-api-openapi.yml",
-    "fincura-embeddedglobalcashflowanalysis-api-openapi.yml",
-    "fincura-files-api-openapi.yml",
-    "fincura-financialstatementsubmission-api-openapi.yml",
-    "fincura-globalcashflowanalysis-api-openapi.yml",
-    "fincura-globalcashflowtemplate-api-openapi.yml",
-    "fincura-loans-api-openapi.yml",
-    "fincura-portfolios-api-openapi.yml",
-    "fincura-requirements-api-openapi.yml",
-    "fincura-spreadingtemplate-api-openapi.yml",
-    "fincura-tenantsettings-api-openapi.yml",
-    "fincura-webhooks-api-openapi.yml"
+    "_original/fincura-openapi-original.yml"
   ],
   "outputs": [
     "fincura-api-key-api-openapi.yml",
@@ -47,6 +28,38 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "fincura-openapi-original.yml: upgraded openapi 3.0.2 -> OpenAPI 3.2.0",
+    "fincura-openapi-original.yml: declared missing tag: CustomAttributes",
+    "fincura-openapi-original.yml: declared missing tag: DataViews",
+    "fincura-openapi-original.yml: declared missing tag: DscrAnalysis",
+    "fincura-openapi-original.yml: declared missing tag: FinancialStatementSubmission",
+    "fincura-openapi-original.yml: declared missing tag: GlobalCashflowAnalysis",
+    "fincura-openapi-original.yml: declared missing tag: GlobalCashflowTemplate",
+    "fincura-openapi-original.yml: declared missing tag: TenantSettings",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "fincura-api-key-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-borrowers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-customattributes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-dataviews-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-dscranalysis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-dscrtemplate-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-embeddeddocument-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-embeddeddscranalysis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-embeddedfinancials-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-embeddedglobalcashflowanalysis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-financialstatementsubmission-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-globalcashflowanalysis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-globalcashflowtemplate-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-loans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-portfolios-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-requirements-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-spreadingtemplate-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-tenantsettings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fincura-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
