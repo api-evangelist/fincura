@@ -45,7 +45,7 @@ specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
 tags:
-- Financial-Services
+- Financial Services
 - Lending
 - Credit Analysis
 - Financial Spreading
@@ -62,6 +62,7 @@ tags_raw:
 - Fintech
 - Underwriting
 - Company
+- Financial-Services
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -349,8 +350,6 @@ apis:
   humanURL: https://api.fincura.com/v1/redoc/
   baseURL: https://api.fincura.com
   tags:
-  - DataViews
-  tags_raw:
   - data views
   properties:
   - type: OpenAPI

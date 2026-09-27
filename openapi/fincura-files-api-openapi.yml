@@ -308,6 +308,165 @@ paths:
       summary: Submit a new BulkFile
 components:
   schemas:
+    DocumentFileRead:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        pipeline_step:
+          type: string
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the borrower for this file.
+        borrower_name:
+          type: string
+          readOnly: true
+        filename:
+          type: string
+          description: Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf
+          maxLength: 200
+        statement_types:
+          type: array
+          items: {}
+          readOnly: true
+          default:
+          - OTHER
+        custom_attributes:
+          type: object
+        document_type:
+          enum:
+          - INCOME_STATEMENT
+          - BALANCE_SHEET
+          - TAX_RETURN
+          type: string
+          default: TAX_RETURN
+        review_queue_item_status:
+          type: string
+          readOnly: true
+        review_queue_item_status_code:
+          type: string
+          readOnly: true
+        review_queue_item_exception_message:
+          type: string
+          readOnly: true
+        review_queue_item_exception_class:
+          type: string
+          readOnly: true
+        tax_form_type:
+          type:
+          - string
+          - 'null'
+          maxLength: 50
+      required:
+      - borrower_uuid
+    BulkFileCreate:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        media_type:
+          enum:
+          - application/pdf
+          - application/x-pdf
+          - application/vnd.ms-excel
+          - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+          - application/vnd.ms-excel.sheet.macroEnabled.12
+          - image/png
+          - image/gif
+          - image/jpeg
+          - application/json
+          type: string
+          writeOnly: true
+          description: '[MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the file'
+        filename:
+          type: string
+          description: Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf
+          maxLength: 200
+        processor_key:
+          type: string
+          description: Key of custom processor
+        upload_url:
+          type: string
+          format: uri
+          readOnly: true
+          maxLength: 2500
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z¡-\uFFFF0-9](?:[a-z¡-\uFFFF0-9-]{0,61}[a-z¡-\uFFFF0-9])?(?:\\.(?!-)[a-z¡-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z¡-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
+        external_id:
+          type: string
+          description: External ID is used to uniquely identify a record from your system in our system. Must be unique across records.
+          maxLength: 255
+        custom_attributes:
+          type: object
+      required:
+      - media_type
+    BulkFileRead:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        media_type:
+          enum:
+          - application/pdf
+          - application/x-pdf
+          - application/vnd.ms-excel
+          - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+          - application/vnd.ms-excel.sheet.macroEnabled.12
+          - image/png
+          - image/gif
+          - image/jpeg
+          - application/json
+          type: string
+          writeOnly: true
+          description: '[MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the file'
+        filename:
+          type: string
+          description: Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf
+          maxLength: 200
+        document_files:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        processor_key:
+          type: string
+          description: Key of custom processor
+        external_id:
+          type: string
+          description: External ID is used to uniquely identify a record from your system in our system. Must be unique across records.
+          maxLength: 255
+        custom_attributes:
+          type: object
+      required:
+      - media_type
     DocumentFileCreate:
       type: object
       properties:
@@ -405,165 +564,6 @@ components:
           default: TAX_RETURN
       required:
       - borrower_uuid
-      - media_type
-    BulkFileCreate:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-        created_date:
-          type: string
-          format: date-time
-          readOnly: true
-        media_type:
-          enum:
-          - application/pdf
-          - application/x-pdf
-          - application/vnd.ms-excel
-          - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-          - application/vnd.ms-excel.sheet.macroEnabled.12
-          - image/png
-          - image/gif
-          - image/jpeg
-          - application/json
-          type: string
-          writeOnly: true
-          description: '[MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the file'
-        filename:
-          type: string
-          description: Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf
-          maxLength: 200
-        processor_key:
-          type: string
-          description: Key of custom processor
-        upload_url:
-          type: string
-          format: uri
-          readOnly: true
-          maxLength: 2500
-          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z¡-\uFFFF0-9](?:[a-z¡-\uFFFF0-9-]{0,61}[a-z¡-\uFFFF0-9])?(?:\\.(?!-)[a-z¡-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z¡-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
-        external_id:
-          type: string
-          description: External ID is used to uniquely identify a record from your system in our system. Must be unique across records.
-          maxLength: 255
-        custom_attributes:
-          type: object
-      required:
-      - media_type
-    DocumentFileRead:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-        pipeline_step:
-          type: string
-          readOnly: true
-        created_date:
-          type: string
-          format: date-time
-          readOnly: true
-        borrower_uuid:
-          type: string
-          format: uuid
-          description: UUID of the borrower for this file.
-        borrower_name:
-          type: string
-          readOnly: true
-        filename:
-          type: string
-          description: Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf
-          maxLength: 200
-        statement_types:
-          type: array
-          items: {}
-          readOnly: true
-          default:
-          - OTHER
-        custom_attributes:
-          type: object
-        document_type:
-          enum:
-          - INCOME_STATEMENT
-          - BALANCE_SHEET
-          - TAX_RETURN
-          type: string
-          default: TAX_RETURN
-        review_queue_item_status:
-          type: string
-          readOnly: true
-        review_queue_item_status_code:
-          type: string
-          readOnly: true
-        review_queue_item_exception_message:
-          type: string
-          readOnly: true
-        review_queue_item_exception_class:
-          type: string
-          readOnly: true
-        tax_form_type:
-          type:
-          - string
-          - 'null'
-          maxLength: 50
-      required:
-      - borrower_uuid
-    BulkFileRead:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-        created_date:
-          type: string
-          format: date-time
-          readOnly: true
-        media_type:
-          enum:
-          - application/pdf
-          - application/x-pdf
-          - application/vnd.ms-excel
-          - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-          - application/vnd.ms-excel.sheet.macroEnabled.12
-          - image/png
-          - image/gif
-          - image/jpeg
-          - application/json
-          type: string
-          writeOnly: true
-          description: '[MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the file'
-        filename:
-          type: string
-          description: Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf
-          maxLength: 200
-        document_files:
-          type: array
-          items:
-            type: string
-          readOnly: true
-        processor_key:
-          type: string
-          description: Key of custom processor
-        external_id:
-          type: string
-          description: External ID is used to uniquely identify a record from your system in our system. Must be unique across records.
-          maxLength: 255
-        custom_attributes:
-          type: object
-      required:
       - media_type
   securitySchemes:
     API_Key:

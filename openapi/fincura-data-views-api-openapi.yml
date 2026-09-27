@@ -351,6 +351,51 @@ paths:
       summary: Create DataView from Orbis company data
 components:
   schemas:
+    AllPeriodsList:
+      type: object
+      properties:
+        borrower_uuid:
+          type: string
+          format: uuid
+        periods:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              label:
+                type: string
+              interval:
+                type: string
+              year:
+                type: integer
+              interval_index:
+                type: integer
+              preparation_type:
+                type: string
+              fiscal_year_end:
+                type: string
+              scenario:
+                type: string
+              projection_name:
+                type: string
+              period_key_uuid:
+                type: string
+              currency_format:
+                type: string
+            required:
+            - value
+            - label
+            - interval
+            - year
+            - interval_index
+            - preparation_type
+            - fiscal_year_end
+            - scenario
+      required:
+      - borrower_uuid
+      - periods
     OrbisDataViewRequest:
       type: object
       properties:
@@ -656,51 +701,6 @@ components:
       - borrower_uuid
       - columns
       - rows
-    AllPeriodsList:
-      type: object
-      properties:
-        borrower_uuid:
-          type: string
-          format: uuid
-        periods:
-          type: array
-          items:
-            type: object
-            properties:
-              value:
-                type: string
-              label:
-                type: string
-              interval:
-                type: string
-              year:
-                type: integer
-              interval_index:
-                type: integer
-              preparation_type:
-                type: string
-              fiscal_year_end:
-                type: string
-              scenario:
-                type: string
-              projection_name:
-                type: string
-              period_key_uuid:
-                type: string
-              currency_format:
-                type: string
-            required:
-            - value
-            - label
-            - interval
-            - year
-            - interval_index
-            - preparation_type
-            - fiscal_year_end
-            - scenario
-      required:
-      - borrower_uuid
-      - periods
   securitySchemes:
     API_Key:
       type: http

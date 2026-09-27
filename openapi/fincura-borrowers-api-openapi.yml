@@ -224,6 +224,19 @@ paths:
       summary: Generate a Borrower portal link
 components:
   schemas:
+    BorrowerEntityLink:
+      type: object
+      properties:
+        primary_entity_uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        linked_entity_uuid:
+          type: string
+          format: uuid
+          description: UUID of the borrower for this DataView. (see [Borrowers](#tag/Borrowers))
+      required:
+      - linked_entity_uuid
     PortalLink:
       type: object
       properties:
@@ -288,19 +301,6 @@ components:
           readOnly: true
           maxLength: 2500
           pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z¡-\uFFFF0-9](?:[a-z¡-\uFFFF0-9-]{0,61}[a-z¡-\uFFFF0-9])?(?:\\.(?!-)[a-z¡-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z¡-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
-    BorrowerEntityLink:
-      type: object
-      properties:
-        primary_entity_uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        linked_entity_uuid:
-          type: string
-          format: uuid
-          description: UUID of the borrower for this DataView. (see [Borrowers](#tag/Borrowers))
-      required:
-      - linked_entity_uuid
     Borrower:
       type: object
       properties:
