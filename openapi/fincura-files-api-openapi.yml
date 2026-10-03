@@ -308,68 +308,6 @@ paths:
       summary: Submit a new BulkFile
 components:
   schemas:
-    DocumentFileRead:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-        pipeline_step:
-          type: string
-          readOnly: true
-        created_date:
-          type: string
-          format: date-time
-          readOnly: true
-        borrower_uuid:
-          type: string
-          format: uuid
-          description: UUID of the borrower for this file.
-        borrower_name:
-          type: string
-          readOnly: true
-        filename:
-          type: string
-          description: Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf
-          maxLength: 200
-        statement_types:
-          type: array
-          items: {}
-          readOnly: true
-          default:
-          - OTHER
-        custom_attributes:
-          type: object
-        document_type:
-          enum:
-          - INCOME_STATEMENT
-          - BALANCE_SHEET
-          - TAX_RETURN
-          type: string
-          default: TAX_RETURN
-        review_queue_item_status:
-          type: string
-          readOnly: true
-        review_queue_item_status_code:
-          type: string
-          readOnly: true
-        review_queue_item_exception_message:
-          type: string
-          readOnly: true
-        review_queue_item_exception_class:
-          type: string
-          readOnly: true
-        tax_form_type:
-          type:
-          - string
-          - 'null'
-          maxLength: 50
-      required:
-      - borrower_uuid
     BulkFileCreate:
       type: object
       properties:
@@ -565,6 +503,68 @@ components:
       required:
       - borrower_uuid
       - media_type
+    DocumentFileRead:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        pipeline_step:
+          type: string
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the borrower for this file.
+        borrower_name:
+          type: string
+          readOnly: true
+        filename:
+          type: string
+          description: Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf
+          maxLength: 200
+        statement_types:
+          type: array
+          items: {}
+          readOnly: true
+          default:
+          - OTHER
+        custom_attributes:
+          type: object
+        document_type:
+          enum:
+          - INCOME_STATEMENT
+          - BALANCE_SHEET
+          - TAX_RETURN
+          type: string
+          default: TAX_RETURN
+        review_queue_item_status:
+          type: string
+          readOnly: true
+        review_queue_item_status_code:
+          type: string
+          readOnly: true
+        review_queue_item_exception_message:
+          type: string
+          readOnly: true
+        review_queue_item_exception_class:
+          type: string
+          readOnly: true
+        tax_form_type:
+          type:
+          - string
+          - 'null'
+          maxLength: 50
+      required:
+      - borrower_uuid
   securitySchemes:
     API_Key:
       type: http

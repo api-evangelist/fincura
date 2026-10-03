@@ -87,6 +87,30 @@ paths:
       summary: Get Spreading Template with Flattened Taxonomy Items
 components:
   schemas:
+    TemplateRead:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        template_type:
+          type: string
+          readOnly: true
+          default: STANDARD
+        name:
+          type: string
+          readOnly: true
+        is_default:
+          type: boolean
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        active:
+          type: boolean
+          readOnly: true
     TemplateRetrieve:
       type: object
       properties:
@@ -113,30 +137,6 @@ components:
           readOnly: true
         template_items:
           type: string
-          readOnly: true
-    TemplateRead:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        template_type:
-          type: string
-          readOnly: true
-          default: STANDARD
-        name:
-          type: string
-          readOnly: true
-        is_default:
-          type: boolean
-          readOnly: true
-        created_date:
-          type: string
-          format: date-time
-          readOnly: true
-        active:
-          type: boolean
           readOnly: true
   securitySchemes:
     API_Key:

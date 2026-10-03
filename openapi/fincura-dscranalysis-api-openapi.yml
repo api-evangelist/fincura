@@ -191,36 +191,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    DSCRAnalysis:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        created_date:
-          type: string
-          format: date-time
-          readOnly: true
-        analysis_name:
-          type: string
-        borrower_uuid:
-          type: string
-          format: uuid
-          description: UUID of the Borrower for this analysis
-        template_uuid:
-          type: string
-          format: uuid
-          description: UUID of the template to use for the analysis.
-        external_user_id:
-          type: string
-          writeOnly: true
-        external_user_label:
-          type: string
-          writeOnly: true
-      required:
-      - analysis_name
-      - borrower_uuid
     DSCRAnalysisDetails:
       type: object
       properties:
@@ -436,6 +406,36 @@ components:
           - 'null'
           readOnly: true
           description: The commentary associated with a given DSCR Analysis. This will will be `null` if not commentary exists
+        external_user_id:
+          type: string
+          writeOnly: true
+        external_user_label:
+          type: string
+          writeOnly: true
+      required:
+      - analysis_name
+      - borrower_uuid
+    DSCRAnalysis:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
         external_user_id:
           type: string
           writeOnly: true
