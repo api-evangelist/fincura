@@ -224,19 +224,70 @@ paths:
       summary: Generate a Borrower portal link
 components:
   schemas:
-    BorrowerEntityLink:
+    PortalLink:
       type: object
       properties:
-        primary_entity_uuid:
+        uuid:
           type: string
           format: uuid
           readOnly: true
-        linked_entity_uuid:
+        reporting_interval:
+          enum:
+          - MONTHLY
+          - QUARTERLY
+          - SEMI_ANNUALLY
+          - ANNUALLY
+          - FISCAL_YTD
+          - TTM
           type: string
-          format: uuid
-          description: UUID of the borrower for this DataView. (see [Borrowers](#tag/Borrowers))
-      required:
-      - linked_entity_uuid
+          writeOnly: true
+          default: MONTHLY
+        from_date:
+          type: string
+          format: date
+          writeOnly: true
+          description: Request statements from date
+        to_date:
+          type: string
+          format: date
+          writeOnly: true
+          description: Request statements to date
+        statement_types:
+          type: array
+          items:
+            type: object
+            properties:
+              form_type:
+                enum:
+                - INCOME_STATEMENT
+                - BALANCE_SHEET
+                - CASH_FLOW_STATEMENT
+                - '1065'
+                - '1040'
+                - '1120'
+                - 1120S
+                - Puerto Rico Corporate
+                - Puerto Rico Individual
+                - Puerto Rico Schedule M Individual
+                - Puerto Rico Schedule CO Individual
+                - Puerto Rico Schedule D Individual
+                - Puerto Rico Schedule F Individual
+                - Puerto Rico Schedule H Individual
+                - Puerto Rico Schedule IE Individual
+                - Puerto Rico Schedule J Individual
+                - Puerto Rico Schedule K Individual
+                - Puerto Rico Schedule L Individual
+                - Puerto Rico Schedule N Individual
+                - Puerto Rico Schedule R1 Individual
+                type: string
+                default: INCOME_STATEMENT
+          writeOnly: true
+        portal_url:
+          type: string
+          format: uri
+          readOnly: true
+          maxLength: 2500
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z¡-\uFFFF0-9](?:[a-z¡-\uFFFF0-9-]{0,61}[a-z¡-\uFFFF0-9])?(?:\\.(?!-)[a-z¡-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z¡-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
     Borrower:
       type: object
       properties:
@@ -331,70 +382,19 @@ components:
           maxLength: 50
       required:
       - name
-    PortalLink:
+    BorrowerEntityLink:
       type: object
       properties:
-        uuid:
+        primary_entity_uuid:
           type: string
           format: uuid
           readOnly: true
-        reporting_interval:
-          enum:
-          - MONTHLY
-          - QUARTERLY
-          - SEMI_ANNUALLY
-          - ANNUALLY
-          - FISCAL_YTD
-          - TTM
+        linked_entity_uuid:
           type: string
-          writeOnly: true
-          default: MONTHLY
-        from_date:
-          type: string
-          format: date
-          writeOnly: true
-          description: Request statements from date
-        to_date:
-          type: string
-          format: date
-          writeOnly: true
-          description: Request statements to date
-        statement_types:
-          type: array
-          items:
-            type: object
-            properties:
-              form_type:
-                enum:
-                - INCOME_STATEMENT
-                - BALANCE_SHEET
-                - CASH_FLOW_STATEMENT
-                - '1065'
-                - '1040'
-                - '1120'
-                - 1120S
-                - Puerto Rico Corporate
-                - Puerto Rico Individual
-                - Puerto Rico Schedule M Individual
-                - Puerto Rico Schedule CO Individual
-                - Puerto Rico Schedule D Individual
-                - Puerto Rico Schedule F Individual
-                - Puerto Rico Schedule H Individual
-                - Puerto Rico Schedule IE Individual
-                - Puerto Rico Schedule J Individual
-                - Puerto Rico Schedule K Individual
-                - Puerto Rico Schedule L Individual
-                - Puerto Rico Schedule N Individual
-                - Puerto Rico Schedule R1 Individual
-                type: string
-                default: INCOME_STATEMENT
-          writeOnly: true
-        portal_url:
-          type: string
-          format: uri
-          readOnly: true
-          maxLength: 2500
-          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)(?:\\.(?:0|25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?)){3}|\\[[0-9a-f:.]+\\]|([a-z¡-\uFFFF0-9](?:[a-z¡-\uFFFF0-9-]{0,61}[a-z¡-\uFFFF0-9])?(?:\\.(?!-)[a-z¡-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z¡-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::[0-9]{1,5})?(?:[/?#][^\\s]*)?\\z"
+          format: uuid
+          description: UUID of the borrower for this DataView. (see [Borrowers](#tag/Borrowers))
+      required:
+      - linked_entity_uuid
   securitySchemes:
     API_Key:
       type: http

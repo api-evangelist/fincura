@@ -208,317 +208,6 @@ paths:
       summary: Retrieve a Global Cashflow with extra borrower details
 components:
   schemas:
-    GlobalCashflowAnalysis:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        created_date:
-          type: string
-          format: date-time
-          readOnly: true
-        analysis_name:
-          type: string
-        borrower_uuid:
-          type: string
-          format: uuid
-          description: UUID of the Borrower for this analysis
-        template_uuid:
-          type: string
-          format: uuid
-          description: UUID of the template to use for the analysis.
-      required:
-      - analysis_name
-      - borrower_uuid
-    GlobalCashflowAnalysisRetrieve:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        created_date:
-          type: string
-          format: date-time
-          readOnly: true
-        analysis_name:
-          type: string
-        borrower_uuid:
-          type: string
-          format: uuid
-          description: UUID of the Borrower for this analysis
-        template_uuid:
-          type: string
-          format: uuid
-          description: UUID of the template to use for the analysis.
-        proposed_debts:
-          type: array
-          items:
-            type: object
-            properties:
-              debt_name:
-                type: string
-              principal:
-                type: integer
-              term_months:
-                type: integer
-              interest_rate:
-                type: number
-                multipleOf: 0.0001
-                maximum: 100000000000
-                minimum: -100000000000
-              amortization_method:
-                enum:
-                - PRINCIPAL_AND_INTEREST
-                - PRINCIPAL_PLUS_INTEREST
-                - IO_PERIOD
-                type: string
-              amortization_overrides:
-                type: object
-                properties:
-                  monthly_payment:
-                    type: number
-                    multipleOf: 0.01
-                    maximum: 10000000000000
-                    minimum: -10000000000000
-                    description: Override for monthly payment for amortization
-                  basis:
-                    type: string
-                    description: number of days in year to use in amortization. Choices are '360' or '365'
-                  days_in_month:
-                    type: string
-                    description: 'Number of days in month to use in amortization. Choices are: ''actual'' or ''30'''
-                  payment_day:
-                    type: integer
-                    description: Used to determine what day of the month payments are made on for amortization
-                  last_day_for_next_payment:
-                    type: integer
-                    description: Last day in the month that the next month's payment can be made
-                required:
-                - monthly_payment
-            required:
-            - debt_name
-            - principal
-            - term_months
-            - interest_rate
-            - amortization_method
-        data_view_columns:
-          type: object
-          properties:
-            primary_entity:
-              type: array
-              items:
-                type: object
-                properties:
-                  label:
-                    type: string
-                  statement_date:
-                    type: string
-                    format: date-time
-                  reporting_interval:
-                    type: string
-                  preparation_type:
-                    type: string
-                  prepared_by:
-                    type: string
-                  months_in_interval:
-                    type: integer
-                  scenario:
-                    type: string
-                  cells:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        calculated_value:
-                          type: object
-                          properties:
-                            value:
-                              type: number
-                              multipleOf: 0.01
-                            error:
-                              type: string
-                            error_message:
-                              type: string
-                            line_item:
-                              type: object
-                              properties:
-                                id:
-                                  type: integer
-                                label:
-                                  type: string
-                                ref:
-                                  type: string
-                              required:
-                              - id
-                              - label
-                              - ref
-                          required:
-                          - value
-                          - error
-                          - error_message
-                          - line_item
-                      required:
-                      - calculated_value
-                  source_comments:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        comment:
-                          type: string
-                        created_by:
-                          type:
-                          - string
-                          - 'null'
-                        created_date:
-                          type:
-                          - string
-                          - 'null'
-                          format: date-time
-                        changed_by:
-                          type:
-                          - string
-                          - 'null'
-                        changed_date:
-                          type:
-                          - string
-                          - 'null'
-                          format: date-time
-                        stmt_name:
-                          type:
-                          - string
-                          - 'null'
-                        line_item_label:
-                          type:
-                          - string
-                          - 'null'
-                      required:
-                      - comment
-                required:
-                - label
-                - statement_date
-                - reporting_interval
-                - preparation_type
-                - prepared_by
-                - months_in_interval
-                - scenario
-                - cells
-            linked_entities:
-              type: array
-              items:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    label:
-                      type: string
-                    statement_date:
-                      type: string
-                      format: date-time
-                    reporting_interval:
-                      type: string
-                    preparation_type:
-                      type: string
-                    prepared_by:
-                      type: string
-                    months_in_interval:
-                      type: integer
-                    scenario:
-                      type: string
-                    cells:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          calculated_value:
-                            type: object
-                            properties:
-                              value:
-                                type: number
-                                multipleOf: 0.01
-                              error:
-                                type: string
-                              error_message:
-                                type: string
-                              line_item:
-                                type: object
-                                properties:
-                                  id:
-                                    type: integer
-                                  label:
-                                    type: string
-                                  ref:
-                                    type: string
-                                required:
-                                - id
-                                - label
-                                - ref
-                            required:
-                            - value
-                            - error
-                            - error_message
-                            - line_item
-                        required:
-                        - calculated_value
-                    source_comments:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          comment:
-                            type: string
-                          created_by:
-                            type:
-                            - string
-                            - 'null'
-                          created_date:
-                            type:
-                            - string
-                            - 'null'
-                            format: date-time
-                          changed_by:
-                            type:
-                            - string
-                            - 'null'
-                          changed_date:
-                            type:
-                            - string
-                            - 'null'
-                            format: date-time
-                          stmt_name:
-                            type:
-                            - string
-                            - 'null'
-                          line_item_label:
-                            type:
-                            - string
-                            - 'null'
-                        required:
-                        - comment
-                  required:
-                  - label
-                  - statement_date
-                  - reporting_interval
-                  - preparation_type
-                  - prepared_by
-                  - months_in_interval
-                  - scenario
-                  - cells
-          required:
-          - primary_entity
-          - linked_entities
-          readOnly: true
-        commentary:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      required:
-      - analysis_name
-      - borrower_uuid
     GlobalCashflowAnalysisCreate:
       type: object
       properties:
@@ -903,6 +592,293 @@ components:
       - analysis_name
       - borrower_uuid
       - entities_to_include
+    GlobalCashflowAnalysisRetrieve:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
+        proposed_debts:
+          type: array
+          items:
+            type: object
+            properties:
+              debt_name:
+                type: string
+              principal:
+                type: integer
+              term_months:
+                type: integer
+              interest_rate:
+                type: number
+                multipleOf: 0.0001
+                maximum: 100000000000
+                minimum: -100000000000
+              amortization_method:
+                enum:
+                - PRINCIPAL_AND_INTEREST
+                - PRINCIPAL_PLUS_INTEREST
+                - IO_PERIOD
+                type: string
+              amortization_overrides:
+                type: object
+                properties:
+                  monthly_payment:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000000000000
+                    minimum: -10000000000000
+                    description: Override for monthly payment for amortization
+                  basis:
+                    type: string
+                    description: number of days in year to use in amortization. Choices are '360' or '365'
+                  days_in_month:
+                    type: string
+                    description: 'Number of days in month to use in amortization. Choices are: ''actual'' or ''30'''
+                  payment_day:
+                    type: integer
+                    description: Used to determine what day of the month payments are made on for amortization
+                  last_day_for_next_payment:
+                    type: integer
+                    description: Last day in the month that the next month's payment can be made
+                required:
+                - monthly_payment
+            required:
+            - debt_name
+            - principal
+            - term_months
+            - interest_rate
+            - amortization_method
+        data_view_columns:
+          type: object
+          properties:
+            primary_entity:
+              type: array
+              items:
+                type: object
+                properties:
+                  label:
+                    type: string
+                  statement_date:
+                    type: string
+                    format: date-time
+                  reporting_interval:
+                    type: string
+                  preparation_type:
+                    type: string
+                  prepared_by:
+                    type: string
+                  months_in_interval:
+                    type: integer
+                  scenario:
+                    type: string
+                  cells:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        calculated_value:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                              multipleOf: 0.01
+                            error:
+                              type: string
+                            error_message:
+                              type: string
+                            line_item:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                label:
+                                  type: string
+                                ref:
+                                  type: string
+                              required:
+                              - id
+                              - label
+                              - ref
+                          required:
+                          - value
+                          - error
+                          - error_message
+                          - line_item
+                      required:
+                      - calculated_value
+                  source_comments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        comment:
+                          type: string
+                        created_by:
+                          type:
+                          - string
+                          - 'null'
+                        created_date:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        changed_by:
+                          type:
+                          - string
+                          - 'null'
+                        changed_date:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        stmt_name:
+                          type:
+                          - string
+                          - 'null'
+                        line_item_label:
+                          type:
+                          - string
+                          - 'null'
+                      required:
+                      - comment
+                required:
+                - label
+                - statement_date
+                - reporting_interval
+                - preparation_type
+                - prepared_by
+                - months_in_interval
+                - scenario
+                - cells
+            linked_entities:
+              type: array
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    statement_date:
+                      type: string
+                      format: date-time
+                    reporting_interval:
+                      type: string
+                    preparation_type:
+                      type: string
+                    prepared_by:
+                      type: string
+                    months_in_interval:
+                      type: integer
+                    scenario:
+                      type: string
+                    cells:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          calculated_value:
+                            type: object
+                            properties:
+                              value:
+                                type: number
+                                multipleOf: 0.01
+                              error:
+                                type: string
+                              error_message:
+                                type: string
+                              line_item:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                  label:
+                                    type: string
+                                  ref:
+                                    type: string
+                                required:
+                                - id
+                                - label
+                                - ref
+                            required:
+                            - value
+                            - error
+                            - error_message
+                            - line_item
+                        required:
+                        - calculated_value
+                    source_comments:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          comment:
+                            type: string
+                          created_by:
+                            type:
+                            - string
+                            - 'null'
+                          created_date:
+                            type:
+                            - string
+                            - 'null'
+                            format: date-time
+                          changed_by:
+                            type:
+                            - string
+                            - 'null'
+                          changed_date:
+                            type:
+                            - string
+                            - 'null'
+                            format: date-time
+                          stmt_name:
+                            type:
+                            - string
+                            - 'null'
+                          line_item_label:
+                            type:
+                            - string
+                            - 'null'
+                        required:
+                        - comment
+                  required:
+                  - label
+                  - statement_date
+                  - reporting_interval
+                  - preparation_type
+                  - prepared_by
+                  - months_in_interval
+                  - scenario
+                  - cells
+          required:
+          - primary_entity
+          - linked_entities
+          readOnly: true
+        commentary:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      required:
+      - analysis_name
+      - borrower_uuid
     GlobalCashflowAnalysisRetrieveV2:
       type: object
       properties:
@@ -1211,6 +1187,30 @@ components:
           - string
           - 'null'
           readOnly: true
+      required:
+      - analysis_name
+      - borrower_uuid
+    GlobalCashflowAnalysis:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        analysis_name:
+          type: string
+        borrower_uuid:
+          type: string
+          format: uuid
+          description: UUID of the Borrower for this analysis
+        template_uuid:
+          type: string
+          format: uuid
+          description: UUID of the template to use for the analysis.
       required:
       - analysis_name
       - borrower_uuid

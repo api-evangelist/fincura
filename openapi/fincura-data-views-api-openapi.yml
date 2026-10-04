@@ -351,118 +351,6 @@ paths:
       summary: Create DataView from Orbis company data
 components:
   schemas:
-    AllPeriodsList:
-      type: object
-      properties:
-        borrower_uuid:
-          type: string
-          format: uuid
-        periods:
-          type: array
-          items:
-            type: object
-            properties:
-              value:
-                type: string
-              label:
-                type: string
-              interval:
-                type: string
-              year:
-                type: integer
-              interval_index:
-                type: integer
-              preparation_type:
-                type: string
-              fiscal_year_end:
-                type: string
-              scenario:
-                type: string
-              projection_name:
-                type: string
-              period_key_uuid:
-                type: string
-              currency_format:
-                type: string
-            required:
-            - value
-            - label
-            - interval
-            - year
-            - interval_index
-            - preparation_type
-            - fiscal_year_end
-            - scenario
-      required:
-      - borrower_uuid
-      - periods
-    OrbisDataViewRequest:
-      type: object
-      properties:
-        orbis_id:
-          type: string
-          description: Orbis company identifier
-        spreading_template_uuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: 'Optional: UUID of the spreading template to use. If not provided, uses the borrower''s default template.'
-        num_periods:
-          type: integer
-          maximum: 100
-          minimum: 1
-          default: 1
-          description: Number of annual periods to fetch (1-100). Defaults to 1. Orbis returns all available periods up to this number.
-        lookback_window:
-          type: integer
-          maximum: 120
-          minimum: 1
-          default: 12
-          description: Lookback window in months (1-120). Defaults to 12. If the most recent Orbis financial data is older than this window, an error is returned.
-        refs_to_exclude:
-          type: array
-          items:
-            type: string
-          description: 'Optional: List of REF names to exclude from calculations'
-        is_ephemeral:
-          type: boolean
-          default: true
-          description: When true (default), returns an ephemeral DataView without persisting data. When false, translates Orbis data into a financial statement submission and pushes it through the spreading pipeline to completion. Requires external_company_id.
-        external_company_id:
-          type:
-          - string
-          - 'null'
-          description: Required when is_ephemeral=false. The borrower external identifier to attach the submission to.
-        preparation_type:
-          enum:
-          - UNQUALIFIED
-          - QUALIFIED
-          - TAX_RETURN
-          - REVIEWED
-          - CPA_PREP
-          - NTR
-          - MANAGEMENT
-          - COMBINED
-          - UNKNOWN
-          - CALCULATED
-          - ANALYST
-          - UNQUALIFIED_IMPORT
-          - QUALIFIED_IMPORT
-          - TAX_RETURN_IMPORT
-          - REVIEWED_IMPORT
-          - CPA_PREP_IMPORT
-          - NTR_IMPORT
-          - MANAGEMENT_IMPORT
-          - ANALYST_IMPORT
-          - IMPORTED
-          - FORECASTED
-          - ANNUALIZED
-          type: string
-          default: UNQUALIFIED
-          description: Financial statement preparation type for the submission. Only used when is_ephemeral=false. Defaults to UNQUALIFIED.
-      required:
-      - orbis_id
     DataView:
       type: object
       properties:
@@ -701,6 +589,118 @@ components:
       - borrower_uuid
       - columns
       - rows
+    AllPeriodsList:
+      type: object
+      properties:
+        borrower_uuid:
+          type: string
+          format: uuid
+        periods:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              label:
+                type: string
+              interval:
+                type: string
+              year:
+                type: integer
+              interval_index:
+                type: integer
+              preparation_type:
+                type: string
+              fiscal_year_end:
+                type: string
+              scenario:
+                type: string
+              projection_name:
+                type: string
+              period_key_uuid:
+                type: string
+              currency_format:
+                type: string
+            required:
+            - value
+            - label
+            - interval
+            - year
+            - interval_index
+            - preparation_type
+            - fiscal_year_end
+            - scenario
+      required:
+      - borrower_uuid
+      - periods
+    OrbisDataViewRequest:
+      type: object
+      properties:
+        orbis_id:
+          type: string
+          description: Orbis company identifier
+        spreading_template_uuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: 'Optional: UUID of the spreading template to use. If not provided, uses the borrower''s default template.'
+        num_periods:
+          type: integer
+          maximum: 100
+          minimum: 1
+          default: 1
+          description: Number of annual periods to fetch (1-100). Defaults to 1. Orbis returns all available periods up to this number.
+        lookback_window:
+          type: integer
+          maximum: 120
+          minimum: 1
+          default: 12
+          description: Lookback window in months (1-120). Defaults to 12. If the most recent Orbis financial data is older than this window, an error is returned.
+        refs_to_exclude:
+          type: array
+          items:
+            type: string
+          description: 'Optional: List of REF names to exclude from calculations'
+        is_ephemeral:
+          type: boolean
+          default: true
+          description: When true (default), returns an ephemeral DataView without persisting data. When false, translates Orbis data into a financial statement submission and pushes it through the spreading pipeline to completion. Requires external_company_id.
+        external_company_id:
+          type:
+          - string
+          - 'null'
+          description: Required when is_ephemeral=false. The borrower external identifier to attach the submission to.
+        preparation_type:
+          enum:
+          - UNQUALIFIED
+          - QUALIFIED
+          - TAX_RETURN
+          - REVIEWED
+          - CPA_PREP
+          - NTR
+          - MANAGEMENT
+          - COMBINED
+          - UNKNOWN
+          - CALCULATED
+          - ANALYST
+          - UNQUALIFIED_IMPORT
+          - QUALIFIED_IMPORT
+          - TAX_RETURN_IMPORT
+          - REVIEWED_IMPORT
+          - CPA_PREP_IMPORT
+          - NTR_IMPORT
+          - MANAGEMENT_IMPORT
+          - ANALYST_IMPORT
+          - IMPORTED
+          - FORECASTED
+          - ANNUALIZED
+          type: string
+          default: UNQUALIFIED
+          description: Financial statement preparation type for the submission. Only used when is_ephemeral=false. Defaults to UNQUALIFIED.
+      required:
+      - orbis_id
   securitySchemes:
     API_Key:
       type: http
