@@ -43,7 +43,7 @@ accessModel:
 image: https://avatars.githubusercontent.com/u/71975225?v=4
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-10-06'
 tags:
 - Financial Services
 - Lending
@@ -369,6 +369,8 @@ apis:
   - type: APIReference
     url: https://api.fincura.com/v1/redoc/
 common:
+- url: https://www.abrigo.com/feed/
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/fincura-capability-edges.yml
   name: Fincura Business Capability Map
