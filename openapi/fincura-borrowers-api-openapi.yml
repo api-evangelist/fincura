@@ -224,6 +224,19 @@ paths:
       summary: Generate a Borrower portal link
 components:
   schemas:
+    BorrowerEntityLink:
+      type: object
+      properties:
+        primary_entity_uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        linked_entity_uuid:
+          type: string
+          format: uuid
+          description: UUID of the borrower for this DataView. (see [Borrowers](#tag/Borrowers))
+      required:
+      - linked_entity_uuid
     PortalLink:
       type: object
       properties:
@@ -382,19 +395,6 @@ components:
           maxLength: 50
       required:
       - name
-    BorrowerEntityLink:
-      type: object
-      properties:
-        primary_entity_uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        linked_entity_uuid:
-          type: string
-          format: uuid
-          description: UUID of the borrower for this DataView. (see [Borrowers](#tag/Borrowers))
-      required:
-      - linked_entity_uuid
   securitySchemes:
     API_Key:
       type: http

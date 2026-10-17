@@ -308,6 +308,54 @@ paths:
       summary: Submit a new BulkFile
 components:
   schemas:
+    BulkFileRead:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        created_date:
+          type: string
+          format: date-time
+          readOnly: true
+        media_type:
+          enum:
+          - application/pdf
+          - application/x-pdf
+          - application/vnd.ms-excel
+          - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+          - application/vnd.ms-excel.sheet.macroEnabled.12
+          - image/png
+          - image/gif
+          - image/jpeg
+          - application/json
+          type: string
+          writeOnly: true
+          description: '[MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the file'
+        filename:
+          type: string
+          description: Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf
+          maxLength: 200
+        document_files:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        processor_key:
+          type: string
+          description: Key of custom processor
+        external_id:
+          type: string
+          description: External ID is used to uniquely identify a record from your system in our system. Must be unique across records.
+          maxLength: 255
+        custom_attributes:
+          type: object
+      required:
+      - media_type
     BulkFileCreate:
       type: object
       properties:
@@ -419,54 +467,6 @@ components:
           maxLength: 50
       required:
       - borrower_uuid
-    BulkFileRead:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-        created_date:
-          type: string
-          format: date-time
-          readOnly: true
-        media_type:
-          enum:
-          - application/pdf
-          - application/x-pdf
-          - application/vnd.ms-excel
-          - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-          - application/vnd.ms-excel.sheet.macroEnabled.12
-          - image/png
-          - image/gif
-          - image/jpeg
-          - application/json
-          type: string
-          writeOnly: true
-          description: '[MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the file'
-        filename:
-          type: string
-          description: Used to reference the original filename. Defaults to `document.{MEDIA TYPE FILE EXTENSION}` e.g. fye_2026.pdf
-          maxLength: 200
-        document_files:
-          type: array
-          items:
-            type: string
-          readOnly: true
-        processor_key:
-          type: string
-          description: Key of custom processor
-        external_id:
-          type: string
-          description: External ID is used to uniquely identify a record from your system in our system. Must be unique across records.
-          maxLength: 255
-        custom_attributes:
-          type: object
-      required:
-      - media_type
     DocumentFileCreate:
       type: object
       properties:
